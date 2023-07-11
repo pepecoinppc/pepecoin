@@ -176,6 +176,7 @@ testScripts = [
     'wallet_create_tx.py',
     'liststucktransactions.py',
     'getblock.py',
+    'getblockstats.py',
     'addnode.py',
     'getcoincount.py',
     'getmocktime.py',
