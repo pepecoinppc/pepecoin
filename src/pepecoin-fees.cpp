@@ -23,15 +23,15 @@ CFeeRate GetPepecoinFeeRate(int priority)
 {
     switch(priority)
     {
-    case SUCH_EXPENSIVE:
+    case MAXIMUM:
         return CFeeRate(COIN / 100 * 521); // 5.21 PEPE, but very carefully avoiding floating point maths
-    case MANY_GENEROUS:
+    case VERY_HIGH:
         return CFeeRate(CWallet::minTxFee.GetFeePerK() * 100);
-    case AMAZE:
+    case HIGH:
         return CFeeRate(CWallet::minTxFee.GetFeePerK() * 10);
-    case WOW:
+    case MODERATE:
         return CFeeRate(CWallet::minTxFee.GetFeePerK() * 5);
-    case MORE:
+    case LOW:
         return CFeeRate(CWallet::minTxFee.GetFeePerK() * 2);
     case MINIMUM:
     default:
@@ -44,16 +44,16 @@ const std::string GetPepecoinPriorityLabel(int priority)
 {
     switch(priority)
     {
-    case SUCH_EXPENSIVE:
-        return _("Such expensive");
-    case MANY_GENEROUS:
-        return _("Many generous");
-    case AMAZE:
-        return _("Amaze");
-    case WOW:
-        return _("Wow");
-    case MORE:
-        return _("More");
+    case MAXIMUM:
+        return _("Maximum");
+    case VERY_HIGH:
+        return _("Very High");
+    case HIGH:
+        return _("High");
+    case MODERATE:
+        return _("Moderate");                                    
+    case LOW:
+        return _("Low");
     case MINIMUM:
         return _("Minimum");
     default:

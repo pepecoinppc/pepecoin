@@ -14,11 +14,11 @@
 enum FeeRatePreset
 {
     MINIMUM,
-    MORE,
-    WOW,
-    AMAZE,
-    MANY_GENEROUS,
-    SUCH_EXPENSIVE
+    LOW,
+    MODERATE,
+    HIGH,
+    VERY_HIGH,
+    MAXIMUM
 };
 
 /** Estimate fee rate needed to get into the next nBlocks */

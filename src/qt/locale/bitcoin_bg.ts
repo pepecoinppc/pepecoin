@@ -3965,7 +3965,7 @@ p, li { white-space: pre-wrap; }
         <translation>Адресни запитвания за партньори винаги ще бъдат осъществени чрез DNS проверка (по подразбиране: %u)</translation>
     </message>
     <message>
-        <source>Amaze</source>
+        <source>High</source>
         <translation>Смайвам</translation>
     </message>
     <message>
@@ -4161,7 +4161,7 @@ p, li { white-space: pre-wrap; }
         <translation>Каране на портфейла да излъчва транзакции</translation>
     </message>
     <message>
-        <source>Many generous</source>
+        <source>Very High</source>
         <translation>Толкова щедрост</translation>
     </message>
     <message>
@@ -4177,7 +4177,7 @@ p, li { white-space: pre-wrap; }
         <translation>Минимално</translation>
     </message>
     <message>
-        <source>More</source>
+        <source>Low</source>
         <translation>Още</translation>
     </message>
     <message>
@@ -4309,7 +4309,7 @@ p, li { white-space: pre-wrap; }
         <translation>Стартиране на мрежови нижки...</translation>
     </message>
     <message>
-        <source>Such expensive</source>
+        <source>Maximum</source>
         <translation>Баш скъпо</translation>
     </message>
     <message>

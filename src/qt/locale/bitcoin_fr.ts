@@ -4516,7 +4516,7 @@ p, li { white-space: pre-wrap; }
         <translation>Ce produit comprend un logiciel développé par le projet OpenSSL pour une utilisation dans la boîte à outils OpenSSL %s et un logiciel cryptographique écrit par Eric Young ainsi qu&apos;un logiciel UPnP écrit par Thomas Bernard. L&apos;art du portefeuille papier a été fourni par Anacoluthia.</translation>
     </message>
     <message>
-        <source>Amaze</source>
+        <source>High</source>
         <translation>Étonnant</translation>
     </message>
     <message>
@@ -4524,7 +4524,7 @@ p, li { white-space: pre-wrap; }
         <translation>Défaut</translation>
     </message>
     <message>
-        <source>Many generous</source>
+        <source>Very High</source>
         <translation>Très généreux</translation>
     </message>
     <message>
@@ -4532,7 +4532,7 @@ p, li { white-space: pre-wrap; }
         <translation>Minimum</translation>
     </message>
     <message>
-        <source>More</source>
+        <source>Low</source>
         <translation>Plus</translation>
     </message>
     <message>
@@ -4540,7 +4540,7 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">Recevoir et afficher les alertes du réseau P2P (par défaut: %u)</translation>
     </message>
     <message>
-        <source>Such expensive</source>
+        <source>Maximum</source>
         <translation>Très coûteux</translation>
     </message>
     <message>
