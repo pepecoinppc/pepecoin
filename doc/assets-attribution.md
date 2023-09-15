@@ -40,7 +40,6 @@ Other
 
 ### Info
 * Designer: Jonas Schnelli, Bitboy, Stephen Hutchings, Marco Falke
-* Pepecoin Icon: Based on the original Pepecoin logo from Christine Ricks
 * Network connection icon: Inspired by flow-merge.svg from Stephen Hutchings
 * Some icons are based on Stephan Hutchings Typicons
 * License: MIT
@@ -65,3 +64,6 @@ Other
     src/qt/res/src/qt.svg
     src/qt/res/src/tx*.svg,
     src/qt/res/src/verify.svg
+
+
+Pepe created by Matt Furie
