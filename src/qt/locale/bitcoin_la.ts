@@ -4013,7 +4013,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Amaze</source>
+        <source>High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4193,7 +4193,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Many generous</source>
+        <source>Very High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4209,7 +4209,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>More</source>
+        <source>Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4337,7 +4337,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Such expensive</source>
+        <source>Maximum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -4422,7 +4422,7 @@ p, li { white-space: pre-wrap; }
         <translation>Dit product bevat software die is ontwikkeld door het OpenSSL-project voor gebruik in de OpenSSL Toolkit %s en cryptografische software die is geschreven door Eric Young en UPnP-software die is geschreven door Thomas Bernard. Papieren portemonnee-kunst geleverd door Anacoluthia.</translation>
     </message>
     <message>
-        <source>Amaze</source>
+        <source>High</source>
         <translation>Verbazend</translation>
     </message>
     <message>
@@ -4430,7 +4430,7 @@ p, li { white-space: pre-wrap; }
         <translation>Standaard</translation>
     </message>
     <message>
-        <source>Many generous</source>
+        <source>Very High</source>
         <translation>Ontzettend Genereus</translation>
     </message>
     <message>
@@ -4438,11 +4438,11 @@ p, li { white-space: pre-wrap; }
         <translation>Minimum</translation>
     </message>
     <message>
-        <source>More</source>
+        <source>Low</source>
         <translation>Meer</translation>
     </message>
     <message>
-        <source>Such expensive</source>
+        <source>Maximum</source>
         <translation>Zo duur</translation>
     </message>
     <message>

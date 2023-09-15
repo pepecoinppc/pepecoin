@@ -4490,7 +4490,7 @@ p, li { white-space: pre-wrap; }
         <translation>이 제품에는 OpenSSL Toolkit %s에서 사용하기 위해 OpenSSL Project에서 개발한 소프트웨어와 에릭 영이 작성한 암호화 소프트웨어 및 토마스 버나드가 작성한 UPnP 소프트웨어가 포함되어 있습니다. Anacoluthia에서 제공한 종이 지갑 아트입니다.</translation>
     </message>
     <message>
-        <source>Amaze</source>
+        <source>High</source>
         <translation>우왕</translation>
     </message>
     <message>
@@ -4498,7 +4498,7 @@ p, li { white-space: pre-wrap; }
         <translation>기본값</translation>
     </message>
     <message>
-        <source>Many generous</source>
+        <source>Very High</source>
         <translation>많이 너그러움</translation>
     </message>
     <message>
@@ -4506,7 +4506,7 @@ p, li { white-space: pre-wrap; }
         <translation>최소</translation>
     </message>
     <message>
-        <source>More</source>
+        <source>Low</source>
         <translation>추가</translation>
     </message>
     <message>
@@ -4514,7 +4514,7 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">P2P 네트워크 경고 수신 및 표시(기본값: %u)</translation>
     </message>
     <message>
-        <source>Such expensive</source>
+        <source>Maximum</source>
         <translation>완전 비싸</translation>
     </message>
     <message>

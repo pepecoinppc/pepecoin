@@ -4424,7 +4424,7 @@ Zwróć uwagę, że poprawnie zweryfikowana wiadomość potwierdza to, że nadaw
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Amaze</source>
+        <source>High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4464,7 +4464,7 @@ Zwróć uwagę, że poprawnie zweryfikowana wiadomość potwierdza to, że nadaw
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Many generous</source>
+        <source>Very High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4472,7 +4472,7 @@ Zwróć uwagę, że poprawnie zweryfikowana wiadomość potwierdza to, że nadaw
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>More</source>
+        <source>Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4492,7 +4492,7 @@ Zwróć uwagę, że poprawnie zweryfikowana wiadomość potwierdza to, że nadaw
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Such expensive</source>
+        <source>Maximum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

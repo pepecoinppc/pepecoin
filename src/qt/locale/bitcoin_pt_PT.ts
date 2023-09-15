@@ -4371,7 +4371,7 @@ p, li { white-space: pre-wrap; }
         <translation>%s está definido muito alto!</translation>
     </message>
     <message>
-        <source>Amaze</source>
+        <source>High</source>
         <translation>Surpreendido</translation>
     </message>
     <message>
@@ -4411,7 +4411,7 @@ p, li { white-space: pre-wrap; }
         <translation>A carregar a lista de bloqueados...</translation>
     </message>
     <message>
-        <source>Many generous</source>
+        <source>Very High</source>
         <translation>Muitos generosos</translation>
     </message>
     <message>
@@ -4419,7 +4419,7 @@ p, li { white-space: pre-wrap; }
         <translation>Mínimo</translation>
     </message>
     <message>
-        <source>More</source>
+        <source>Low</source>
         <translation>Mais</translation>
     </message>
     <message>
@@ -4447,7 +4447,7 @@ p, li { white-space: pre-wrap; }
         <translation>Iniciando threads de rede...</translation>
     </message>
     <message>
-        <source>Such expensive</source>
+        <source>Maximum</source>
         <translation>tão caro</translation>
     </message>
     <message>

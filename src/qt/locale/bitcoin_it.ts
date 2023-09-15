@@ -4375,7 +4375,7 @@ p, li { white-space: pre-wrap; }
         <translation>Il valore %s é molto alto!</translation>
     </message>
     <message>
-        <source>Amaze</source>
+        <source>High</source>
         <translation>Fantastico</translation>
     </message>
     <message>
@@ -4391,7 +4391,7 @@ p, li { white-space: pre-wrap; }
         <translation>La keypool é vuota, usa keypoolrefill prima di continuare</translation>
     </message>
     <message>
-        <source>Many generous</source>
+        <source>Very High</source>
         <translation>Molto generoso</translation>
     </message>
     <message>
@@ -4399,7 +4399,7 @@ p, li { white-space: pre-wrap; }
         <translation>Minimo</translation>
     </message>
     <message>
-        <source>More</source>
+        <source>Low</source>
         <translation>Continua</translation>
     </message>
     <message>
@@ -4411,7 +4411,7 @@ p, li { white-space: pre-wrap; }
         <translation>Inizializzazione dei thread di rete...</translation>
     </message>
     <message>
-        <source>Such expensive</source>
+        <source>Maximum</source>
         <translation>Costosissimo!</translation>
     </message>
     <message>
