@@ -1,8 +1,8 @@
-Source: pepecoin
+Source: Pepecoin
 Section: utils
 Priority: optional
-Maintainer: Matt Corallo <matt@mattcorallo.com>
-Uploaders: Matt Corallo <matt@mattcorallo.com>
+Maintainer:
+Uploaders:
 Build-Depends: debhelper,
  devscripts,
  automake,
@@ -26,7 +26,7 @@ Build-Depends: debhelper,
  python,
  libzmq3-dev
 Standards-Version: 3.9.2
-Homepage: http://www.pepecoin.com/
+Homepage: https://getpepecoin.com/
 Vcs-Git: git://github.com/pepecoinppc/pepecoin.git
 Vcs-Browser: http://github.com/pepecoinppc/pepecoin
 
