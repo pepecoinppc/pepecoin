@@ -254,11 +254,7 @@ Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spur
 
 - Announce the release:
 
-  - Release sticky on Pepecoin Forums: http://forum.pepecoin.com/forum/news-community/community-announcements
-
-  - Pepecoin-development mailing list
-
-  - Twitter, reddit /r/pepecoin
+  - Twitter
 
   - Update title of #pepecoin on Freenode IRC
 

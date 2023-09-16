@@ -15,7 +15,7 @@ Pepecoin é uma criptomoeda gerida pela comunidade que foi inspirada no meme Shi
 Para maiores informações acerca das taxas de transação usadas na rede Pepecoin, por favor acesse: 
 [taxas recomendadas](doc/fee-recommendation.md).
 
-**Website:** [pepecoin.com](https://pepecoin.com)
+**Website:** [getpepecoin.com](https://getpepecoin.com)
 
 ## Uso 💻
 

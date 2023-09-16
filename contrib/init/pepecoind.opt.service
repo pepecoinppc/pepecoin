@@ -3,7 +3,7 @@
 #
 # The relevant paths are:
 #
-#/opt/pepecoinppc/pepecoind
+#/opt/pepecoin/pepecoind
 #/etc/opt/pepecoin/
 #/var/opt/pepecoin/
 
@@ -13,7 +13,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/opt/pepecoin/bin/pepecoind -conf=/etc/opt/pepecoinppc/pepecoin.conf -datadir=/var/opt/pepecoin
+ExecStart=/opt/pepecoin/bin/pepecoind -conf=/etc/opt/pepecoin/pepecoin.conf -datadir=/var/opt/pepecoin
 
 KillSignal=SIGINT
 Restart=always

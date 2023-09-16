@@ -753,17 +753,17 @@ fi
 
 # Configure experimental for compile-time asserts
 if test x$allow_experimental = xyes; then
-  AC_DEFINE(ALLOW_PEPECOIN_EXPERIMENTAL, 1, [Define this symbol if experimental features are allowed])
+  AC_DEFINE(ALLOW_DOGECOIN_EXPERIMENTAL, 1, [Define this symbol if experimental features are allowed])
 fi
 
 # Configure Scrypt SSE2
 if test x$use_scrypt_sse2 = xyes; then
-  PEPECOIN_REQUIRE_EXPERIMENTAL
+  DOGECOIN_REQUIRE_EXPERIMENTAL
   AC_DEFINE(USE_SSE2, 1, [Define this symbol if SSE2 works])
 fi
 
 if test x$armv8_crypto = xyes; then
-  PEPECOIN_REQUIRE_EXPERIMENTAL
+  DOGECOIN_REQUIRE_EXPERIMENTAL
   AC_MSG_CHECKING([whether to build with armv8 crypto])
   AC_MSG_RESULT(yes)
   AC_DEFINE(USE_ARMV8, 1, [Define this symbol if armv8 crypto works])
@@ -771,7 +771,7 @@ if test x$armv8_crypto = xyes; then
 fi
 
 if test x$armv82_crypto = xyes; then
-  PEPECOIN_REQUIRE_EXPERIMENTAL
+  DOGECOIN_REQUIRE_EXPERIMENTAL
   AC_CHECK_DECLS([vsha512su0q_u64],
      [AC_DEFINE(USE_ARMV82, 1, [Define this symbol if armv8.2 crypto works])
      CXXFLAGS="$CXXFLAGS -march=armv8.2-a+crypto+sha3"], AC_MSG_ERROR(sha512 missing), [#include <arm_neon.h>])
@@ -852,7 +852,7 @@ else
 fi
 
 if test x$intel_avx2 = xyes; then
-  PEPECOIN_REQUIRE_EXPERIMENTAL
+  DOGECOIN_REQUIRE_EXPERIMENTAL
   case $host in
      x86_64-*-linux*)
     AC_CHECK_LIB([IPSec_MB],[sha1_one_block_avx2],LIBS=-lIPSec_MB, AC_MSG_ERROR(IPSec_MB missing))
