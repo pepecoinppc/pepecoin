@@ -10,11 +10,11 @@
 #include "config/bitcoin-config.h"
 #endif //HAVE_CONFIG_H
 
-#if defined(ALLOW_PEPECOIN_EXPERIMENTAL)
+#if defined(ALLOW_DOGECOIN_EXPERIMENTAL)
 #define EXPERIMENTAL_FEATURES_ALLOWED 1
 #else
 #define EXPERIMENTAL_FEATURES_ALLOWED 0
-#endif // ALLOW_PEPECOIN_EXPERIMENTAL
+#endif // ALLOW_DOGECOIN_EXPERIMENTAL
 
 #define EXPERIMENTAL_FEATURE static_assert(EXPERIMENTAL_FEATURES_ALLOWED == 1, \
      "Experimental features need to be explicitly enabled during configuration.");

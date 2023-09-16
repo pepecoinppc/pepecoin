@@ -514,7 +514,7 @@ std::string HelpMessage(HelpMessageMode mode)
 std::string LicenseInfo()
 {
     const std::string URL_SOURCE_CODE = "<https://github.com/pepecoinppc/pepecoin>";
-    const std::string URL_WEBSITE = "<https://pepecoin.com>";
+    const std::string URL_WEBSITE = "<https://getpepecoin.com>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2013, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

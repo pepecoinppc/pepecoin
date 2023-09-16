@@ -58,9 +58,9 @@ Pepecoin Core is now available at `./src/pepecoind`
 
 Before running, it's recommended you create an RPC configuration file.
 
-    echo -e "rpcuser=pepecoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Pepecoinppc/pepecoin.conf"
+    echo -e "rpcuser=pepecoinrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/pepecoin/pepecoin.conf"
 
-    chmod 600 "/Users/${USER}/Library/Application Support/Pepecoinppc/pepecoin.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/pepecoin/pepecoin.conf"
 
 The first time you run pepecoind, it will start downloading the blockchain. This process could take several hours.
 

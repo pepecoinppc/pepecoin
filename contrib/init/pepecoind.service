@@ -14,7 +14,7 @@ StartLimitBurst=5
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/pepecoind -conf=/etc/pepecoinppc/pepecoin.conf -datadir=/var/lib/pepecoin
+ExecStart=/usr/bin/pepecoind -conf=/etc/pepecoin/pepecoin.conf -datadir=/var/lib/pepecoin
 
 KillSignal=SIGINT
 Restart=always

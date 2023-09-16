@@ -12,7 +12,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/pepecoind -conf=/usr/local/etc/pepecoinppc/pepecoin.conf -datadir=/var/local/pepecoin
+ExecStart=/usr/local/bin/pepecoind -conf=/usr/local/etc/pepecoin/pepecoin.conf -datadir=/var/local/pepecoin
 
 KillSignal=SIGINT
 Restart=always

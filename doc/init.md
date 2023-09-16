@@ -54,7 +54,7 @@ see `contrib/debian/examples/pepecoin.conf`.
 All three configurations assume several paths that might need to be adjusted.
 
 Binary:              `/usr/bin/pepecoind`  
-Configuration file:  `/etc/pepecoinppc/pepecoin.conf`  
+Configuration file:  `/etc/pepecoin/pepecoin.conf`  
 Data directory:      `/var/lib/pepecoind`  
 PID file:            `/var/run/pepecoind/pepecoind.pid` (OpenRC and Upstart) or `/var/lib/pepecoind/pepecoind.pid` (systemd)  
 Lock file:           `/var/lock/subsys/pepecoind` (CentOS)  
@@ -68,7 +68,7 @@ can then be controlled by group membership.
 3b) Mac OS X
 
 Binary:              `/usr/local/bin/pepecoind`  
-Configuration file:  `~/Library/Application Support/Pepecoinppc/pepecoin.conf`  
+Configuration file:  `~/Library/Application Support/pepecoin/pepecoin.conf`  
 Data directory:      `~/Library/Application Support/Pepecoin`
 Lock file:           `~/Library/Application Support/Pepecoin/.lock`
 

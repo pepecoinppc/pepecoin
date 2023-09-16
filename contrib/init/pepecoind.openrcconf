@@ -1,7 +1,7 @@
 # /etc/conf.d/pepecoind: config file for /etc/init.d/pepecoind
 
 # Config file location
-#PEPECOIND_CONFIGFILE="/etc/pepecoinppc/pepecoin.conf"
+#PEPECOIND_CONFIGFILE="/etc/pepecoin/pepecoin.conf"
 
 # What directory to write pidfile to?  (created and owned by $PEPECOIND_USER)
 #PEPECOIND_PIDDIR="/var/run/pepecoind"
