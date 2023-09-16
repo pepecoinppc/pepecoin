@@ -95,16 +95,13 @@ about Pepecoin, give or ask for help, to share your project.
 Here are some places to visit:
 
 * We are working on getting preferred handles and subreddit
-<!-- * [Reddit]() -->
-<!-- * [Discord](https://getpepecoin.com/discord) -->
-<!-- * [Twitter](https://twitter.com/pepecoinppc) -->
+<!-- * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
+* [Discord](https://getpepecoin.com/discord)
+* [Twitter](https://twitter.com/Pepecoin_Layer1) -->
 
 ## Frequently Asked Questions ❓
 
-Do you have a question regarding Pepecoin? An answer is perhaps already in the
-[FAQ](doc/FAQ.md) or the
-[Q&A section](https://github.com/pepecoinppc/pepecoin/discussions/categories/q-a)
-of the discussion board!
+Do you have a question regarding Pepecoin? An answer is perhaps already in the [FAQ](doc/FAQ.md) or the [Q&A section](https://github.com/pepecoinppc/pepecoin/discussions/categories/q-a) of the discussion board!
 
 ## License ⚖️
 Pepecoin Core is released under the terms of the MIT license. See

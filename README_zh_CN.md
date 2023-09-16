@@ -1,13 +1,10 @@
 <h1 align="center">
-  <img align="center" src="https://static.tumblr.com/ppdj5y9/Ae9mxmxtp/300coin.png" width="300">
+  <img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
   <br/><br/>
-  狗狗币核心 (Pepecoin Core) [DOGE, Ð]
+  狗狗币核心 (Pepecoin Core) [PEPE, ₱]
 </h1>
 
 <div align="center">
-
-[![PepecoinBadge](https://img.shields.io/badge/Doge-Coin-yellow.svg)](https://pepecoin.com)
-[![MuchWow](https://img.shields.io/badge/Much-Wow-yellow.svg)](https://pepecoin.com)
 
 </div>
 
@@ -17,7 +14,7 @@
 
 狗狗币网络默认交易费的相关信息请查看[收费建议](doc/fee-recommendation.md)
 
-**网址:** [pepecoin.com](https://pepecoin.com)
+**网址:** [getpepecoin.com](https://getpepecoin.com)
 
 ## 使用指南 💻
 
@@ -69,9 +66,9 @@
 
 以下是一些社区的访问链接:
 
-* [Pepecoin subreddit](https://www.reddit.com/r/pepecoinppc/)
-* [Discord](https://discord.gg/pepecoinppc)
-* [Pepecoin Twitter](https://twitter.com/pepecoinppc)
+* [Pepecoin subreddit](https://www.reddit.com/r/pepecoin/)
+* [Discord](https://getpepecoin.com/discord)
+* [Pepecoin Twitter](https://twitter.com/Pepecoin_Layer1)
 
 ## 灰常常见的问题 ❓
 

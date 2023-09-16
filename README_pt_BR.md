@@ -1,13 +1,10 @@
 <h1 align="center">
-Pepecoin Core [DOGE, Ð]  
+<img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
 <br/><br/>
-<img src="https://static.tumblr.com/ppdj5y9/Ae9mxmxtp/300coin.png" alt="Pepecoin" width="300"/>
+Pepecoin Core [PEPE, ₱]  
 </h1>
 
 <div align="center">
-
-[![PepecoinBadge](https://img.shields.io/badge/Doge-Coin-yellow.svg)](https://pepecoin.com)
-[![MuchWow](https://img.shields.io/badge/Much-Wow-yellow.svg)](https://pepecoin.com)
 
 </div>
 
@@ -42,7 +39,7 @@ A Pepecoin Core é um programa de código aberto gerido pela comunidade. O proce
 Recursos principais de Desenvolvimento:
 
 * [Projetos do Github](https://github.com/pepecoinppc/pepecoin/projects) é utilizado para conduzir trabalhos planejados ou que estejam em desenvolvimento para as próximas atualizações.
-* [Discussão do Github](https://github.com/pepecoinppc/pepecoin/discussions) é usado para discutir sobre funcionalidades, planejadas ou não, relacionadas ao desenvolvimento do programa Pepecoin Core, os protocolos adjacentes e o criptoativo DOGE.
+* [Discussão do Github](https://github.com/pepecoinppc/pepecoin/discussions) é usado para discutir sobre funcionalidades, planejadas ou não, relacionadas ao desenvolvimento do programa Pepecoin Core, os protocolos adjacentes e o criptoativo PEPE.
 * [Pepecoindev subreddit](https://www.reddit.com/r/pepecoindev/)
 
 ### Estratégia das Versões
@@ -76,9 +73,9 @@ Pepecoin, dar e receber ajuda e compartilhar seu projeto.
 
 Aqui estão alguns lugares pra visitar: 
 
-* [Pepecoin subreddit](https://www.reddit.com/r/pepecoinppc/)
+* [Pepecoin subreddit](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://discord.gg/pepecoinppc)
-* [Pepecoin Twitter](https://twitter.com/pepecoinppc)
+* [Pepecoin Twitter](https://twitter.com/Pepecoin_Layer1)
 
 ## Perguntas frequentes ❓
 
