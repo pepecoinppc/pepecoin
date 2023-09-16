@@ -1,13 +1,10 @@
 <h1 align="center">
-Pepecoin Core [DOGE, Ð]  
+<img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
 <br/><br/>
-<img src="https://static.tumblr.com/ppdj5y9/Ae9mxmxtp/300coin.png" alt="Pepecoin" width="300"/>
+Pepecoin Core [PEPE, ₱]  
 </h1>
 
 <div align="center">
-
-[![PepecoinBadge](https://img.shields.io/badge/Doge-Coin-yellow.svg)](https://pepecoin.com)
-[![MuchWow](https://img.shields.io/badge/Much-Wow-yellow.svg)](https://pepecoin.com)
 
 </div>
 
@@ -21,7 +18,7 @@ Select language: [EN](./README.md) | [CN](./README_zh_CN.md) | [PT](./README_pt_
 [پیشنهادهای هزینه‌ای](doc/fee-recommendation.md)
 مراجعه نمایید.
 
-**سایت اینترنتی:** [pepecoin.com](https://pepecoin.com)
+**سایت اینترنتی:** [getpepecoin.com](https://getpepecoin.com)
 
 ## استفاده 💻
 
@@ -55,7 +52,7 @@ Select language: [EN](./README.md) | [CN](./README_zh_CN.md) | [PT](./README_pt_
 منابع اصلی توسعه:
 
 - [پروژه‌های Github](https://github.com/pepecoinppc/pepecoin/projects) به منظور پیگیری کارهای برنامه‌ریزی‌شده و دردست‌اقدام برای نسخه‌های آتی استفاده می‌شوند.
-- [مباحث در Github](https://github.com/pepecoinppc/pepecoin/discussions) به منظور مورد بحث قرار دادن شاخصه‌های برنامه‌ریزی‌شده و نشده‌ی نرم‌افزار Pepecoin Core، پروتکل‌های زیربنایی آن و دارایی DOGE مورد استفاده قرار می‌گیرد.
+- [مباحث در Github](https://github.com/pepecoinppc/pepecoin/discussions) به منظور مورد بحث قرار دادن شاخصه‌های برنامه‌ریزی‌شده و نشده‌ی نرم‌افزار Pepecoin Core، پروتکل‌های زیربنایی آن و دارایی PEPE مورد استفاده قرار می‌گیرد.
 - [زیرقسمت Pepecoindev در سایت Reddit](https://www.reddit.com/r/pepecoindev/)
 
 ### استراتژی نسخه‌گذاری
@@ -96,9 +93,9 @@ Select language: [EN](./README.md) | [CN](./README_zh_CN.md) | [PT](./README_pt_
 
 این لیستی از برخی از جاهایی است که می‌توانید به آن سر بزنید:
 
-- [زیرقسمت Pepecoin در سایت Reddit](https://www.reddit.com/r/pepecoinppc/)
-- [دیسکورد (Discord)](https://discord.gg/pepecoinppc)
-- [توییتر Pepecoin](https://twitter.com/pepecoinppc)
+- [زیرقسمت Pepecoin در سایت Reddit](https://www.reddit.com/r/pepecoin/)
+- [دیسکورد (Discord)](https://getpepecoin.com/discord)
+- [توییتر Pepecoin](https://twitter.com/Pepecoin_Layer1)
 
 ## پرسش‌های بسیار خیلی زیاد پرسیده‌شده ❓
 
