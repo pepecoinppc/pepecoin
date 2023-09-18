@@ -7,7 +7,7 @@ title: '[feat] '
 <!-- Please make sure you are posting an technical issue related to Pepecoin Core. --> 
 
 <!-- For general questions about Pepecoin or wallet recovery please use one of the various communities:
-* [Discord](https://discord.com/invite/pepecoinppc) -->
+* [Discord](https://getpepecoin.com/pepecoin) -->
 
 <!-- ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION. -->
 

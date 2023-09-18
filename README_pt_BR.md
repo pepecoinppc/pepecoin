@@ -74,7 +74,7 @@ Pepecoin, dar e receber ajuda e compartilhar seu projeto.
 Aqui estão alguns lugares pra visitar: 
 
 * [Pepecoin subreddit](https://www.reddit.com/r/pepecoin/)
-* [Discord](https://discord.gg/pepecoinppc)
+* [Discord](https://getpepecoin.com/discord)
 * [Pepecoin Twitter](https://twitter.com/Pepecoin_Layer1)
 
 ## Perguntas frequentes ❓
