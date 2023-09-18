@@ -172,7 +172,7 @@ Threads
 
 - ThreadMapPort : Universal plug-and-play startup/shutdown
 
-- ThreadSocketHandler : Sends/Receives data from peers on port 22556.
+- ThreadSocketHandler : Sends/Receives data from peers on port 33874.
 
 - ThreadOpenAddedConnections : Opens network connections to added nodes.
 
@@ -184,7 +184,7 @@ Threads
 
 - ThreadFlushWalletDB : Close the wallet.dat file if it hasn't been used in 500ms.
 
-- ThreadRPCServer : Remote procedure call handler, listens on port 22555 for connections and services them.
+- ThreadRPCServer : Remote procedure call handler, listens on port 33873 for connections and services them.
 
 - PepecoinMiner : Generates pepecoins (if wallet is enabled).
 

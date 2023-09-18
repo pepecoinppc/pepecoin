@@ -42,11 +42,11 @@ reachable from the Tor network. Add these lines to your /etc/tor/torrc (or equiv
 config file):
 
 	HiddenServiceDir /var/lib/tor/pepecoin-service/
-	HiddenServicePort 22556 127.0.0.1:22556
-	HiddenServicePort 44556 127.0.0.1:44556
+	HiddenServicePort 33874 127.0.0.1:33874
+	HiddenServicePort 44874 127.0.0.1:44874
 
 The directory can be different of course, but (both) port numbers should be equal to
-your pepecoind's P2P listen port (22556 by default).
+your pepecoind's P2P listen port (33874 by default).
 
 	-externalip=X   You can tell Pepecoin about its publicly reachable address using
 	                this option, and this can be a .onion address. Given the above
@@ -81,7 +81,7 @@ as well, use `discover` instead:
 
 	./pepecoind ... -discover
 
-and open port 22556 on your firewall (or use -upnp).
+and open port 33874 on your firewall (or use -upnp).
 
 If you only want to use Tor to reach onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:

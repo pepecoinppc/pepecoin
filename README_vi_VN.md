@@ -25,15 +25,15 @@ API JSON-RPC được cung cấp bởi Pepecoin Core là self-documenting và c�
 
 ### Such ports
 
-Pepecoin Core theo mặc định sử dụng cổng `22556` để giao tiếp peer-to-peer điều đó
+Pepecoin Core theo mặc định sử dụng cổng `33874` để giao tiếp peer-to-peer điều đó
 là cần thiết để đồng bộ hóa blockchain "mainnet" và cập nhật thông tin về các giao dịch
-và blocks mới. Ngoài ra, cổng JSONRPC có thể mở được, mặc định là cổng `22555` cho mainnet nodes.
+và blocks mới. Ngoài ra, cổng JSONRPC có thể mở được, mặc định là cổng `33873` cho mainnet nodes.
 Chúng tôi đặc biệt khuyến nghị không để lộ các cổng RPC với internet công cộng.
 
 | Function | mainnet | testnet | regtest |
 | :------- | ------: | ------: | ------: |
-| P2P      |   22556 |   44556 |   18444 |
-| RPC      |   22555 |   44555 |   18332 |
+| P2P      |   33874 |   44874 |   18444 |
+| RPC      |   33873 |   44873 |   18332 |
 
 ## Đang phát triển - Kế hoạch Moon 🌒
 

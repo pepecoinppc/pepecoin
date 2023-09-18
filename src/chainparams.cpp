@@ -153,7 +153,7 @@ public:
         pchMessageStart[1] = 0xc0;
         pchMessageStart[2] = 0xc0;
         pchMessageStart[3] = 0xc0;
-        nDefaultPort = 22556;
+        nDefaultPort = 33874;
         nPruneAfterHeight = 100000;
 
         genesis = CreateGenesisBlock(1386325540, 99943, 0x1e0ffff0, 1, 88 * COIN); //PEPECOIN TODO. 0x1e0ffff0, x1e is 30 which is a D prefix change this to P (56 whatever that is in hexidecimal)
@@ -311,7 +311,7 @@ public:
         pchMessageStart[1] = 0xc1;
         pchMessageStart[2] = 0xb7;
         pchMessageStart[3] = 0xdc;
-        nDefaultPort = 44556;
+        nDefaultPort = 44874;
         nPruneAfterHeight = 1000;
 
         genesis = CreateGenesisBlock(1391503289, 997879, 0x1e0ffff0, 1, 88 * COIN); //PEPECOIN TODO. 0x1e0ffff0, x1e is 30 which is a D prefix change this to P (56 whatever that is in hexidecimal)
