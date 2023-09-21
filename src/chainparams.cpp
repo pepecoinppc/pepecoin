@@ -118,7 +118,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000100010001"); // genesis block
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00000000fb65274a432efa6cd097a269d08f3f4468406f36685e2a3d8c11ee57"); // genesis block
+        consensus.defaultAssumeValid = uint256S("0x00000000acf43cde44ea40dfaae29db57f71e94e2d73772b9ab8b99f109225dd"); // genesis block
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise! //PEPE TODO change auxpow chain id
@@ -156,13 +156,13 @@ public:
         nDefaultPort = 33874;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1695102017, 3917523664, 0x1d00ffff, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1695262471, 2159212193, 0x1d00ffff, 1, 88 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0x00000000fb65274a432efa6cd097a269d08f3f4468406f36685e2a3d8c11ee57"));
-        assert(genesis.hashMerkleRoot == uint256S("0xe6ba8878c4d8ed21ab3df63ee8f2e2b3b3a78c5359ec9a74d0722653cf0c0ab6"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000000acf43cde44ea40dfaae29db57f71e94e2d73772b9ab8b99f109225dd"));
+        assert(genesis.hashMerkleRoot == uint256S("0x4887368322e4b73c70ab6b3e52e70fe5b544322a9c02f1deee327d9bcacebba2"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         // vSeeds.push_back(CDNSSeedData("multidoge.org", "seed.multidoge.org", true));
@@ -241,7 +241,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000100010001"); // genesis block
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00000000373aacfc207a63c137b7a879facd5c422feef379f6aab0fdfc8e4c94"); // genesis block
+        consensus.defaultAssumeValid = uint256S("0x000000006c6cbb57ac3ba7fee0f0cabd154d0852c9b3647292cfaea097af8668"); // genesis block
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!
@@ -283,13 +283,14 @@ public:
         nDefaultPort = 44874;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1695167239, 366063793, 0x1d00ffff, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1695264120, 378131205, 0x1d00ffff, 1, 88 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         minDifficultyConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0x00000000373aacfc207a63c137b7a879facd5c422feef379f6aab0fdfc8e4c94"));
-        assert(genesis.hashMerkleRoot == uint256S("0xe6ba8878c4d8ed21ab3df63ee8f2e2b3b3a78c5359ec9a74d0722653cf0c0ab6"));
+
+        assert(consensus.hashGenesisBlock == uint256S("0x000000006c6cbb57ac3ba7fee0f0cabd154d0852c9b3647292cfaea097af8668"));
+        assert(genesis.hashMerkleRoot == uint256S("0x4887368322e4b73c70ab6b3e52e70fe5b544322a9c02f1deee327d9bcacebba2"));
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
@@ -387,12 +388,12 @@ public:
         nDefaultPort = 18444;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1695178500, 318299628, 0x1d00ffff, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1695265480, 2499513137, 0x1d00ffff, 1, 88 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0x00000000103982a45cb4e3c8701ecfde502959925dbd109d7ace8aa4c21c4350"));
-        assert(genesis.hashMerkleRoot == uint256S("0xe6ba8878c4d8ed21ab3df63ee8f2e2b3b3a78c5359ec9a74d0722653cf0c0ab6"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000000005b8d8a18b1a5f4e05189cf78e10a082d525aadda0d18942a622d55a7"));
+        assert(genesis.hashMerkleRoot == uint256S("0x4887368322e4b73c70ab6b3e52e70fe5b544322a9c02f1deee327d9bcacebba2"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
