@@ -52,10 +52,6 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     const char* pszTimestamp = "Let there be Pepecoin";
-    //PEPE TODO - Change pszTimestamp swap the line above with the one below
-    //            DOING THIS WILL CHANGE THE HASH OF THE GENESIS BLOCK AND ALL SUBSEQUENT BLOCKS
-    //            ONLY DO SO WHEN WE MOVE FROM THE DOGECOIN CHAIN TO THE PEPECOIN CHAIN
-    // const char* pszTimestamp = "08/25/2023 - Biden administration unveils new crypto tax reporting rules";
     const CScript genesisOutputScript = CScript() << ParseHex("0436d04f40a76a1094ea10b14a513b62bfd0b47472dda1c25aa9cf8266e53f3c4353680146177f8a3b328ed2c6e02f2b8e051d9d5ffc61a4e6ccabd03409109a5a") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -118,10 +114,10 @@ public:
         consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000100010001"); // genesis block
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00000000acf43cde44ea40dfaae29db57f71e94e2d73772b9ab8b99f109225dd"); // genesis block
+        consensus.defaultAssumeValid = uint256S("0x80fb01c10d0ba67bc79ec61fb10d679b371993889f655fc27f8f8494f5f43cd2"); // genesis block
 
         // AuxPoW parameters
-        consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise! //PEPE TODO change auxpow chain id
+        consensus.nAuxpowChainId = 0x0066; // 98 - Josh Wise! //PEPE TODO change auxpow chain id
         consensus.fStrictChainId = true;
         consensus.fAllowLegacyBlocks = true;
         consensus.nHeightEffective = 0;
@@ -156,12 +152,11 @@ public:
         nDefaultPort = 33874;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1695262471, 2159212193, 0x1d00ffff, 1, 88 * COIN);
-
+        genesis = CreateGenesisBlock(1695366264, 1919867, 0x1e0ffff0, 1, 88 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0x00000000acf43cde44ea40dfaae29db57f71e94e2d73772b9ab8b99f109225dd"));
+        assert(consensus.hashGenesisBlock == uint256S("0x80fb01c10d0ba67bc79ec61fb10d679b371993889f655fc27f8f8494f5f43cd2"));
         assert(genesis.hashMerkleRoot == uint256S("0x4887368322e4b73c70ab6b3e52e70fe5b544322a9c02f1deee327d9bcacebba2"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
@@ -241,7 +236,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000100010001"); // genesis block
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x000000006c6cbb57ac3ba7fee0f0cabd154d0852c9b3647292cfaea097af8668"); // genesis block
+        consensus.defaultAssumeValid = uint256S("0xf862fe0c445333911deedef873359f84ab14c2851accc010ffa1f198b41d4aed"); // genesis block
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x0062; // 98 - Josh Wise!
@@ -283,18 +278,18 @@ public:
         nDefaultPort = 44874;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1695264120, 378131205, 0x1d00ffff, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1695367095, 70793, 0x1e0ffff0, 1, 88 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         minDifficultyConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
 
-        assert(consensus.hashGenesisBlock == uint256S("0x000000006c6cbb57ac3ba7fee0f0cabd154d0852c9b3647292cfaea097af8668"));
+        assert(consensus.hashGenesisBlock == uint256S("0xf862fe0c445333911deedef873359f84ab14c2851accc010ffa1f198b41d4aed"));
         assert(genesis.hashMerkleRoot == uint256S("0x4887368322e4b73c70ab6b3e52e70fe5b544322a9c02f1deee327d9bcacebba2"));
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("jrn.me.uk", "testseed.jrn.me.uk"));
+        // vSeeds.push_back(CDNSSeedData("jrn.me.uk", "testseed.jrn.me.uk"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,113); // 0x71
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196); // 0xc4
@@ -388,11 +383,12 @@ public:
         nDefaultPort = 18444;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1695265480, 2499513137, 0x1d00ffff, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1695367229, 1265665, 0x1e0ffff0, 1, 88 * COIN);
+        // MineGenesis(genesis, consensus.powLimit, true);
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0x000000005b8d8a18b1a5f4e05189cf78e10a082d525aadda0d18942a622d55a7"));
+        assert(consensus.hashGenesisBlock == uint256S("0x35eff36633f152950864058d5bcfcdf8788d8c53ffb11d484c680b4ef3ee03e1"));
         assert(genesis.hashMerkleRoot == uint256S("0x4887368322e4b73c70ab6b3e52e70fe5b544322a9c02f1deee327d9bcacebba2"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
