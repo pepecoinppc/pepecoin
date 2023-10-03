@@ -33,31 +33,32 @@ struct {
     unsigned char extranonce;
     unsigned int nonce;
 } blockinfo[] = {
-    {4, 0x127fad2d}, {2, 0x335d1b8f}, {1, 0x33d47094}, {2, 0x0b09ec28},
-    {1, 0x06cf723b}, {2, 0x039202bc}, {1, 0x0a2c9d46}, {2, 0x6225cb92},
-    {2, 0x6ea1513e}, {1, 0x4401bef3}, {1, 0x04d3a1d2}, {2, 0x1c512825},
-    {2, 0x54a03b14}, {1, 0x6048e27d}, {1, 0x1b926afc}, {2, 0x68c4afbd},
-    {2, 0x4439c313}, {1, 0x1263fceb}, {2, 0x834dee3e}, {2, 0xf21ed9dc},
-    {1, 0xdcdac434}, {2, 0x4c1945be}, {1, 0x6d42a594}, {3, 0x20927a30},
-    {3, 0xfd60f461}, {2, 0xd9ad2207}, {2, 0xe7f69d1a}, {1, 0x7fa9b932},
-    {2, 0xb0511080}, {1, 0xe7d24cd5}, {2, 0x3c57e668}, {2, 0x83bfdc2e},
-    {2, 0x6eeb4e10}, {2, 0x9cacbcfd}, {2, 0xb27ea98e}, {2, 0x6d57c5a7},
-    {1, 0x6deb4fa8}, {2, 0xabf625c6}, {2, 0x27e7c569}, {1, 0x89c6e991},
-    {2, 0xc359bc28}, {1, 0x6f25768d}, {2, 0x654a4c31}, {1, 0x5cd03bab},
-    {1, 0xda405f69}, {3, 0xfea453e5}, {2, 0x137d2c3a}, {5, 0xdee2f36e},
-    {1, 0xeccbcf26}, {5, 0x9237dbaa}, {1, 0xb7b9350b}, {1, 0xcd0c7eb2},
-    {1, 0xf5ea5a32}, {2, 0x3486a7f3}, {1, 0xd0a0f2be}, {1, 0xe1238144},
-    {1, 0x28b98a9b}, {1, 0xe79d02aa}, {5, 0xf4555d56}, {5, 0x74da0bb7},
-    {1, 0x18728b91}, {1, 0x07ed3a93}, {6, 0xd7a5e106}, {2, 0xba50b06c},
-    {2, 0x952c830d}, {1, 0xfbd1bb18}, {1, 0x36126967}, {1, 0xcce357d0},
-    {2, 0xff1ec2d6}, {2, 0xbed5dfc9}, {1, 0x0d21fdd7}, {1, 0xd744edea},
-    {1, 0xe09fc8f2}, {5, 0x2ad325c5}, {5, 0x466b6549}, {1, 0x10705d49},
-    {1, 0xf88478ce}, {2, 0xbfda6c4a}, {2, 0x731fe414}, {1, 0x6f1b362e},
-    {2, 0x6be709cf}, {1, 0x60553200}, {2, 0xf6a992f0}, {2, 0x1521f7f5},
-    {1, 0x8b440273}, {1, 0xe9ade0c8}, {1, 0x4d414618}, {5, 0x7b48070d},
-    {1, 0x1202ebae}, {1, 0xd23fe97e}, {1, 0x8d1d6505}, {1, 0xfafbaae3},
-    {1, 0xf200353e}, {1, 0xe77bd65e}, {1, 0x9fa32102}, {2, 0x68dfa747},
-    {0, 0x7c74d78e}, {1, 0x9b79cc6b}, {2, 0xad957cc2}, {2, 0x91acb818}
+    {2, 0x00048496}, {12, 0x0005d430}, {1, 0x00435aa5}, {1, 0x0010bd7f},
+    {1, 0x0004be52}, {1, 0x00399b29}, {1, 0x0005b3bf}, {1, 0x001b73ec},
+    {1, 0x0004407f}, {1, 0x0012495e}, {1, 0x00032582}, {1, 0x00005d55},
+    {1, 0x00009026}, {1, 0x00055fb1}, {1, 0x00028602}, {1, 0x00071771},
+    {1, 0x00164e46}, {3, 0x00015a5f}, {1, 0x00032c98}, {1, 0x0002b803},
+    {1, 0x000305a1}, {5, 0x00034c2c}, {2, 0x000883eb}, {3, 0x00014137},
+    {4, 0x0006919c}, {4, 0x00018c0c}, {4, 0x00023ce7}, {2, 0x000b626d},
+    {1, 0x0001cc05}, {4, 0x00053255}, {3, 0x000060f5}, {2, 0x00036131},
+    {2, 0x0001a202}, {1, 0x0004f741}, {3, 0x0007d4b5}, {4, 0x00011d8c},
+    {1, 0x00018687}, {3, 0x0000e3f5}, {2, 0x00012e02}, {2, 0x000408a6},
+    {1, 0x0000535d}, {2, 0x00036dcd}, {1, 0x00008285}, {4, 0x00045ea4},
+    {3, 0x00011068}, {5, 0x00040ea3}, {1, 0x0000433f}, {3, 0x000043e0},
+    {2, 0x000442bf}, {3, 0x0000975d}, {3, 0x00018be8}, {1, 0x00092b00},
+    {1, 0x0009cf35}, {1, 0x000784a1}, {1, 0x00011dc4}, {1, 0x0008eb3d},
+    {4, 0x0003fdcb}, {1, 0x0001b671}, {1, 0x0000fa71}, {3, 0x0004422a},
+    {4, 0x00038d35}, {1, 0x000049c1}, {1, 0x0000b462}, {4, 0x00011d5e},
+    {1, 0x00036fde}, {1, 0x000191e7}, {4, 0x0002c407}, {1, 0x0006e218},
+    {2, 0x0003dcf1}, {2, 0x000a1a98}, {1, 0x0001adf3}, {4, 0x00067fee},
+    {2, 0x00049a34}, {7, 0x0005b55a}, {1, 0x00071158}, {2, 0x00014162},
+    {7, 0x00041fe7}, {5, 0x000b71c5}, {5, 0x0000cc39}, {3, 0x00019682},
+    {1, 0x0008dea6}, {4, 0x000275df}, {3, 0x0000799c}, {3, 0x0003d308},
+    {7, 0x0002f1ca}, {3, 0x00017af2}, {3, 0x0003358e}, {1, 0x000396cb},
+    {2, 0x00031277}, {8, 0x0001441c}, {6, 0x0005825d}, {2, 0x0002724c},
+    {1, 0x0000d9cc}, {3, 0x0003666d}, {3, 0x00002098}, {3, 0x0003492a},
+    {2, 0x00017b77}, {2, 0x0000de9f}, {3, 0x00058595}, {2, 0x0001acab}
+    
 };
 
 CBlockIndex CreateBlockIndex(int nHeight)
@@ -226,7 +227,34 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
             txFirst.push_back(pblock->vtx[0]);
         pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
         pblock->nNonce = blockinfo[i].nonce;
+        // CValidationState state;
+        // pblock->fChecked = false;
+        // std::cout << "Checked? " << pblock->fChecked << std::endl;
+        BlockMap::iterator mi = mapBlockIndex.find(pblock->hashPrevBlock);
+        CBlockIndex* pindexPrev = (*mi).second;
+        CValidationState state;
+        if (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
+            pblock->nNonce = 0;
+            std::cout << "Mining Block " << i+1 << std::endl;
+             while (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
+                ++pblock->nNonce;
+                if (pblock->nNonce % 100000 == 0) {
+                    printf("Block %d: %d, %d\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
+                }
+            }
+            printf("Block %d mined: %d, 0x%08x\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
+            // CheckBlock();
+        }
+
+        
+        // std::cout << "Block Valid? " << CheckBlock(*pblock, state) << std::endl;
+        // std::cout << "Adding block " << i << "... " << std::endl;
+        // std::cout << "Hash: " << pblock->GetHash().ToString() << "Prev Hash: " << pblock->hashPrevBlock.ToString() << std::endl;
+        // std::cout << pblock->ToString() << std::endl;
+
+        
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
+        
         BOOST_CHECK(ProcessNewBlock(chainparams, shared_pblock, true, NULL));
         pblock->hashPrevBlock = pblock->GetHash();
     }
