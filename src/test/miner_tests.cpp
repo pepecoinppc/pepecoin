@@ -227,31 +227,6 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
             txFirst.push_back(pblock->vtx[0]);
         pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
         pblock->nNonce = blockinfo[i].nonce;
-        // CValidationState state;
-        // pblock->fChecked = false;
-        // std::cout << "Checked? " << pblock->fChecked << std::endl;
-        BlockMap::iterator mi = mapBlockIndex.find(pblock->hashPrevBlock);
-        CBlockIndex* pindexPrev = (*mi).second;
-        CValidationState state;
-        if (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
-            pblock->nNonce = 0;
-            std::cout << "Mining Block " << i+1 << std::endl;
-             while (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
-                ++pblock->nNonce;
-                if (pblock->nNonce % 100000 == 0) {
-                    printf("Block %d: %d, %d\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
-                }
-            }
-            printf("Block %d mined: %d, 0x%08x\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
-            // CheckBlock();
-        }
-
-        
-        // std::cout << "Block Valid? " << CheckBlock(*pblock, state) << std::endl;
-        // std::cout << "Adding block " << i << "... " << std::endl;
-        // std::cout << "Hash: " << pblock->GetHash().ToString() << "Prev Hash: " << pblock->hashPrevBlock.ToString() << std::endl;
-        // std::cout << pblock->ToString() << std::endl;
-
         
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
         
