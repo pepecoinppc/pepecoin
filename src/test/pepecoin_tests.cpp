@@ -58,53 +58,13 @@ uint64_t expectedMinSubsidy(int height) {
     }
 }
 
-BOOST_AUTO_TEST_CASE(subsidy_first_100k_test)
-{
-    const CChainParams& mainParams = Params(CBaseChainParams::MAIN);
-    CAmount nSum = 0;
-    arith_uint256 prevHash = UintToArith256(uint256S("0"));
-
-    for (int nHeight = 0; nHeight <= 100000; nHeight++) {
-        const Consensus::Params& params = mainParams.GetConsensus(nHeight);
-        CAmount nSubsidy = GetPepecoinBlockSubsidy(nHeight, params, ArithToUint256(prevHash));
-        BOOST_CHECK(MoneyRange(nSubsidy));
-        BOOST_CHECK(nSubsidy <= 1000000 * COIN);
-        nSum += nSubsidy;
-        // Use nSubsidy to give us some variation in previous block hash, without requiring full block templates
-        prevHash += nSubsidy;
-    }
-
-    const CAmount expected = 54894174438 * COIN;
-    BOOST_CHECK_EQUAL(expected, nSum);
-}
-
-BOOST_AUTO_TEST_CASE(subsidy_100k_145k_test)
-{
-    const CChainParams& mainParams = Params(CBaseChainParams::MAIN);
-    CAmount nSum = 0;
-    arith_uint256 prevHash = UintToArith256(uint256S("0"));
-
-    for (int nHeight = 100000; nHeight <= 145000; nHeight++) {//PEPE TODO Magic number
-        const Consensus::Params& params = mainParams.GetConsensus(nHeight);
-        CAmount nSubsidy = GetPepecoinBlockSubsidy(nHeight, params, ArithToUint256(prevHash));
-        BOOST_CHECK(MoneyRange(nSubsidy));
-        BOOST_CHECK(nSubsidy <= 500000 * COIN);
-        nSum += nSubsidy;
-        // Use nSubsidy to give us some variation in previous block hash, without requiring full block templates
-        prevHash += nSubsidy;
-    }
-
-    const CAmount expected = 12349960000 * COIN;
-    BOOST_CHECK_EQUAL(expected, nSum);
-}
-
 // Check the simplified rewards after block 145,000
-BOOST_AUTO_TEST_CASE(subsidy_post_145k_test)
+BOOST_AUTO_TEST_CASE(subsidy_test)
 {
     const CChainParams& mainParams = Params(CBaseChainParams::MAIN);
     const uint256 prevHash = uint256S("0");
 
-    for (int nHeight = 145000; nHeight < 600000; nHeight++) {//PEPE TODO Magic number
+    for (int nHeight = 0; nHeight < 600000; nHeight++) {//PEPE TODO Magic number
         const Consensus::Params& params = mainParams.GetConsensus(nHeight);
         CAmount nSubsidy = GetPepecoinBlockSubsidy(nHeight, params, prevHash);
         CAmount nExpectedSubsidy = (500000 >> (nHeight / 100000)) * COIN;
@@ -151,7 +111,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_pre_digishield)
 BOOST_AUTO_TEST_CASE(get_next_work_digishield)
 {
     SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus(145000);//PEPE TODO Magic number
+    const Consensus::Params& params = Params().GetConsensus(1000);//PEPE TODO Magic number
     
     CBlockIndex pindexLast;
     int64_t nLastRetargetTime = 1395094427;
@@ -166,7 +126,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_digishield)
 BOOST_AUTO_TEST_CASE(get_next_work_digishield_modulated_upper)
 {
     SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus(145000);//PEPE TODO Magic number
+    const Consensus::Params& params = Params().GetConsensus(1000);//PEPE TODO Magic number
     
     CBlockIndex pindexLast;
     int64_t nLastRetargetTime = 1395100835;
@@ -181,7 +141,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_digishield_modulated_upper)
 BOOST_AUTO_TEST_CASE(get_next_work_digishield_modulated_lower)
 {
     SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus(145000);//PEPE TODO Magic number
+    const Consensus::Params& params = Params().GetConsensus(1000);//PEPE TODO Magic number
     
     CBlockIndex pindexLast;
     int64_t nLastRetargetTime = 1395380517;
@@ -196,7 +156,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_digishield_modulated_lower)
 BOOST_AUTO_TEST_CASE(get_next_work_digishield_rounding)
 {
     SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus(145000);//PEPE TODO Magic number
+    const Consensus::Params& params = Params().GetConsensus(1000);//PEPE TODO Magic number
     
     CBlockIndex pindexLast;
     int64_t nLastRetargetTime = 1395094679;
@@ -218,23 +178,23 @@ BOOST_AUTO_TEST_CASE(hardfork_parameters)
     BOOST_CHECK_EQUAL(initialParams.fAllowLegacyBlocks, true);
     BOOST_CHECK_EQUAL(initialParams.fDigishieldDifficultyCalculation, false);
 
-    const Consensus::Params& initialParamsEnd = Params().GetConsensus(144999);
+    const Consensus::Params& initialParamsEnd = Params().GetConsensus(999);
     BOOST_CHECK_EQUAL(initialParamsEnd.nPowTargetTimespan, 14400);
     BOOST_CHECK_EQUAL(initialParamsEnd.fAllowLegacyBlocks, true);
     BOOST_CHECK_EQUAL(initialParamsEnd.fDigishieldDifficultyCalculation, false);
 
-    const Consensus::Params& digishieldParams = Params().GetConsensus(145000);//PEPE TODO Magic number
+    const Consensus::Params& digishieldParams = Params().GetConsensus(1000);//PEPE TODO Magic number
     BOOST_CHECK_EQUAL(digishieldParams.nPowTargetTimespan, 60);
     BOOST_CHECK_EQUAL(digishieldParams.fAllowLegacyBlocks, true);
     BOOST_CHECK_EQUAL(digishieldParams.fDigishieldDifficultyCalculation, true);
 
-    const Consensus::Params& digishieldParamsEnd = Params().GetConsensus(371336);
+    const Consensus::Params& digishieldParamsEnd = Params().GetConsensus(1499);
     BOOST_CHECK_EQUAL(digishieldParamsEnd.nPowTargetTimespan, 60);
     BOOST_CHECK_EQUAL(digishieldParamsEnd.fAllowLegacyBlocks, true);
     BOOST_CHECK_EQUAL(digishieldParamsEnd.fDigishieldDifficultyCalculation, true);
 
-    const Consensus::Params& auxpowParams = Params().GetConsensus(371337);//PEPE TODO Magic number
-    BOOST_CHECK_EQUAL(auxpowParams.nHeightEffective, 371337);//PEPE TODO Magic number
+    const Consensus::Params& auxpowParams = Params().GetConsensus(1500);//PEPE TODO Magic number
+    BOOST_CHECK_EQUAL(auxpowParams.nHeightEffective, 1500);//PEPE TODO Magic number
     BOOST_CHECK_EQUAL(auxpowParams.nPowTargetTimespan, 60);
     BOOST_CHECK_EQUAL(auxpowParams.fAllowLegacyBlocks, false);
     BOOST_CHECK_EQUAL(auxpowParams.fDigishieldDifficultyCalculation, true);
