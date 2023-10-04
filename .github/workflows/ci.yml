@@ -23,7 +23,7 @@ jobs:
       PYTHON_DEBUG: "1"
       CACHE_NONCE: "1"
       WINEDEBUG: fixme-all
-      SDK_URL: http://depends.dogecoincore.org
+      SDK_URL: https://depends.dogecoincore.org
       BIONIC_LIEF_WHL: lief-0.12.3-cp36-cp36m-linux_x86_64.whl
 
     strategy:
