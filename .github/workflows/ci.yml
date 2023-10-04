@@ -23,7 +23,7 @@ jobs:
       PYTHON_DEBUG: "1"
       CACHE_NONCE: "1"
       WINEDEBUG: fixme-all
-      SDK_URL: https://depends.dogecoincore.org
+      SDK_URL: http://depends.dogecoincore.org
       BIONIC_LIEF_WHL: lief-0.12.3-cp36-cp36m-linux_x86_64.whl
 
     strategy:
@@ -234,7 +234,7 @@ jobs:
 
       - name: Install custom lief wheel
         if: matrix.os == 'ubuntu-18.04'
-        run: python3 -m pip install --trusted-host $SDK_URL $SDK_URL/$BIONIC_LIEF_WHL
+        run: python3 -m pip install $SDK_URL/$BIONIC_LIEF_WHL
 
       - name: Install standard lief wheel
         if: matrix.os != 'ubuntu-18.04'
@@ -264,7 +264,7 @@ jobs:
           mkdir -p ./depends/sdk-sources
           mkdir -p ./depends/SDKs
           echo "${{ matrix.sdk-shasum }}  depends/sdk-sources/${{ env.sdk-filename }}" | sha256sum -c || \
-          curl -k --location --fail $SDK_URL/${{ env.sdk-filename }} -o depends/sdk-sources/${{ env.sdk-filename }} &&\
+          curl --location --fail $SDK_URL/${{ env.sdk-filename }} -o depends/sdk-sources/${{ env.sdk-filename }} &&\
           echo "${{ matrix.sdk-shasum }}  depends/sdk-sources/${{ env.sdk-filename }}" | sha256sum -c
           tar -C depends/SDKs -xf depends/sdk-sources/${{ env.sdk-filename }}
 
