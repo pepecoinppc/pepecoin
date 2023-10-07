@@ -385,12 +385,12 @@ public:
         nDefaultPort = 18444;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1695367229, 1265665, 0x1e0ffff0, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1695265480, 2499513137, 0x1d00ffff, 1, 88 * COIN);
         // MineGenesis(genesis, consensus.powLimit, true);
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0x35eff36633f152950864058d5bcfcdf8788d8c53ffb11d484c680b4ef3ee03e1"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000000005b8d8a18b1a5f4e05189cf78e10a082d525aadda0d18942a622d55a7"));
         assert(genesis.hashMerkleRoot == uint256S("0x4887368322e4b73c70ab6b3e52e70fe5b544322a9c02f1deee327d9bcacebba2"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
