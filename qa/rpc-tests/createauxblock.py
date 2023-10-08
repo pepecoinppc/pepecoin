@@ -52,7 +52,7 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     assert_equal(reversedTarget, blocktemplate["target"])
 
     # Verify data that can be found in another way.
-    assert_equal(auxblock["chainid"], 98)
+    assert_equal(auxblock["chainid"], 63)
     assert_equal(auxblock["height"], self.nodes[0].getblockcount() + 1)
     assert_equal(auxblock["previousblockhash"], self.nodes[0].getblockhash(auxblock["height"] - 1))
 
@@ -113,12 +113,12 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     reversedTarget = auxpow.reverseHex(auxblock["target"])
 
     # Compute invalid auxpow.
-    apow = auxpow.computeAuxpowWithChainId(auxblock["hash"], reversedTarget, "98", False)
+    apow = auxpow.computeAuxpowWithChainId(auxblock["hash"], reversedTarget, "63", False)
     res = self.nodes[0].submitauxblock(auxblock["hash"], apow)
     assert not res
 
     # Compute and submit valid auxpow.
-    apow = auxpow.computeAuxpowWithChainId(auxblock["hash"], reversedTarget, "98", True)
+    apow = auxpow.computeAuxpowWithChainId(auxblock["hash"], reversedTarget, "63", True)
     res = self.nodes[0].submitauxblock(auxblock["hash"], apow)
     assert res
 
@@ -137,7 +137,7 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     auxblock2 = self.nodes[0].createauxblock(dummy_p2sh_addr)
     auxblock3 = self.nodes[0].createauxblock(dummy_addr2)
     reversedTarget = auxpow.reverseHex(auxblock2["target"])
-    apow = auxpow.computeAuxpowWithChainId(auxblock2["hash"], reversedTarget, "98", True)
+    apow = auxpow.computeAuxpowWithChainId(auxblock2["hash"], reversedTarget, "63", True)
     res = self.nodes[0].submitauxblock(auxblock2["hash"], apow)
     assert res
 
@@ -149,7 +149,7 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     # Solve the first p2pkh template before requesting a new auxblock
     # this succeeds but creates a chaintip fork
     reversedTarget = auxpow.reverseHex(auxblock1["target"])
-    apow = auxpow.computeAuxpowWithChainId(auxblock1["hash"], reversedTarget, "98", True)
+    apow = auxpow.computeAuxpowWithChainId(auxblock1["hash"], reversedTarget, "63", True)
     res = self.nodes[0].submitauxblock(auxblock1["hash"], apow)
     assert res
 
@@ -163,7 +163,7 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     # Solve the last p2pkh template after requesting a new auxblock - this fails
     self.nodes[0].createauxblock(dummy_p2pkh_addr)
     reversedTarget = auxpow.reverseHex(auxblock3["target"])
-    apow = auxpow.computeAuxpowWithChainId(auxblock3["hash"], reversedTarget, "98", True)
+    apow = auxpow.computeAuxpowWithChainId(auxblock3["hash"], reversedTarget, "63", True)
     try:
       self.nodes[0].submitauxblock(auxblock3["hash"], apow)
       raise AssertionError("Outdated blockhash accepted")
@@ -180,7 +180,7 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     assert "_target" in nmc_api_auxblock
 
     reversedTarget = auxpow.reverseHex(nmc_api_auxblock["_target"])
-    apow = auxpow.computeAuxpowWithChainId(nmc_api_auxblock["hash"], reversedTarget, "98", True)
+    apow = auxpow.computeAuxpowWithChainId(nmc_api_auxblock["hash"], reversedTarget, "63", True)
     res = self.nodes[1].submitauxblock(nmc_api_auxblock["hash"], apow)
     assert res
 

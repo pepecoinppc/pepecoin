@@ -45,7 +45,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         // then allow mining of a min-difficulty block.
         return nProofOfWorkLimit;
     }
-
+    //PEPE TODO Magic number
     // Only change once per difficulty adjustment interval
     bool fNewDifficultyProtocol = (pindexLast->nHeight >= 145000);
     const int64_t difficultyAdjustmentInterval = fNewDifficultyProtocol
