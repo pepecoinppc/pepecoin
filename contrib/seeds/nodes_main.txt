@@ -1,4 +1,4 @@
 # List of fixed seed nodes for mainnet
 
-192.168.1.216
-192.168.1.88
+138.197.59.183
+64.225.91.32
