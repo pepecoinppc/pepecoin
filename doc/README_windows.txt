@@ -18,7 +18,6 @@ However, it downloads and stores the entire history of Pepecoin transactions;
 depending on the speed of your computer and network connection, the synchronization
 process can take anywhere from a few hours to a day or more.
 
-// PEPE TODO Make wiki page and change this link
-See the Pepecoin wiki at:
-  https://www.reddit.com/r/pepecoin/wiki/pepecoincoreguide
+For general information about Pepecoin Core, refer to the Dogecoin wiki at:
+  https://www.reddit.com/r/dogecoin/wiki/dogecoincoreguide
 for more help and information.
