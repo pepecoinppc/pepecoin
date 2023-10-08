@@ -117,7 +117,7 @@ public:
         consensus.defaultAssumeValid = uint256S("0x80fb01c10d0ba67bc79ec61fb10d679b371993889f655fc27f8f8494f5f43cd2"); // genesis block
 
         // AuxPoW parameters
-        consensus.nAuxpowChainId = 0x0a31; // 2609
+        consensus.nAuxpowChainId = 0x003f; // 63
         consensus.fStrictChainId = true;
         consensus.fAllowLegacyBlocks = true;
         consensus.nHeightEffective = 0;
@@ -240,7 +240,7 @@ public:
         consensus.defaultAssumeValid = uint256S("0xf862fe0c445333911deedef873359f84ab14c2851accc010ffa1f198b41d4aed"); // genesis block
 
         // AuxPoW parameters
-        consensus.nAuxpowChainId = 0x0a31; // 2609
+        consensus.nAuxpowChainId = 0x003f; // 63
         consensus.fStrictChainId = false;
         consensus.nHeightEffective = 0;
         consensus.fAllowLegacyBlocks = true;
@@ -356,7 +356,7 @@ public:
         consensus.defaultAssumeValid = uint256S("0x00");
 
         // AuxPow parameters
-        consensus.nAuxpowChainId = 0x0a31; // 2609
+        consensus.nAuxpowChainId = 0x003f; // 63
         consensus.fStrictChainId = true;
         consensus.fAllowLegacyBlocks = true;
 
@@ -385,12 +385,12 @@ public:
         nDefaultPort = 18444;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1695265480, 2499513137, 0x1d00ffff, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1296688602, 0, 0x207fffff, 1, 88 * COIN);
         // MineGenesis(genesis, consensus.powLimit, true);
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0x000000005b8d8a18b1a5f4e05189cf78e10a082d525aadda0d18942a622d55a7"));
+        assert(consensus.hashGenesisBlock == uint256S("0xf7738dbecbdc8ad92c1d84dfaaf80959c07f08d6376e8d74f6e554f73b2a7bd2"));
         assert(genesis.hashMerkleRoot == uint256S("0x4887368322e4b73c70ab6b3e52e70fe5b544322a9c02f1deee327d9bcacebba2"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.

@@ -12,7 +12,7 @@ from .script import CScript, OP_TRUE, OP_CHECKSIG, OP_RETURN
 def create_block(hashprev, coinbase, nTime=None):
     block = CBlock()
     # Pepecoin: Create a non-AuxPoW block but include chain ID
-    block.nVersion = 0x620004
+    block.nVersion = 0x3F0004
     if nTime is None:
         import time
         block.nTime = int(time.time()+600)

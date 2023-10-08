@@ -43,7 +43,7 @@ class GetAuxBlockTest (BitcoinTestFramework):
     assert_equal (reversedTarget, blocktemplate['target'])
 
     # Verify data that can be found in another way.
-    assert_equal (auxblock['chainid'], 98)
+    assert_equal (auxblock['chainid'], 63)
     assert_equal (auxblock['height'], self.nodes[0].getblockcount () + 1)
     assert_equal (auxblock['previousblockhash'], self.nodes[0].getblockhash (auxblock['height'] - 1))
 
@@ -82,12 +82,12 @@ class GetAuxBlockTest (BitcoinTestFramework):
     target = blocktemplate['target']
 
     # Compute invalid auxpow.
-    apow = auxpow.computeAuxpowWithChainId (auxblock['hash'], target, "98", False)
+    apow = auxpow.computeAuxpowWithChainId (auxblock['hash'], target, "63", False)
     res = self.nodes[0].getauxblock (auxblock['hash'], apow)
     assert not res
 
     # Compute and submit valid auxpow.
-    apow = auxpow.computeAuxpowWithChainId (auxblock['hash'], target, "98", True)
+    apow = auxpow.computeAuxpowWithChainId (auxblock['hash'], target, "63", True)
     res = self.nodes[0].getauxblock (auxblock['hash'], apow)
     assert res
 
@@ -138,7 +138,7 @@ class GetAuxBlockTest (BitcoinTestFramework):
     assert "_target" in nmc_api_auxblock
 
     reversedTarget = auxpow.reverseHex(nmc_api_auxblock["_target"])
-    apow = auxpow.computeAuxpowWithChainId(nmc_api_auxblock["hash"], reversedTarget, "98", True)
+    apow = auxpow.computeAuxpowWithChainId(nmc_api_auxblock["hash"], reversedTarget, "63", True)
     res = self.nodes[1].getauxblock(nmc_api_auxblock["hash"], apow)
     assert res
 
