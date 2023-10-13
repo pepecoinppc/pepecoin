@@ -51,4 +51,4 @@ situations but should be discussed in public in advance.
 
 See also
 ----------
-- [pepecoin-seeder](https://github.com/langerhans/pepecoin-seeder) is a reference implementation of a DNS seed.
+- [generic-seeder](https://github.com/team-exor/generic-seeder) is a reference implementation of a DNS seed.
