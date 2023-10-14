@@ -1,4 +1,4 @@
-Pepecoin Core 0.14.2
+Pepecoin Core 1.0
 =====================
 
 Intro
@@ -20,4 +20,5 @@ process can take anywhere from a few hours to a day or more.
 
 For general information about Pepecoin Core, refer to the Dogecoin wiki at:
   https://www.reddit.com/r/dogecoin/wiki/dogecoincoreguide
-for more help and information.
+for more help and information. Since Pepecoin is a fork of Dogecoin, the information there 
+will be helpful for Pepecoin as well.

@@ -1,12 +1,12 @@
 Pepecoin Fee Recommendation
 ----------------------------
 
-_last updated for 1.14.6_
+_last updated for 1.0.0_
 
 The Pepecoin chain has a relatively low block interval, 1 megabyte blockspace
 and aims to provide a cheap means for people to transact. Therefore, the biggest
-threat to the Pepecoin chain as a whole is spam and in 2014, a transaction fee
-and dust disincentive were introduced, to combat on-chain spam.
+threat to the Pepecoin chain as a whole is spam. Pepecoin uses a transaction fee
+and dust disincentive, to combat on-chain spam.
 
 Pepecoin Core implements a number of defaults into the software that reflect the
 developers' recommendations towards fees and dust limits, that at the moment of
@@ -21,10 +21,8 @@ wallet, are:
 The wallet rejects transactions that have outputs under the dust limit, and
 discards change to fee if it falls under this limit.
 
-Note: In the past, Pepecoin has enforced a rounding function in the fee
-      mechanism. Since version 1.14.5, this is no longer the case, and fees are
-      calculated over the exact size of a transaction. For example, a 192 byte
-      transaction only has to pay `0.01 / 1000 * 192 = 0.00192` PEPE fee.
+Fees are calculated over the exact size of a transaction. For example, a 192 byte
+transaction only has to pay `0.01 / 1000 * 192 = 0.00192` PEPE fee.
 
 ## Miner default inclusion policies
 

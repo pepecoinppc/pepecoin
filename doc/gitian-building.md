@@ -101,18 +101,18 @@ Binaries and signatures will be created in a `gitian-output` folder, relative to
 The entire gitian flow can be performed step by step, example using docker :
 ```bash
 #Download Gitian dependencies
-./gitian-build.sh --docker --setup 1.14.5
+./gitian-build.sh --docker --setup 1.0
 
 #Build & sign executables
-./gitian-build.sh --docker --build --sign SIGNER 1.14.5
+./gitian-build.sh --docker --build --sign SIGNER 1.0
 
 #Verify signatures
-./gitian-build.sh --verify 1.14.5
+./gitian-build.sh --verify 1.0
 ```
 
 Or to do everything at once :
 ```bash
-./gitian-build.sh --docker --setup --build --sign SIGNER --verify 1.14.5
+./gitian-build.sh --docker --setup --build --sign SIGNER --verify 1.0
 ```
 
 ### Signing externally

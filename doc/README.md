@@ -1,4 +1,4 @@
-Pepecoin Core 0.14.2
+Pepecoin Core 1.0
 =====================
 
 Development

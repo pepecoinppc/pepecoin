@@ -1,7 +1,7 @@
 Fedora build guide
 ------------------
 
-**Last tested with:** 1.14.6-dev (as of 22884709)
+**Last tested with:** 1.0-dev
 **Tested on:** Fedora 35,35,36
 
 ### Build requirements

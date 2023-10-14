@@ -44,6 +44,6 @@ The interface is defined in the C header `pepecoinconsensus.h` located in  `src/
 
 ### Example Implementations
 - [NBitcoin](https://github.com/NicolasDorier/NBitcoin/blob/master/NBitcoin/Script.cs#L814) (.NET Bindings)
-- [node-libpepecoinconsensus](https://github.com/bitpay/node-libpepecoinconsensus) (Node.js Bindings)
-- [java-libpepecoinconsensus](https://github.com/dexX7/java-libpepecoinconsensus) (Java Bindings)
-- [pepecoinconsensus-php](https://github.com/Bit-Wasp/pepecoinconsensus-php) (PHP Bindings)
+- [node-libbitcoinconsensus](https://github.com/bitpay/node-libbitcoinconsensus) (Node.js Bindings)
+- [java-libbitcoinconsensus](https://github.com/dexX7/java-libbitcoinconsensus) (Java Bindings)
+- [bitcoinconsensus-php](https://github.com/Bit-Wasp/bitcoinconsensus-php) (PHP Bindings)

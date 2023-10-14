@@ -41,7 +41,7 @@ class MempoolLimitTest(BitcoinTestFramework):
         txid = self.nodes[0].sendrawtransaction(txFS['hex'])
 
         relayfee = self.nodes[0].getnetworkinfo()['relayfee']
-        # TODO: Remove "* 1000" in 1.14.5 when relayfee and minimum fee are close to each other again.
+        # TODO: Remove "* 1000" in Dogecoin 1.14.5 when relayfee and minimum fee are close to each other again.
         base_fee = relayfee*100 * 1000
         for i in range (6):
             txids.append([])
