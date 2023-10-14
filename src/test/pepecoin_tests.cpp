@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(subsidy_test)
     const CChainParams& mainParams = Params(CBaseChainParams::MAIN);
     const uint256 prevHash = uint256S("0");
 
-    for (int nHeight = 0; nHeight < 600000; nHeight++) {//PEPE TODO Magic number
+    for (int nHeight = 0; nHeight < 600000; nHeight++) {
         const Consensus::Params& params = mainParams.GetConsensus(nHeight);
         CAmount nSubsidy = GetPepecoinBlockSubsidy(nHeight, params, prevHash);
         CAmount nExpectedSubsidy = (500000 >> (nHeight / 100000)) * COIN;
@@ -111,7 +111,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_pre_digishield)
 BOOST_AUTO_TEST_CASE(get_next_work_digishield)
 {
     SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus(1000);//PEPE TODO Magic number
+    const Consensus::Params& params = Params().GetConsensus(1000);
     
     CBlockIndex pindexLast;
     int64_t nLastRetargetTime = 1395094427;
