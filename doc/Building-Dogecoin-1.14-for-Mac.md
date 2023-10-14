@@ -1,4 +1,9 @@
-### Building pepecoin-qt 1.14 on modern macs. ###
+### This process has not be completed for Pepecoin.
+
+This is the process for Dogecoin. We do not have a repo similar to https://github.com/michilumin/dogecoin.git for Pepecoin. We did not have the need to test this process as none of us develop on Mac. However, we may fix this in the future if there is enough demand for it.
+
+----------------------------------------------------
+### Building dogecoin-qt 1.14 on modern macs. ###
 
 Note that this requires changes made by michilumin on the 1.14-dev branch as well as some changes to BDB.
 
@@ -6,11 +11,11 @@ Tested on OSX 10.11 El Capitan, 10.13 High Sierra and 11.1 Big Sur.
 
 **Paper wallet printing support seems to work fine through this method as well.**
 
-### Clone pepecoin locally, or check it out, etc. ###
+### Clone dogecoin locally, or check it out, etc. ###
 
 For this purpose, just indicating the 1.14-branding branch in my repo.
 
-	$git clone -b 1.14-branding --single-branch https://github.com/michilumin/pepecoin.git
+	$git clone -b 1.14-branding --single-branch https://github.com/michilumin/dogecoin.git
 
 ### Set up OSX basic build dependencies. ##
 
@@ -76,9 +81,9 @@ Build BDB 5.3.28
     $cd /usr/local/include 
     $ln -s ../opt/openssl/include/openssl 
 
-### Go back to your Pepecoin repo ###
+### Go back to your Dogecoin repo ###
 
-    $cd ~/pepecoin
+    $cd ~/dogecoin
     $./autogen.sh
     $./configure --with-gui=qt5 --with-qrcode=yes
     $make
@@ -91,7 +96,7 @@ Go have another beverage.
 
 Run it.
 
-	$/usr/local/bin/pepecoin-qt
+	$/usr/local/bin/dogecoin-qt
 
 
 

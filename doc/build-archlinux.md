@@ -1,7 +1,7 @@
 Arch Linux build guide
 ----------------------
 
-**Last tested with:** 1.14.6-dev (as of 22884709)
+**Last tested with:** 1.0-dev
 **Test date:** 2022/07/15
 
 This example lists the steps necessary to setup and build a command line only

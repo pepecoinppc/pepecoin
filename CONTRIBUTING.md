@@ -13,7 +13,7 @@ or look for work that needs doing, please see:
 Pepecoin Core's default branch is intentionally a stable release, so that anyone
 downloading the code and compiling it gets a stable release. Active development
 occurs on branches named after the version they are targeting, for example the
-1.14.4 branch is named `1.14.4-dev`. When raising PRs, please raise against the
+1.0 branch is named `1.0-dev`. When raising PRs, please raise against the
 relevant development branch and **not** against the `master` branch.
 
 ## Contributor Workflow
