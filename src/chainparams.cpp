@@ -123,6 +123,7 @@ public:
         consensus.nHeightEffective = 0;
         consensus.fSimplifiedRewards = true;
 
+        // Blocks 1000 - 1499 are Digishield without AuxPoW
         digishieldConsensus = consensus;
         digishieldConsensus.nHeightEffective = 1000;
         digishieldConsensus.fSimplifiedRewards = true;
@@ -130,7 +131,7 @@ public:
         digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
         digishieldConsensus.nCoinbaseMaturity = 240;
 
-        // AuxPoW starts at genesis block
+        // Blocks 1500+ are AuxPoW
         // Some tests from Dogecoin expect non-auxpow blocks. This allows those tests to pass.
         auxpowConsensus = digishieldConsensus;
         auxpowConsensus.nHeightEffective = 1500;
@@ -245,7 +246,7 @@ public:
         consensus.fAllowLegacyBlocks = true;
         consensus.fSimplifiedRewards = true;
 
-        // Blocks 145000 - 157499 are Digishield without minimum difficulty on all blocks
+        // Blocks 1000 - 1249 are Digishield without minimum difficulty on all blocks
         digishieldConsensus = consensus;
         digishieldConsensus.nHeightEffective = 1000;
         digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
@@ -254,13 +255,13 @@ public:
         digishieldConsensus.fPowAllowMinDifficultyBlocks = false;
         digishieldConsensus.nCoinbaseMaturity = 240;
 
-        // Blocks 157500 - 158099 are Digishield with minimum difficulty on all blocks
+        // Blocks 1250 - 1499 are Digishield with minimum difficulty on all blocks
         minDifficultyConsensus = digishieldConsensus;
         minDifficultyConsensus.nHeightEffective = 1250;
         minDifficultyConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
         minDifficultyConsensus.fPowAllowMinDifficultyBlocks = true;
 
-        // Enable AuxPoW at genesis block
+        // Enable AuxPoW at 1500
         auxpowConsensus = minDifficultyConsensus;
         auxpowConsensus.nHeightEffective = 1500;
         auxpowConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;

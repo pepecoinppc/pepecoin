@@ -20,9 +20,7 @@ bool AllowMinDifficultyForBlock(const CBlockIndex* pindexLast, const CBlockHeade
     if (!params.fPowAllowMinDifficultyBlocks)
         return false;
 
-    // Pepecoin: Magic number at which reset protocol switches
-    // check if we allow minimum difficulty at this block-height
-    if (pindexLast->nHeight < 157500)
+    if (pindexLast->nHeight < 1250)
         return false;
 
     // Allow for a minimum block time if the elapsed time > 2*nTargetSpacing
@@ -47,7 +45,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     }
     //PEPE TODO Magic number
     // Only change once per difficulty adjustment interval
-    bool fNewDifficultyProtocol = (pindexLast->nHeight >= 145000);
+    bool fNewDifficultyProtocol = (pindexLast->nHeight >= 1000);
     const int64_t difficultyAdjustmentInterval = fNewDifficultyProtocol
                                                  ? 1
                                                  : params.DifficultyAdjustmentInterval();
