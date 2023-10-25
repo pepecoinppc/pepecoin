@@ -1,4 +1,4 @@
 # List of fixed seed nodes for testnet
 
 34.192.128.174
-54.173.31.221
+3.209.60.150
