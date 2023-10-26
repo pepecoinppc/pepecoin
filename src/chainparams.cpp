@@ -177,7 +177,10 @@ public:
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
 
-        checkpointData = (CCheckpointData){ };
+        checkpointData = (CCheckpointData) {
+            boost::assign::map_list_of
+            ( 0, uint256S("0x80fb01c10d0ba67bc79ec61fb10d679b371993889f655fc27f8f8494f5f43cd2"))
+        };
 
         chainTxData = ChainTxData{ };
     }
@@ -306,7 +309,10 @@ public:
         fRequireStandard = false;
         fMineBlocksOnDemand = false;
 
-        checkpointData = (CCheckpointData){ };
+        checkpointData = (CCheckpointData) {
+            boost::assign::map_list_of
+            ( 0, uint256S("0xf862fe0c445333911deedef873359f84ab14c2851accc010ffa1f198b41d4aed"))
+        };
 
         chainTxData = ChainTxData{ };
     }
@@ -401,9 +407,16 @@ public:
         fRequireStandard = false;
         fMineBlocksOnDemand = true;
 
-        checkpointData = (CCheckpointData){ };
+        checkpointData = (CCheckpointData){
+            boost::assign::map_list_of
+            ( 0, uint256S("0xf7738dbecbdc8ad92c1d84dfaaf80959c07f08d6376e8d74f6e554f73b2a7bd2"))
+        };
 
-        chainTxData = ChainTxData{ };
+        chainTxData = ChainTxData{
+            0,
+            0,
+            0
+        };
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);  // 0x6f
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);  // 0xc4
