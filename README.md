@@ -10,7 +10,7 @@ Pepecoin is a community focused cryptocurrency created by one of the original Do
 
 Unlike all iterations before it, Pepecoin is a layer 1 coin. This means there are no liquidity pools to drain, no blacklisting wallets, and no confusing smart contracts. Pepecoin is a simple blockchain.
 
-Just like Dogecoin, the Pepecoin Core software allows anyone to operate a node in the Pepecoin blockchain networks and uses the Scrypt hashing method for Proof of Work. It is adapted from Bitcoin Core and other cryptocurrencies.
+The Pepecoin Core software allows anyone to operate a node in the Pepecoin blockchain networks and uses the Scrypt hashing method for Proof of Work. It is adapted from Dogecoin Core, Bitcoin Core, and other cryptocurrencies.
 
 For information about the default fees used on the Pepecoin network, please
 refer to the [fee recommendation](doc/fee-recommendation.md).
