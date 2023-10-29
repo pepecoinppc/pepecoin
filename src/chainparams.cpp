@@ -111,7 +111,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 0; // Disabled
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000100010001"); // genesis block
+        consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000000010001"); // genesis block
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x80fb01c10d0ba67bc79ec61fb10d679b371993889f655fc27f8f8494f5f43cd2"); // genesis block
@@ -237,7 +237,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 0; // Disabled
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000100010001"); // genesis block
+        consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000000010001"); // genesis block
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0xf862fe0c445333911deedef873359f84ab14c2851accc010ffa1f198b41d4aed"); // genesis block
