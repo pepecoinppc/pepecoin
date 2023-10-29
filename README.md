@@ -17,15 +17,16 @@ refer to the [fee recommendation](doc/fee-recommendation.md).
 
 **Website:** [getpepecoin.com](https://getpepecoin.com)
 
-## Dogecoin Differences
+## Dogecoin 差异
 
-Pepecoin is a fork of Dogecoin. For the sake of familiarity, we will attempt to keep Pepecoin similar to Dogecoin. 
+Pepecoin 是 Dogecoin 的一个分支。为了保持熟悉性，我们将尝试使 Pepecoin 保持与 Dogecoin 类似。
 
-Changes:
+变化：
 
-* Addresses start with `P` instead of `D`
-* BIPS features will start at the genesis block
-* GUI themed for Pepecoin
+* 地址以 `P` 开头，而不是 `D`
+* BIPS 特性将从区块 1000 开始
+* AuxPow 从区块 1500 开始（链ID：63）
+* GUI 针对 Pepecoin 进行了主题设计
 
 ## Usage 💻
 

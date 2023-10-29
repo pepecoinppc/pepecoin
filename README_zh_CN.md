@@ -1,78 +1,90 @@
 <h1 align="center">
-  <img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
-  <br/><br/>
-  狗狗币核心 (Pepecoin Core) [PEPE, ₱]
+<img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
+<br/><br/>
+Pepecoin Core [PEPE, ₱]  
 </h1>
 
-<div align="center">
+选择语言: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
 
-</div>
+Pepecoin是由2013年原始Dogecoin shibes之一创建的社区关注的加密货币。它被创建出于一个目的，就是创建一个像原始Dogecoin社区一样新奇有趣的社区。
 
-语言选择: [英文](./README.md) | 简体中文 | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md)  | [VI](./README_vi_VN.md)
+与之前的所有版本不同，Pepecoin是一个第一层的硬币。这意味着没有流动性池可以耗尽，没有列入黑名单的钱包，也没有令人困惑的智能合约。Pepecoin是一个简单的区块链。
 
-狗狗币是一款受柴犬表情包启发，由社区驱动的加密货币。通过狗狗币内核软件，任何人都可以在狗狗币区块链网络中建立一个节点。节点采用Scrypt哈希算法来实现工作量证明(Proof of Work)。狗狗币内核是从比特币内核和其它加密货币演化而来。
+就像Dogecoin一样，Pepecoin Core软件允许任何人在Pepecoin区块链网络中操作节点，并使用Scrypt散列方法进行工作证明。它是从Bitcoin Core和其他加密货币中进行了改编。
 
-狗狗币网络默认交易费的相关信息请查看[收费建议](doc/fee-recommendation.md)
+有关Pepecoin网络上使用的默认费用的信息，请参阅[费用建议](doc/fee-recommendation.md)。
 
-**网址:** [getpepecoin.com](https://getpepecoin.com)
+**网站:** [getpepecoin.com](https://getpepecoin.com)
 
-## 使用指南 💻
+## Dogecoin 差异
 
-开始使用狗狗币内核软件，请参考[安装指南](INSTALL.md)和[入门](doc/getting-started.md)教程。
+Pepecoin 是 Dogecoin 的一个分支。为了保持熟悉性，我们将尝试使 Pepecoin 保持与 Dogecoin 类似。
 
-狗狗币内核提供基于自文档化的JSON-RPC API，可用`pepecoin-cli help`浏览。同时可用'pepecoin-cli help <command>`浏览每条命令的详细信息。另外，可参考游览器版的[比特币内核文档](https://developer.bitcoin.org/reference/rpc/)（ 它部署了类似的协议）。
+变化：
 
-### 炫酷的端口
+* 地址以 `P` 开头，而不是 `D`
+* BIPS 特性将从区块 1000 开始
+* AuxPow 从区块 1500 开始（链ID：63）
+* GUI 针对 Pepecoin 进行了主题设计
 
-狗狗币内核的点对点通信默的默认端口为33874，用于与主网络（mainnet）区块链同步，并接受新交易和新区块的信息。此外，还可打开一个默认端口号为33873的JSONRPC端口供主网络节点使用。强烈建议不要将RPC端口暴露给公共网络。
+## 用法 💻
 
-| 功能 Function | 主网络 mainnet | 测试网络 testnet | 回归测试 regtest |
-| :----- | ----------: | -------------: | ------: |
-| P2P    |       33874 |          44874 |   18444 |
-| RPC    |       33873 |          44873 |   18332 |
+要开始使用Pepecoin Core，请参阅[安装指南](INSTALL.md)和[入门教程](doc/getting-started.md)。
 
-## 进行中的开发 - 月球计划 🌒
+Pepecoin Core提供的JSON-RPC API是自说明的，可以使用`pepecoin-cli help`进行浏览，而每个命令的详细信息可以使用`pepecoin-cli help <command>`查看。或者，参阅[比特币核心文档](https://developer.bitcoin.org/reference/rpc/) - 其实施了类似的协议 - 以获得可浏览的版本。
 
-狗狗币内核是一个社区驱动的开源软件。其开发过程是开放的并公开可见的。任何人都可以查看，讨论和使用该软件。
+### 端口
 
-主要开发资料：
-* [Github Projects](https://github.com/pepecoinppc/pepecoin/projects)用于跟踪即将发布的计划和正在进行的工作。
-* [Github Discussion](https://github.com/pepecoinppc/pepecoin/discussions)用于讨论与狗狗币内核软件开发、底层协议和狗狗币资产相关的计划内和计划外功能。 
-* [Pepecoindev subreddit](https://www.reddit.com/r/pepecoindev/)
+Pepecoin Core默认使用端口`33874`进行对等通信，这对于同步“主网”区块链并了解新的交易和区块信息是必要的。此外，可以打开一个JSONRPC端口，默认情况下为主网节点的端口`33873`。强烈建议不要将RPC端口暴露在公共互联网上。
 
-## 版本说明
-版本号码遵循以下语法：```major.minor.patch```。
+| 功能     | 主网    | 测试网  | regtest |
+| :------- | ------: | ------: | ------: |
+| P2P      |   33874 |   44874 |   18444 |
+| RPC      |   33873 |   44873 |   18332 |
 
-## 代码库分支(branch)
-本代码库有3个branch：
+## 持续发展 💻
 
-- **master（主代码库）:** 稳定。包含最新版本的release，以*major.minor*形式呈现。
-- **maintenance（维护代码库）:** 稳定。包含正在维护中的上一个release的最新版本。格式： ```<version>-maint```
-- **development（正在开发代码库）:** 不稳定。包含下一个release的最新代码。格式： ```<version>-dev```
+Pepecoin Core是一个开源的、社区驱动的软件。开发过程是公开的，公开可见；任何人都可以看到、讨论和参与到这个软件中来。
 
-*Master 和 maintenance 互不干扰。最新release永远包含一个development分支。新的 pull request 应该发布于此。Maintenance 分支**只能用于调试程序**。请将新开发的功能发布在 development 分支的最高版本。*
+主要的开发资源:
 
-## 炫酷的贡献 🤝
+* [GitHub项目](https://github.com/pepecoinppc/pepecoin/projects) 用于跟踪即将发布的版本的计划和正在进行中的工作。
+* [GitHub讨论](https://github.com/pepecoinppc/pepecoin/discussions) 用于讨论与Pepecoin Core软件的开发、基础协议和PEPE资产相关的计划和非计划功能。
+* [PepecoinDev subreddit](https://www.reddit.com/r/pepecoindev/)
 
-如果您发现错误或者遇到问题，请报告在[问题系统](https://github.com/pepecoinppc/pepecoin/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5Bbug%5D+)
+### 版本策略
+版本号遵循```主版本.次版本.修订版本```的语义。
 
-想了解如何参与狗狗币内核开发，请访问[贡献指引](CONTRIBUTING.md)。
-那里常常有[主题需要帮助](https://github.com/pepecoinppc/pepecoin/labels/help%20wanted)。
-您的贡献一定会产生很大的影响并赢得炫酷的称赞。哇哦(wow)。
+### 分支
+这个存储库中有三种类型的分支:
 
-## 社区 🚀🍾
+- **master:** 稳定的，包含最新*主版本.次版本*发布的最新版本。
+- **maintenance:** 稳定的，包含之前版本的最新版本，这些版本仍在积极维护中。格式: ```<版本>-maint```
+- **development:** 不稳定的，包含计划发布的新代码。格式: ```<版本>-dev```
 
-您能通过不同的社交媒体加入狗狗币社区。在那里您可以看到最近的新闻，与别人见面和讨论，找到最新的表情包，进一步了解狗狗币，帮忙别人或者请求帮忙，分享您的项目。
+*Master和maintenance分支只能通过发布来改变。计划中的*
+*发布将始终有一个开发分支，拉取请求应提交给那些分支。维护分支仅用于**修复错误，***请将新功能提交给具有最高版本的开发分支。
 
-以下是一些社区的访问链接:
+## 贡献 🤝
 
-* [Pepecoin subreddit](https://www.reddit.com/r/pepecoin/)
+如果您发现了错误或在使用此软件时遇到问题，请使用[问题系统](https://github.com/pepecoinppc/pepecoin/issues/new?assignees=&labels=bug&template=bug_report.md&title=%5Bbug%5D+)报告它。
+
+请参阅[贡献指南](CONTRIBUTING.md)以了解如何参与Pepecoin Core的开发。通常会有[寻求帮助的主题](https://github.com/pepecoinppc/pepecoin/labels/help%20wanted)，您的贡献将产生很高的影响并得到很高的评价。
+
+## 社区 🐸
+
+您可以加入不同社交媒体上的社区。要了解正在发生什么，结识人们和讨论，找到最新的模因，了解Pepecoin，提供或寻求帮助，分享您的项目。
+
+以下是一些值得参观的地方:
+
+* 我们正在努力获得首选的处理方式和子社区
+<!-- * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://getpepecoin.com/discord)
-* [Pepecoin Twitter](https://twitter.com/Pepecoin_Layer1)
+* [Twitter](https://twitter.com/Pepecoin_Layer1) -->
 
-## 灰常常见的问题 ❓
+## 常见问题解答 ❓
 
-如果对狗狗币有问题，答案很可能已经在[常见问答](doc/FAQ.md)或者[问与答](https://github.com/pepecoinppc/pepecoin/discussions/categories/q-a)!里了。
+关于Pepecoin是否有问题？答案可能已经在[FAQ](doc/FAQ.md)或讨论板的[Q&A部分](https://github.com/pepecoinppc/pepecoin/discussions/categories/q-a)中。
 
-## 许可证 -  灰常的许可 ⚖️
-狗狗币内核是根据MIT许可条款发布的。更多相关信息，请参阅[COPYING](COPYING)或者查看[opensource.org](https://opensource.org/licenses/MIT)
+## 许可证 ⚖️
+Pepecoin Core根据MIT许可证的条款发布。请参阅[COPYING](COPYING)获取更多信息或参阅[opensource.org](https://opensource.org/licenses/MIT)
