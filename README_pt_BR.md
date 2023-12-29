@@ -76,10 +76,9 @@ Para ver o que está acontecendo, conhecer pessoas e discutir, encontrar o últi
 
 Aqui estão alguns lugares para visitar:
 
-* Estamos trabalhando para obter identificadores preferenciais e subreddit
-<!-- * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
+* [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://getpepecoin.com/discord)
-* [Twitter](https://twitter.com/Pepecoin_Layer1) -->
+* [Twitter](https://twitter.com/Pepecoin_Layer1)
 
 ## Perguntas Frequentes ❓
 

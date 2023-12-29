@@ -76,10 +76,9 @@ Pepecoin Core [PEPE, ₱]
 
 اینجا چند مکان برای بازدید هستند:
 
-* ما در حال کسب اطلاعات تمایلات و زیر‌ردیت هستیم
-<!-- * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
+* [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://getpepecoin.com/discord)
-* [Twitter](https://twitter.com/Pepecoin_Layer1) -->
+* [Twitter](https://twitter.com/Pepecoin_Layer1)
 
 ## سوالات متداول ❓
 

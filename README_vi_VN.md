@@ -77,10 +77,9 @@ Bạn có thể tham gia vào các cộng đồng trên các phương tiện tru
 
 Dưới đây là một số nơi bạn có thể thăm:
 
-* Chúng tôi đang cố gắng lấy tên và subreddit ưa thích
-<!-- * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
+* [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://getpepecoin.com/discord)
-* [Twitter](https://twitter.com/Pepecoin_Layer1) -->
+* [Twitter](https://twitter.com/Pepecoin_Layer1)
 
 ## Câu Hỏi Thường Gặp ❓
 
