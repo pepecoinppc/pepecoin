@@ -95,10 +95,9 @@ about Pepecoin, give or ask for help, to share your project.
 
 Here are some places to visit:
 
-* We are working on getting preferred handles and subreddit
-<!-- * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
+* [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://getpepecoin.com/discord)
-* [Twitter](https://twitter.com/Pepecoin_Layer1) -->
+* [Twitter](https://twitter.com/Pepecoin_Layer1)
 
 ## Frequently Asked Questions ❓
 
