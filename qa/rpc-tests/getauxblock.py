@@ -43,7 +43,7 @@ class GetAuxBlockTest (BitcoinTestFramework):
     assert_equal (reversedTarget, blocktemplate['target'])
 
     # Verify data that can be found in another way.
-    assert_equal (auxblock['chainid'], 98)
+    assert_equal (auxblock['chainid'], 63)
     assert_equal (auxblock['height'], self.nodes[0].getblockcount () + 1)
     assert_equal (auxblock['previousblockhash'], self.nodes[0].getblockhash (auxblock['height'] - 1))
 
@@ -82,12 +82,12 @@ class GetAuxBlockTest (BitcoinTestFramework):
     target = blocktemplate['target']
 
     # Compute invalid auxpow.
-    apow = auxpow.computeAuxpowWithChainId (auxblock['hash'], target, "98", False)
+    apow = auxpow.computeAuxpowWithChainId (auxblock['hash'], target, "63", False)
     res = self.nodes[0].getauxblock (auxblock['hash'], apow)
     assert not res
 
     # Compute and submit valid auxpow.
-    apow = auxpow.computeAuxpowWithChainId (auxblock['hash'], target, "98", True)
+    apow = auxpow.computeAuxpowWithChainId (auxblock['hash'], target, "63", True)
     res = self.nodes[0].getauxblock (auxblock['hash'], apow)
     assert res
 
@@ -128,7 +128,7 @@ class GetAuxBlockTest (BitcoinTestFramework):
     blk = self.nodes[1].getblock (auxblock['hash'])
     tx = self.nodes[1].getrawtransaction (blk['tx'][0], 1)
     coinbase = tx['vin'][0]['coinbase']
-    assert_equal ("01%02x01" % auxblock['height'], coinbase[0 : 6]) # DOGE: We mine less blocks in these tests
+    assert_equal ("01%02x01" % auxblock['height'], coinbase[0 : 6]) # PEPE: We mine less blocks in these tests
 
     # Call getauxblock while using the Namecoin API
     nmc_api_auxblock = self.nodes[1].getauxblock()
@@ -138,7 +138,7 @@ class GetAuxBlockTest (BitcoinTestFramework):
     assert "_target" in nmc_api_auxblock
 
     reversedTarget = auxpow.reverseHex(nmc_api_auxblock["_target"])
-    apow = auxpow.computeAuxpowWithChainId(nmc_api_auxblock["hash"], reversedTarget, "98", True)
+    apow = auxpow.computeAuxpowWithChainId(nmc_api_auxblock["hash"], reversedTarget, "63", True)
     res = self.nodes[1].getauxblock(nmc_api_auxblock["hash"], apow)
     assert res
 

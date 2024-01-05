@@ -8,7 +8,7 @@
 #include "auxpow.h"
 #include "arith_uint256.h"
 #include "chain.h"
-#include "dogecoin.h"
+#include "pepecoin.h"
 #include "primitives/block.h"
 #include "uint256.h"
 #include "util.h"
@@ -20,9 +20,7 @@ bool AllowMinDifficultyForBlock(const CBlockIndex* pindexLast, const CBlockHeade
     if (!params.fPowAllowMinDifficultyBlocks)
         return false;
 
-    // Dogecoin: Magic number at which reset protocol switches
-    // check if we allow minimum difficulty at this block-height
-    if (pindexLast->nHeight < 157500)
+    if (pindexLast->nHeight < 1250)
         return false;
 
     // Allow for a minimum block time if the elapsed time > 2*nTargetSpacing
@@ -37,7 +35,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     if (pindexLast == NULL)
         return nProofOfWorkLimit;
 
-    // Dogecoin: Special rules for minimum difficulty blocks with Digishield
+    // Pepecoin: Special rules for minimum difficulty blocks with Digishield
     if (AllowDigishieldMinDifficultyForBlock(pindexLast, pblock, params))
     {
         // Special difficulty rule for testnet:
@@ -45,9 +43,9 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         // then allow mining of a min-difficulty block.
         return nProofOfWorkLimit;
     }
-
+    //PEPE TODO Magic number
     // Only change once per difficulty adjustment interval
-    bool fNewDifficultyProtocol = (pindexLast->nHeight >= 145000);
+    bool fNewDifficultyProtocol = (pindexLast->nHeight >= 1000);
     const int64_t difficultyAdjustmentInterval = fNewDifficultyProtocol
                                                  ? 1
                                                  : params.DifficultyAdjustmentInterval();
@@ -84,7 +82,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     const CBlockIndex* pindexFirst = pindexLast->GetAncestor(nHeightFirst);
     assert(pindexFirst);
 
-    return CalculateDogecoinNextWorkRequired(pindexLast, pindexFirst->GetBlockTime(), params);
+    return CalculatePepecoinNextWorkRequired(pindexLast, pindexFirst->GetBlockTime(), params);
 }
 
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)

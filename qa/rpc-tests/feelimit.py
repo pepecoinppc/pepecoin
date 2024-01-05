@@ -36,7 +36,7 @@ class FeeLimitTest(BitcoinTestFramework):
         addr_to = self.nodes[1].getnewaddress()
         lower_fee_per_kb = Decimal("0.001")
 
-        # Force generating a transaction with 1.14.5-like fees by manually building the tx
+        # Force generating a transaction with Dogecoin 1.14.5-like fees by manually building the tx
         utx = self.nodes[0].listunspent()[0]
         inputs  = [ {'txid' : utx['txid'], 'vout' : utx['vout']}]
         outputs = { addr_to : utx['amount'] - Decimal("1.0") }

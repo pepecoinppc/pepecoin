@@ -1,3 +1,8 @@
+### This process has not be completed for Pepecoin.
+
+This is the process for Dogecoin. We do not have a repo similar to https://github.com/michilumin/dogecoin.git for Pepecoin. We did not have the need to test this process as none of us develop on Mac. However, we may fix this in the future if there is enough demand for it.
+
+----------------------------------------------------
 ### Building dogecoin-qt 1.14 on modern macs. ###
 
 Note that this requires changes made by michilumin on the 1.14-dev branch as well as some changes to BDB.

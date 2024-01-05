@@ -1,7 +1,7 @@
 The [pull-tester](/qa/pull-tester/) folder contains a script to call
 multiple tests from the [rpc-tests](/qa/rpc-tests/) folder.
 
-Every pull request to the dogecoin repository is built and run through
+Every pull request to the pepecoin repository is built and run through
 the regression test suite. You can also run all or only individual
 tests locally.
 
@@ -13,8 +13,9 @@ Unix
 ----
 `python3-zmq` and `ltc_scrypt` are required. On Ubuntu or Debian they can be installed via:
 ```
-sudo apt-get update && apt-get install -y curl python3-zmq python3-dev gcc
-cd qa/pull-tester/ && ./install-deps.sh
+sudo apt-get update
+sudo apt-get install -y curl gcc python3-pip python3-setuptools python3-zmq
+./qa/pull-tester/install-deps.sh
 ```
 
 OS X
@@ -22,7 +23,7 @@ OS X
 ```
 brew install curl
 pip3 install pyzmq
-cd qa/pull-tester && ./install-deps.sh
+./qa/pull-tester/install-deps.sh
 ```
 
 Running tests
@@ -80,7 +81,7 @@ to recover with:
 
 ```bash
 rm -rf cache
-killall dogecoind
+killall pepecoind
 ```
 
 Writing tests

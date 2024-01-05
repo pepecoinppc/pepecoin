@@ -1,8 +1,8 @@
 ---
-name: "dogecoin-win-1.14"
+name: "pepecoin-win-1.0"
 enable_cache: true
 suites:
-- "bionic"
+- "focal"
 architectures:
 - "amd64"
 packages:
@@ -13,6 +13,7 @@ packages:
 - "autoconf"
 - "libtool"
 - "automake"
+- "make"
 - "faketime"
 - "bsdmainutils"
 - "mingw-w64"
@@ -20,12 +21,14 @@ packages:
 - "nsis"
 - "zip"
 - "ca-certificates"
-- "python"
+- "python3"
+- "python3-pip"
 - "rename"
 remotes:
-- "url": "https://github.com/dogecoin/dogecoin.git"
-  "dir": "dogecoin"
-files: []
+- "url": "https://github.com/pepecoinppc/pepecoin.git"
+  "dir": "pepecoin"
+files:
+- "lief-0.12.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
 script: |
   WRAP_DIR=$HOME/wrapped
   HOSTS="i686-w64-mingw32 x86_64-w64-mingw32"
@@ -94,7 +97,10 @@ script: |
   create_per-host_compiler_wrapper "2000-01-01 12:00:00"
   export PATH=${WRAP_DIR}:${PATH}
 
-  cd dogecoin
+  # install python-lief
+  python3 -m pip install ${BUILD_DIR}/lief-0.12.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+
+  cd pepecoin
   BASEPREFIX=`pwd`/depends
   # Build dependencies for each host
   for i in $HOSTS; do
@@ -112,14 +118,14 @@ script: |
   ./autogen.sh
   CONFIG_SITE=${BASEPREFIX}/`echo "${HOSTS}" | awk '{print $1;}'`/share/config.site ./configure --prefix=/
   make dist
-  SOURCEDIST=`echo dogecoin-*.tar.gz`
+  SOURCEDIST=`echo pepecoin-*.tar.gz`
   DISTNAME=`echo ${SOURCEDIST} | sed 's/.tar.*//'`
 
   # Correct tar file order
   mkdir -p temp
   pushd temp
   tar xf ../$SOURCEDIST
-  find dogecoin-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
+  find pepecoin-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
   mkdir -p $OUTDIR/src
   cp ../$SOURCEDIST $OUTDIR/src
   popd
@@ -137,9 +143,10 @@ script: |
     CONFIG_SITE=${BASEPREFIX}/${i}/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking ${CONFIGFLAGS} CFLAGS="${HOST_CFLAGS}" CXXFLAGS="${HOST_CXXFLAGS}"
     make ${MAKEOPTS}
     make ${MAKEOPTS} -C src check-security
+    make ${MAKEOPTS} -C src check-symbols
     make deploy
     make install DESTDIR=${INSTALLPATH}
-    cp -f dogecoin-*setup*.exe $OUTDIR/
+    cp -f pepecoin-*setup*.exe $OUTDIR/
     cd installed
     mv ${DISTNAME}/bin/*.dll ${DISTNAME}/lib/
     find . -name "lib*.la" -delete

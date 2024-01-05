@@ -10,6 +10,7 @@
 
 #include "chainparamsbase.h"
 #include "clientversion.h"
+#include "compat.h"
 #include "rpc/client.h"
 #include "rpc/protocol.h"
 #include "util.h"
@@ -83,10 +84,10 @@ static int AppInitRPC(int argc, char* argv[])
         std::string strUsage = strprintf(_("%s RPC client version"), _(PACKAGE_NAME)) + " " + FormatFullVersion() + "\n";
         if (!IsArgSet("-version")) {
             strUsage += "\n" + _("Usage:") + "\n" +
-                  "  dogecoin-cli [options] <command> [params]  " + strprintf(_("Send command to %s"), _(PACKAGE_NAME)) + "\n" +
-                  "  dogecoin-cli [options] -named <command> [name=value] ... " + strprintf(_("Send command to %s (with named arguments)"), _(PACKAGE_NAME)) + "\n" +
-                  "  dogecoin-cli [options] help                " + _("List commands") + "\n" +
-                  "  dogecoin-cli [options] help <command>      " + _("Get help for a command") + "\n";
+                  "  pepecoin-cli [options] <command> [params]  " + strprintf(_("Send command to %s"), _(PACKAGE_NAME)) + "\n" +
+                  "  pepecoin-cli [options] -named <command> [name=value] ... " + strprintf(_("Send command to %s (with named arguments)"), _(PACKAGE_NAME)) + "\n" +
+                  "  pepecoin-cli [options] help                " + _("List commands") + "\n" +
+                  "  pepecoin-cli [options] help <command>      " + _("Get help for a command") + "\n";
 
             strUsage += "\n" + HelpMessageCli();
         }
@@ -356,7 +357,7 @@ int CommandLineRPC(int argc, char *argv[])
     return nRet;
 }
 
-int main(int argc, char* argv[])
+MAIN_FUNCTION
 {
     SetupEnvironment();
     if (!SetupNetworking()) {

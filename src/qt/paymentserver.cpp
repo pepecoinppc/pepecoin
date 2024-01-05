@@ -49,7 +49,7 @@
 #endif
 
 const int BITCOIN_IPC_CONNECT_TIMEOUT = 1000; // milliseconds
-const QString BITCOIN_IPC_PREFIX("dogecoin:");
+const QString BITCOIN_IPC_PREFIX("pepecoin:");
 // BIP70 payment protocol messages
 const char* BIP70_MESSAGE_PAYMENTACK = "PaymentACK";
 const char* BIP70_MESSAGE_PAYMENTREQUEST = "PaymentRequest";
@@ -81,7 +81,7 @@ namespace // Anon namespace
 //
 static QString ipcServerName()
 {
-    QString name("DogecoinQt");
+    QString name("PepecoinQt");
 
     // Append a simple hash of the datadir
     // Note that GetDataDir(true) returns a different path
@@ -240,11 +240,11 @@ void PaymentServer::ipcParseCommandLine(int argc, char* argv[])
             PaymentRequestPlus request;
             if (readPaymentRequestFromFile(arg, request))
             {
-                if (request.getDetails().genesis() == "1a91e3dace36e2be3bf030a65679fe821aa1d6ef92e7c9902eb318182c355691")
+                if (request.getDetails().genesis() == "80fb01c10d0ba67bc79ec61fb10d679b371993889f655fc27f8f8494f5f43cd2")
                 {
                     SelectParams(CBaseChainParams::MAIN);
                 }
-                else if (request.getDetails().genesis() == "bb0a78264637406b6360aad926284d544d7049f45189db5664f3c4d07350559e")
+                else if (request.getDetails().genesis() == "f862fe0c445333911deedef873359f84ab14c2851accc010ffa1f198b41d4aed")
                 {
                     SelectParams(CBaseChainParams::TESTNET);
                 }
@@ -298,13 +298,7 @@ bool PaymentServer::ipcSendCommandLine()
     return fResult;
 }
 
-PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
-    QObject(parent),
-    saveURIs(true),
-    uriServer(0),
-    netManager(0),
-    optionsModel(0)
-{
+void PaymentServer::initializeServer(QObject* parent, QString ipcServerName, bool startLocalServer) {
     // Verify that the version of the library that we linked against is
     // compatible with the version of the headers we compiled against.
     GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -315,22 +309,41 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
     if (parent)
         parent->installEventFilter(this);
 
-    QString name = ipcServerName();
-
     if (startLocalServer)
     {
         uriServer = new QLocalServer(this);
 
-        if (!uriServer->listen(name)) {
+        if (!uriServer->listen(ipcServerName)) {
             // constructor is called early in init, so don't use "Q_EMIT message()" here
             QMessageBox::critical(0, tr("Payment request error"),
-                tr("Cannot start dogecoin: click-to-pay handler"));
+                tr("Cannot start pepecoin: click-to-pay handler"));
         }
         else {
             connect(uriServer, SIGNAL(newConnection()), this, SLOT(handleURIConnection()));
             connect(this, SIGNAL(receivedPaymentACK(QString)), this, SLOT(handlePaymentACK(QString)));
         }
     }
+}
+
+PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
+    QObject(parent),
+    saveURIs(true),
+    uriServer(0),
+    netManager(0),
+    optionsModel(0)
+{
+    this->initializeServer(parent, ipcServerName(), startLocalServer);
+}
+
+
+PaymentServer::PaymentServer(QObject* parent, QString ipcServerName, bool startLocalServer) :
+    QObject(parent),
+    saveURIs(true),
+    uriServer(0),
+    netManager(0),
+    optionsModel(0)
+{
+    this->initializeServer(parent, ipcServerName, startLocalServer);
 }
 
 PaymentServer::~PaymentServer()
@@ -449,7 +462,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
             }
             else
                 Q_EMIT message(tr("URI handling"),
-                    tr("URI cannot be parsed! This can be caused by an invalid Dogecoin address or malformed URI parameters."),
+                    tr("URI cannot be parsed! This can be caused by an invalid Pepecoin address or malformed URI parameters."),
                     CClientUIInterface::ICON_WARNING);
 
             return;
@@ -553,7 +566,7 @@ bool PaymentServer::processPaymentRequest(const PaymentRequestPlus& request, Sen
     QList<std::pair<CScript, CAmount> > sendingTos = request.getPayTo();
     QStringList addresses;
 
-    Q_FOREACH(const PAIRTYPE(CScript, CAmount)& sendingTo, sendingTos) {
+    for (const PAIRTYPE(CScript, CAmount)& sendingTo : sendingTos) {
         // Extract and check destination addresses
         CTxDestination dest;
         if (ExtractDestination(sendingTo.first, dest)) {

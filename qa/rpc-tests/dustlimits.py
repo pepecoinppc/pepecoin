@@ -28,15 +28,15 @@ class DustLimitTest(BitcoinTestFramework):
     def setup_nodes(self, split=False):
         nodes = []
 
-        # 1.10.0-like node with only a soft dust limit
+        # Dogecoin 1.10.0-like node with only a soft dust limit
         nodes.append(start_node(0, self.options.tmpdir,
             ["-acceptnonstdtxn=0", "-dustlimit=1", "-harddustlimit=0.0", "-minrelaytxfee=1", "-debug"]))
 
-        # 1.14.2-like node with only a hard dust limit
+        # Dogecoin 1.14.2-like node with only a hard dust limit
         nodes.append(start_node(1, self.options.tmpdir,
             ["-acceptnonstdtxn=0", "-dustlimit=1", "-harddustlimit=1", "-minrelaytxfee=1", "-debug"]))
 
-        # 1.14.5-like node with a lower, different hard and soft dust limit
+        # Dogecoin 1.14.5-like node with a lower, different hard and soft dust limit
         nodes.append(start_node(2, self.options.tmpdir,
             ["-acceptnonstdtxn=0", "-dustlimit=0.01", "-harddustlimit=0.001", "-debug"]))
 
@@ -150,7 +150,7 @@ class DustLimitTest(BitcoinTestFramework):
         assert_equal(self.nodes[2].getmempoolinfo()['size'], 0)
         assert_equal(self.nodes[3].getmempoolinfo()['size'], 0)
 
-        print("such success. wow!")
+        print("success!")
 
     def create_dusty_tx(self, n, dust, fee):
         minAmount =  5 * (dust + fee)

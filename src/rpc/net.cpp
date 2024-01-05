@@ -128,7 +128,7 @@ UniValue getpeerinfo(const JSONRPCRequest& request)
             "    \"inbound\": true|false,     (boolean) Inbound (true) or Outbound (false)\n"
             "    \"addnode\": true|false,     (boolean) Whether connection was due to addnode and is using an addnode slot\n"
             "    \"startingheight\": n,       (numeric) The starting height (block) of the peer\n"
-            "    \"feefilter\": \"decimal\",  (string)  The value of the last feefilter set by this peer, in DOGE\n"
+            "    \"feefilter\": \"decimal\",  (string)  The value of the last feefilter set by this peer, in PEPE\n"
             "    \"banscore\": n,             (numeric) The ban score\n"
             "    \"synced_headers\": n,       (numeric) The last header we have in common with this peer\n"
             "    \"synced_blocks\": n,        (numeric) The last block we have in common with this peer\n"
@@ -243,8 +243,8 @@ UniValue addnode(const JSONRPCRequest& request)
             "1. \"node\"     (string, required) The node (see getpeerinfo for nodes)\n"
             "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
             "\nExamples:\n"
-            + HelpExampleCli("addnode", "\"192.168.0.6:22556\" \"onetry\"")
-            + HelpExampleRpc("addnode", "\"192.168.0.6:22556\", \"onetry\"")
+            + HelpExampleCli("addnode", "\"192.168.0.6:33874\" \"onetry\"")
+            + HelpExampleRpc("addnode", "\"192.168.0.6:33874\", \"onetry\"")
         );
 
     if(!g_connman)
@@ -286,8 +286,8 @@ UniValue disconnectnode(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"address\"     (string, required) The IP address/port of the node\n"
             "\nExamples:\n"
-            + HelpExampleCli("disconnectnode", "\"192.168.0.6:22556\"")
-            + HelpExampleRpc("disconnectnode", "\"192.168.0.6:22556\"")
+            + HelpExampleCli("disconnectnode", "\"192.168.0.6:33874\"")
+            + HelpExampleRpc("disconnectnode", "\"192.168.0.6:33874\"")
         );
 
     if(!g_connman)
@@ -316,7 +316,7 @@ UniValue getaddednodeinfo(const JSONRPCRequest& request)
             "    \"connected\" : true|false,          (boolean) If connected\n"
             "    \"addresses\" : [                    (list of objects) Only when connected = true\n"
             "       {\n"
-            "         \"address\" : \"192.168.0.201:22556\", (string) The dogecoin server IP and port we're connected to\n"
+            "         \"address\" : \"192.168.0.201:33874\", (string) The pepecoin server IP and port we're connected to\n"
             "         \"connected\" : \"outbound\"           (string) connection, inbound or outbound\n"
             "       }\n"
             "     ]\n"
@@ -546,11 +546,11 @@ UniValue setban(const JSONRPCRequest& request)
 
     if (!isSubnet) {
         CNetAddr resolved;
-        LookupHost(request.params[0].get_str().c_str(), resolved, false);
+        LookupHost(request.params[0].get_str(), resolved, false);
         netAddr = resolved;
     }
     else
-        LookupSubNet(request.params[0].get_str().c_str(), subNet);
+        LookupSubNet(request.params[0].get_str(), subNet);
 
     if (! (isSubnet ? subNet.IsValid() : netAddr.IsValid()) )
         throw JSONRPCError(RPC_CLIENT_INVALID_IP_OR_SUBNET, "Error: Invalid IP/Subnet");

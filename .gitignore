@@ -1,14 +1,14 @@
 *.tar.gz
 
 *.exe
-src/dogecoin
-src/dogecoind
-src/dogecoin-cli
-src/dogecoin-tx
-src/test/test_dogecoin
-src/test/test_dogecoin_fuzzy
-src/qt/test/test_dogecoin-qt
-src/bench/bench_dogecoin
+src/pepecoin
+src/pepecoind
+src/pepecoin-cli
+src/pepecoin-tx
+src/test/test_pepecoin
+src/test/test_pepecoin_fuzzy
+src/qt/test/test_pepecoin-qt
+src/bench/bench_pepecoin
 
 # autoreconf
 Makefile.in
@@ -56,7 +56,6 @@ src/qt/test/moc*.cpp
 *.pyc
 *.o
 *.o-*
-*.patch
 *.a
 *.pb.cc
 *.pb.h
@@ -72,15 +71,19 @@ src/qt/test/moc*.cpp
 *.lo
 *.la
 
+# ignore only unwanted patches
+*.patch
+!depends/patches/**/*.patch
+
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-dogecoin-qt
+pepecoin-qt
 Bitcoin-Qt.app
 
 # Unit-tests
 Makefile.test
-dogecoin-qt_test
+pepecoin-qt_test
 src/test/buildenv.py
 
 # Resources cpp

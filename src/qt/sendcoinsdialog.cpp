@@ -18,7 +18,7 @@
 
 #include "base58.h"
 #include "chainparams.h"
-#include "dogecoin-fees.h"
+#include "pepecoin-fees.h"
 #include "wallet/coincontrol.h"
 #include "validation.h" // mempool and minRelayTxFeeRate
 #include "ui_interface.h"
@@ -33,6 +33,7 @@
 #include <QTimer>
 
 #define SEND_CONFIRM_DELAY   3
+#define CHARACTERS_DISPLAY_LIMIT_IN_LABEL 45
 
 SendCoinsDialog::SendCoinsDialog(const PlatformStyle *_platformStyle, QWidget *parent) :
     QDialog(parent),
@@ -276,7 +277,12 @@ void SendCoinsDialog::on_sendButton_clicked()
         {
             if(rcp.label.length() > 0) // label with address
             {
-                recipientElement = tr("%1 to %2").arg(amount, GUIUtil::HtmlEscape(rcp.label));
+                QString displayedLabel = rcp.label;
+                if (rcp.label.length() > CHARACTERS_DISPLAY_LIMIT_IN_LABEL)  
+                {
+                    displayedLabel = displayedLabel.left(CHARACTERS_DISPLAY_LIMIT_IN_LABEL).append("..."); // limit the amount of characters displayed in label
+                }
+                recipientElement = tr("%1 to %2").arg(amount, GUIUtil::HtmlEscape(displayedLabel));
                 recipientElement.append(QString(" (%1)").arg(address));
             }
             else // just address
@@ -585,7 +591,7 @@ void SendCoinsDialog::updateFeeSectionControls()
 {
     ui->sliderSmartFee          ->setEnabled(ui->radioSmartFee->isChecked());
     ui->labelPriority           ->setEnabled(ui->radioSmartFee->isChecked());
-    // Dogecoin: We don't use smart fees in the UI, so don't need to warn they're not available
+    // Pepecoin: We don't use smart fees in the UI, so don't need to warn they're not available
     // ui->labelPriority2          ->setEnabled(ui->radioSmartFee->isChecked());
     ui->labelPriority3          ->setEnabled(ui->radioSmartFee->isChecked());
     ui->labelFeeEstimation      ->setEnabled(ui->radioSmartFee->isChecked());
@@ -610,8 +616,8 @@ void SendCoinsDialog::updateGlobalFeeVariables()
         CoinControlDialog::coinControl->nMinimumTotalFee = 0;
 
         // show the estimated required time for confirmation
-        // Dogecoin: We manually set height well past the last hard fork here
-        ui->confirmationTargetLabel->setText(GetDogecoinPriorityLabel(nPriority).c_str());
+        // Pepecoin: We manually set height well past the last hard fork here
+        ui->confirmationTargetLabel->setText(GetPepecoinPriorityLabel(nPriority).c_str());
     }
     else
     {
@@ -650,7 +656,7 @@ void SendCoinsDialog::updateFeeLabel()
         return;
 
     int nPriority = ui->sliderSmartFee->value();
-    CFeeRate feeRate = GetDogecoinFeeRate(nPriority);
+    CFeeRate feeRate = GetPepecoinFeeRate(nPriority);
     if (feeRate <= CFeeRate(0)) // not enough data => minfee
     {
         ui->labelPriority->setText(BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(),
@@ -668,7 +674,7 @@ void SendCoinsDialog::updateFeeLabel()
         ui->labelPriority->setText(BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(),
                                                                 std::max(feeRate.GetFeePerK(), CWallet::GetRequiredFee(1000))) + "/kB");
         // ui->labelPriority2->hide();
-        // Dogecoin: We don't use smart fees, so we don't have the data to estimate when it will get in
+        // Pepecoin: We don't use smart fees, so we don't have the data to estimate when it will get in
         ui->labelFeeEstimation->setText("");
         // ui->labelFeeEstimation->setText(tr("Estimated to begin confirmation within %n block(s).", "", estimateFoundAtBlocks));
         ui->fallbackFeeWarningLabel->setVisible(false);
@@ -773,7 +779,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
         }
         else if (!addr.IsValid()) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Dogecoin address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Pepecoin address"));
         }
         else // Valid address
         {

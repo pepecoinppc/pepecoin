@@ -193,7 +193,7 @@ class RawTransactionsTest(BitcoinTestFramework):
         dec_tx  = self.nodes[2].decoderawtransaction(rawtx)
         assert_equal(utx['txid'], dec_tx['vin'][0]['txid'])
 
-        assert_raises_jsonrpc(-5, "changeAddress must be a valid dogecoin address", self.nodes[2].fundrawtransaction, rawtx, {'changeAddress':'foobar'})
+        assert_raises_jsonrpc(-5, "changeAddress must be a valid pepecoin address", self.nodes[2].fundrawtransaction, rawtx, {'changeAddress':'foobar'})
 
         ############################################################
         # test a fundrawtransaction with a provided change address #
@@ -637,7 +637,7 @@ class RawTransactionsTest(BitcoinTestFramework):
         outputs = {self.nodes[3].getnewaddress() : 1}
         rawtx = self.nodes[3].createrawtransaction(inputs, outputs)
         result = self.nodes[3].fundrawtransaction(rawtx) # uses min_relay_tx_fee (set by settxfee)
-        # Note TX fees in 1.14.5 are 10x the required minimum
+        # Note TX fees in Dogecoin 1.14.5 are 10x the required minimum
         result2 = self.nodes[3].fundrawtransaction(rawtx, {"feeRate": 2*10*min_relay_tx_fee})
         result3 = self.nodes[3].fundrawtransaction(rawtx, {"feeRate": 10*10*min_relay_tx_fee})
         result_fee_rate = result['fee'] * 1000 / count_bytes(result['hex'])

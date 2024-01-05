@@ -209,7 +209,7 @@ static bool InitHTTPAllowList()
         const std::vector<std::string>& vAllow = mapMultiArgs.at("-rpcallowip");
         for (std::string strAllow : vAllow) {
             CSubNet subnet;
-            LookupSubNet(strAllow.c_str(), subnet);
+            LookupSubNet(strAllow, subnet);
             if (!subnet.IsValid()) {
                 uiInterface.ThreadSafeMessageBox(
                     strprintf("Invalid -rpcallowip subnet specification: %s. Valid are a single IP (e.g. 1.2.3.4), a network/netmask (e.g. 1.2.3.4/255.255.255.0) or a network/CIDR (e.g. 1.2.3.4/24).", strAllow),
@@ -222,7 +222,7 @@ static bool InitHTTPAllowList()
     std::string strAllowed;
     for (const CSubNet& subnet : rpc_allow_subnets)
         strAllowed += subnet.ToString() + " ";
-    LogPrint("http", "Allowing HTTP connections from: %s\n", strAllowed);
+    LogPrintf("Allowing HTTP connections from: %s\n", strAllowed);
     return true;
 }
 
@@ -309,7 +309,7 @@ static void http_reject_request_cb(struct evhttp_request* req, void*)
 /** Event dispatcher thread */
 static bool ThreadHTTP(struct event_base* base, struct evhttp* http)
 {
-    RenameThread("dogecoin-http");
+    RenameThread("pepecoin-http");
     LogPrint("http", "Entering http event loop\n");
     event_base_dispatch(base);
     // Event loop will be interrupted by InterruptHTTPServer()
@@ -345,7 +345,7 @@ static bool HTTPBindAddresses(struct evhttp* http)
 
     // Bind addresses
     for (std::vector<std::pair<std::string, uint16_t> >::iterator i = endpoints.begin(); i != endpoints.end(); ++i) {
-        LogPrint("http", "Binding RPC on address %s port %i\n", i->first, i->second);
+        LogPrintf("Binding RPC on address %s port %i\n", i->first, i->second);
         evhttp_bound_socket *bind_handle = evhttp_bind_socket_with_handle(http, i->first.empty() ? NULL : i->first.c_str(), i->second);
         if (bind_handle) {
             boundSockets.push_back(bind_handle);
@@ -359,7 +359,7 @@ static bool HTTPBindAddresses(struct evhttp* http)
 /** Simple wrapper to set thread name and run work queue */
 static void HTTPWorkQueueRun(WorkQueue<HTTPClosure>* queue)
 {
-    RenameThread("dogecoin-httpworker");
+    RenameThread("pepecoin-httpworker");
     queue->Run();
 }
 

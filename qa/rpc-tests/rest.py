@@ -231,7 +231,7 @@ class RESTTest (BitcoinTestFramework):
         assert_equal(response.status, 200) #must be a 200 because we are within the limits
 
         # Generate a block to not affect upcoming tests.
-        auxpow.mineScryptAux(self.nodes[0], "98", True) #generate
+        auxpow.mineScryptAux(self.nodes[0], "63", True) #generate
         self.sync_all()
         bb_hash = self.nodes[0].getbestblockhash()
 
