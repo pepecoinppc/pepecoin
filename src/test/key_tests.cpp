@@ -168,7 +168,6 @@ BOOST_AUTO_TEST_CASE(key_test1)
     std::vector<unsigned char> detsig, detsigc;
     std::string strMsg = "Very deterministic message";
     uint256 hashMsg = Hash(strMsg.begin(), strMsg.end());
-    printf("The hash is %s", hashMsg.GetHex());
     BOOST_CHECK(key1.Sign(hashMsg, detsig));
     BOOST_CHECK(key1C.Sign(hashMsg, detsigc));
     BOOST_CHECK(detsig == detsigc);
