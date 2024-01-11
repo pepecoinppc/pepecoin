@@ -1,13 +1,13 @@
 name: pepecoin-core
 # Running 'snapcraft register <name>' is advised
-version: '1.0'
+version: '1.0.0'
 summary: Reference client of Pepecoin, a peer-to-peer digital currency like Bitcoin.
 description: |
   Pepecoin is a community-driven cryptocurrency that was inspired by Dogecoin. The Pepecoin Core software allows anyone to operate a node in the Pepecoin blockchain networks and uses the Scrypt hashing method for Proof of Work. It is adapted from Bitcoin Core and other cryptocurrencies.
 
 grade: stable
 confinement: strict
-base: core18
+base: core20
 compression: lzo
 architectures:
   - build-on: amd64
