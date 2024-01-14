@@ -20,5 +20,5 @@ process can take anywhere from a few hours to a day or more.
 
 For general information about Pepecoin Core, refer to the Dogecoin wiki at:
   https://www.reddit.com/r/dogecoin/wiki/dogecoincoreguide
-for more help and information. Since Pepecoin is a fork of Dogecoin, the information there 
-will be helpful for Pepecoin as well.
+for more help and information. Since Pepecoin is a fork of Dogecoin, most of the 
+information there will be apply to Pepecoin as well.
