@@ -1,4 +1,4 @@
-name: pepecoin-core
+name: pepecoin
 # Running 'snapcraft register <name>' is advised
 version: '1.0.0'
 summary: Reference client of Pepecoin, a peer-to-peer digital currency like Bitcoin.
@@ -19,29 +19,29 @@ architectures:
 
 apps:
   d:
-    command: pepecoind
+    command: bin/pepecoind
     plugs: [home, removable-media, network, network-bind]
     environment:
       # Override HOME so the datadir is located at ~/snap/pepecoin-core/common/.pepecoin/ instead of ~/snap/pepecoin-core/current/.pepecoin/, and each new version of the snap won't have a different data directory: https://docs.snapcraft.io/environment-variables/7983
       HOME: $SNAP_USER_COMMON
   qt:
-    command: desktop-launch pepecoin-qt
+    command: bin/desktop-launch bin/pepecoin-qt
     plugs: [home, removable-media, network, network-bind, desktop, x11, unity7]
     environment:
       HOME: $SNAP_USER_COMMON
       DISABLE_WAYLAND: 1
   cli:
-    command: pepecoin-cli
+    command: bin/pepecoin-cli
     plugs: [home, removable-media, network]
     environment:
       HOME: $SNAP_USER_COMMON
   tx:
-    command: pepecoin-tx
+    command: bin/pepecoin-tx
     plugs: [home, removable-media, network]
     environment:
       HOME: $SNAP_USER_COMMON
   test:
-    command: test_pepecoin
+    command: bin/test_pepecoin
     plugs: [home, removable-media, network]
     environment:
       HOME: $SNAP_USER_COMMON
@@ -76,7 +76,7 @@ parts:
       - xdg-user-dirs
       - fcitx-frontend-qt5
 
-  pepecoin-core:
+  pepecoin:
     plugin: nil
     override-build: |
       echo "This script is viewable at https://github.com/pepecoinppc/pepecoin/blob/master/contrib/snap/snapcraft.yaml"
