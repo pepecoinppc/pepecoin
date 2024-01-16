@@ -51,7 +51,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Let there be Pepecoin";
+    const char* pszTimestamp = "WSJ 1/10/24 - SEC Approves Bitcoin ETFs for Everyday Investors";
     const CScript genesisOutputScript = CScript() << ParseHex("0436d04f40a76a1094ea10b14a513b62bfd0b47472dda1c25aa9cf8266e53f3c4353680146177f8a3b328ed2c6e02f2b8e051d9d5ffc61a4e6ccabd03409109a5a") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -114,7 +114,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000000010001"); // genesis block
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x80fb01c10d0ba67bc79ec61fb10d679b371993889f655fc27f8f8494f5f43cd2"); // genesis block
+        consensus.defaultAssumeValid = uint256S("0xb8fac7f8275af1072b983884fb128165862d7849d8f7d7841f282fb6f6c0b7a6"); // genesis block
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x003f; // 63
@@ -154,12 +154,12 @@ public:
         nDefaultPort = 33874;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1695366264, 1919867, 0x1e0ffff0, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1705384800, 777983, 0x1e0ffff0, 1, 88 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0x80fb01c10d0ba67bc79ec61fb10d679b371993889f655fc27f8f8494f5f43cd2"));
-        assert(genesis.hashMerkleRoot == uint256S("0x4887368322e4b73c70ab6b3e52e70fe5b544322a9c02f1deee327d9bcacebba2"));
+        assert(consensus.hashGenesisBlock == uint256S("0xb8fac7f8275af1072b983884fb128165862d7849d8f7d7841f282fb6f6c0b7a6"));
+        assert(genesis.hashMerkleRoot == uint256S("0xd738744097ee4ee58036e9f500324b6335f3fdc41df704c5579bc5416be4a6eb"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.push_back(CDNSSeedData("getpepecoin.com", "seeds.getpepecoin.com"));
@@ -179,7 +179,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            ( 0, uint256S("0x80fb01c10d0ba67bc79ec61fb10d679b371993889f655fc27f8f8494f5f43cd2"))
+            ( 0, uint256S("0xb8fac7f8275af1072b983884fb128165862d7849d8f7d7841f282fb6f6c0b7a6"))
         };
 
         chainTxData = ChainTxData{ };
@@ -240,7 +240,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000000010001"); // genesis block
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xf862fe0c445333911deedef873359f84ab14c2851accc010ffa1f198b41d4aed"); // genesis block
+        consensus.defaultAssumeValid = uint256S("0x1cd0b7925f5458a232a81eb10b5af2fccd202d6973d57fc0dd0ccf862cae09d2"); // genesis block
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x003f; // 63
@@ -283,14 +283,14 @@ public:
         nDefaultPort = 44874;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1695367095, 70793, 0x1e0ffff0, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1705384860, 326706, 0x1e0ffff0, 1, 88 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         minDifficultyConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
 
-        assert(consensus.hashGenesisBlock == uint256S("0xf862fe0c445333911deedef873359f84ab14c2851accc010ffa1f198b41d4aed"));
-        assert(genesis.hashMerkleRoot == uint256S("0x4887368322e4b73c70ab6b3e52e70fe5b544322a9c02f1deee327d9bcacebba2"));
+        assert(consensus.hashGenesisBlock == uint256S("0x1cd0b7925f5458a232a81eb10b5af2fccd202d6973d57fc0dd0ccf862cae09d2"));
+        assert(genesis.hashMerkleRoot == uint256S("0xd738744097ee4ee58036e9f500324b6335f3fdc41df704c5579bc5416be4a6eb"));
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
@@ -311,7 +311,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            ( 0, uint256S("0xf862fe0c445333911deedef873359f84ab14c2851accc010ffa1f198b41d4aed"))
+            ( 0, uint256S("0x1cd0b7925f5458a232a81eb10b5af2fccd202d6973d57fc0dd0ccf862cae09d2"))
         };
 
         chainTxData = ChainTxData{ };
@@ -396,8 +396,8 @@ public:
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0xf7738dbecbdc8ad92c1d84dfaaf80959c07f08d6376e8d74f6e554f73b2a7bd2"));
-        assert(genesis.hashMerkleRoot == uint256S("0x4887368322e4b73c70ab6b3e52e70fe5b544322a9c02f1deee327d9bcacebba2"));
+        assert(consensus.hashGenesisBlock == uint256S("0xfda0727b210f4d79f9abec20d95f8e3699e717aba00c37142ee97a8decab404c"));
+        assert(genesis.hashMerkleRoot == uint256S("0xd738744097ee4ee58036e9f500324b6335f3fdc41df704c5579bc5416be4a6eb"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -409,7 +409,7 @@ public:
 
         checkpointData = (CCheckpointData){
             boost::assign::map_list_of
-            ( 0, uint256S("0xf7738dbecbdc8ad92c1d84dfaaf80959c07f08d6376e8d74f6e554f73b2a7bd2"))
+            ( 0, uint256S("0xfda0727b210f4d79f9abec20d95f8e3699e717aba00c37142ee97a8decab404c"))
         };
 
         chainTxData = ChainTxData{

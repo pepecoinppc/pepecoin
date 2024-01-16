@@ -97,7 +97,7 @@ Here are some places to visit:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://getpepecoin.com/discord)
-* [Twitter](https://twitter.com/Pepecoin_Layer1)
+* [Twitter](https://twitter.com/PepecoinNetwork)
 
 ## Frequently Asked Questions ❓
 
