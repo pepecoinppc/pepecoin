@@ -15,7 +15,7 @@ The Pepecoin Core software allows anyone to operate a node in the Pepecoin block
 For information about the default fees used on the Pepecoin network, please
 refer to the [fee recommendation](doc/fee-recommendation.md).
 
-**Website:** [getpepecoin.com](https://getpepecoin.com)
+**Website:** [pepecoin.org](https://pepecoin.org)
 
 ## Dogecoin Differences
 
@@ -96,7 +96,7 @@ about Pepecoin, give or ask for help, to share your project.
 Here are some places to visit:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
-* [Discord](https://getpepecoin.com/discord)
+* [Discord](https://pepecoin.org/discord)
 * [Twitter](https://twitter.com/PepecoinNetwork)
 
 ## Frequently Asked Questions ❓

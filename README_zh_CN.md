@@ -14,7 +14,7 @@ Pepecoin是由2013年原始Dogecoin shibes之一创建的社区关注的加密�
 
 有关Pepecoin网络上使用的默认费用的信息，请参阅[费用建议](doc/fee-recommendation.md)。
 
-**网站:** [getpepecoin.com](https://getpepecoin.com)
+**网站:** [pepecoin.org](https://pepecoin.org)
 
 ## Dogecoin 差异
 
@@ -78,7 +78,7 @@ Pepecoin Core是一个开源的、社区驱动的软件。开发过程是公开�
 以下是一些值得参观的地方:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
-* [Discord](https://getpepecoin.com/discord)
+* [Discord](https://pepecoin.org/discord)
 * [Twitter](https://twitter.com/Pepecoin_Layer1)
 
 ## 常见问题解答 ❓

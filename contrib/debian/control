@@ -26,7 +26,7 @@ Build-Depends: debhelper,
  python,
  libzmq3-dev
 Standards-Version: 3.9.2
-Homepage: https://getpepecoin.com/
+Homepage: https://pepecoin.org/
 Vcs-Git: git://github.com/pepecoinppc/pepecoin.git
 Vcs-Browser: http://github.com/pepecoinppc/pepecoin
 

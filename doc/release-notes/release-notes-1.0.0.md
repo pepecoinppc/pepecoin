@@ -51,7 +51,7 @@
 
 * Generate Pepecoin man pages
 * Add `--with-gui` to `build-windows.md` instructions
-* Change website url to getpepecoin.com
+* Change website url to pepecoin.org
 * Change ticker symbol from `PPC` to `PEPE` in `readme.md`, man pages, and `amount.cpp`
 * Update `assets-attribution.md`
 * Update `gen-manpages.sh` to target the bash shell
