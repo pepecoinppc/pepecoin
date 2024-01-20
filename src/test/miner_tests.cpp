@@ -228,30 +228,36 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
         pblock->nNonce = blockinfo[i].nonce;
         
+        // Uncomment this code and it will generate the blockinfo at the top of this file.
+        // It grabs the extranonce (the first value of each tuple) and uses it to generate the nonce (the second value)
+        // You can run this in parallel incrementing the extranonces each time you run it, to generate the block info faster
+        // This is why you see many different values for the extra nonces. If you want, you can set them all to 1.
+        // It doesn't matter. This code will find the nonces for each extranonce.
+
+        // // CValidationState state;
+        // // pblock->fChecked = false;
+        // // std::cout << "Checked? " << pblock->fChecked << std::endl;
+        // BlockMap::iterator mi = mapBlockIndex.find(pblock->hashPrevBlock);
+        // CBlockIndex* pindexPrev = (*mi).second;
         // CValidationState state;
-        // pblock->fChecked = false;
-        // std::cout << "Checked? " << pblock->fChecked << std::endl;
-        BlockMap::iterator mi = mapBlockIndex.find(pblock->hashPrevBlock);
-        CBlockIndex* pindexPrev = (*mi).second;
-        CValidationState state;
-        if (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
-            pblock->nNonce = 0;
-            std::cout << "Mining Block " << i+1 << std::endl;
-             while (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
-                ++pblock->nNonce;
-                if (pblock->nNonce % 100000 == 0) {
-                    printf("Block %d: %d, %d\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
-                }
-            }
-            printf("Block %d mined: %d, 0x%08x\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
-            // CheckBlock();
-        }
+        // if (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
+        //     pblock->nNonce = 0;
+        //     std::cout << "Mining Block " << i+1 << std::endl;
+        //      while (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
+        //         ++pblock->nNonce;
+        //         if (pblock->nNonce % 100000 == 0) {
+        //             printf("Block %d: %d, %d\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
+        //         }
+        //     }
+        //     printf("Block %d mined: %d, 0x%08x\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
+        //     // CheckBlock();
+        // }
 
         
-        // std::cout << "Block Valid? " << CheckBlock(*pblock, state) << std::endl;
-        // std::cout << "Adding block " << i << "... " << std::endl;
-        // std::cout << "Hash: " << pblock->GetHash().ToString() << "Prev Hash: " << pblock->hashPrevBlock.ToString() << std::endl;
-        // std::cout << pblock->ToString() << std::endl;
+        // // std::cout << "Block Valid? " << CheckBlock(*pblock, state) << std::endl;
+        // // std::cout << "Adding block " << i << "... " << std::endl;
+        // // std::cout << "Hash: " << pblock->GetHash().ToString() << "Prev Hash: " << pblock->hashPrevBlock.ToString() << std::endl;
+        // // std::cout << pblock->ToString() << std::endl;
 
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
         
