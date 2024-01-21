@@ -234,9 +234,12 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         // This is why you see many different values for the extra nonces. If you want, you can set them all to 1.
         // It doesn't matter. This code will find the nonces for each extranonce.
 
-        // // CValidationState state;
-        // // pblock->fChecked = false;
-        // // std::cout << "Checked? " << pblock->fChecked << std::endl;
+        //DO NOT FORGET TO COMMENT THIS OUT DURING BUILDS. 
+        //If the code below isn't commented out, it will make "make check" run for hours looking for 100 blocks
+        //It will also make your github action builds run for hours
+        //If your tests are hanging and you don't know why, it's probably this code
+
+        // pblock->fChecked = false;
         // BlockMap::iterator mi = mapBlockIndex.find(pblock->hashPrevBlock);
         // CBlockIndex* pindexPrev = (*mi).second;
         // CValidationState state;
@@ -250,14 +253,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         //         }
         //     }
         //     printf("Block %d mined: %d, 0x%08x\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
-        //     // CheckBlock();
         // }
-
-        
-        // // std::cout << "Block Valid? " << CheckBlock(*pblock, state) << std::endl;
-        // // std::cout << "Adding block " << i << "... " << std::endl;
-        // // std::cout << "Hash: " << pblock->GetHash().ToString() << "Prev Hash: " << pblock->hashPrevBlock.ToString() << std::endl;
-        // // std::cout << pblock->ToString() << std::endl;
 
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
         
