@@ -114,7 +114,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000000010001"); // genesis block
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xb8fac7f8275af1072b983884fb128165862d7849d8f7d7841f282fb6f6c0b7a6"); // genesis block
+        consensus.defaultAssumeValid = uint256S("0x6f40798501953e32f869eac2d7b0e09d965721a61ed46b30df894d95c2fed584"); // genesis block
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x003f; // 63
@@ -154,11 +154,11 @@ public:
         nDefaultPort = 33874;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1705384800, 777983, 0x1e0ffff0, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1705899500, 875428, 0x1e0ffff0, 1, 88 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0xb8fac7f8275af1072b983884fb128165862d7849d8f7d7841f282fb6f6c0b7a6"));
+        assert(consensus.hashGenesisBlock == uint256S("0x6f40798501953e32f869eac2d7b0e09d965721a61ed46b30df894d95c2fed584"));
         assert(genesis.hashMerkleRoot == uint256S("0xd738744097ee4ee58036e9f500324b6335f3fdc41df704c5579bc5416be4a6eb"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
@@ -179,7 +179,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            ( 0, uint256S("0xb8fac7f8275af1072b983884fb128165862d7849d8f7d7841f282fb6f6c0b7a6"))
+            ( 0, uint256S("0x6f40798501953e32f869eac2d7b0e09d965721a61ed46b30df894d95c2fed584"))
         };
 
         chainTxData = ChainTxData{ };
