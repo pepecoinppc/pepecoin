@@ -239,21 +239,21 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         //It will also make your github action builds run for hours
         //If your tests are hanging and you don't know why, it's probably this code
 
-        pblock->fChecked = false;
-        BlockMap::iterator mi = mapBlockIndex.find(pblock->hashPrevBlock);
-        CBlockIndex* pindexPrev = (*mi).second;
-        CValidationState state;
-        if (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
-            pblock->nNonce = 0;
-            std::cout << "Mining Block " << i+1 << std::endl;
-             while (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
-                ++pblock->nNonce;
-                // if (pblock->nNonce % 100000 == 0) {
-                //     printf("Block %d: %d, %d\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
-                // }
-            }
-            printf("Block %d mined: %d, 0x%08x\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
-        }
+        // pblock->fChecked = false;
+        // BlockMap::iterator mi = mapBlockIndex.find(pblock->hashPrevBlock);
+        // CBlockIndex* pindexPrev = (*mi).second;
+        // CValidationState state;
+        // if (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
+        //     pblock->nNonce = 0;
+        //     std::cout << "Mining Block " << i+1 << std::endl;
+        //      while (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
+        //         ++pblock->nNonce;
+        //         if (pblock->nNonce % 100000 == 0) {
+        //             printf("Block %d: %d, %d\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
+        //         }
+        //     }
+        //     printf("Block %d mined: %d, 0x%08x\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
+        // }
 
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
         
