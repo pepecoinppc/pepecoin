@@ -33,31 +33,31 @@ struct {
     unsigned char extranonce;
     unsigned int nonce;
 } blockinfo[] = {
-    {2, 0x0007c417}, {12, 0x001b9522}, {1, 0x00023c61}, {1, 0x00077366},
-    {1, 0x0011af77}, {1, 0x001ce11d}, {3, 0x00090ece}, {4, 0x0003acb0},
-    {1, 0x00026a84}, {1, 0x00000871}, {3, 0x00016a1f}, {1, 0x00006d91},
-    {1, 0x0008d3e1}, {1, 0x00031c3a}, {1, 0x001806b1}, {1, 0x000054d7},
-    {1, 0x00009b63}, {3, 0x00151484}, {1, 0x000f55b5}, {1, 0x00104ccc},
-    {1, 0x00040e31}, {5, 0x00054c0d}, {2, 0x0003f39c}, {3, 0x0002b159},
-    {4, 0x0004042b}, {4, 0x0009f8ad}, {4, 0x000214bd}, {2, 0x00073712},
-    {2, 0x0008a071}, {1, 0x0002bf53}, {3, 0x00036d5e}, {2, 0x000b5c52},
-    {2, 0x0016795d}, {1, 0x0018780a}, {3, 0x00004b97}, {4, 0x000197d7},
-    {1, 0x000ee8bc}, {3, 0x00117e4c}, {1, 0x002a4418}, {2, 0x0005c535},
-    {1, 0x0005cf15}, {2, 0x00060417}, {1, 0x00007281}, {4, 0x00005f10},
-    {3, 0x0012fb88}, {5, 0x0000f589}, {1, 0x00013a84}, {3, 0x001862a1},
-    {1, 0x0007dda3}, {3, 0x00004493}, {3, 0x000c3659}, {1, 0x00012034},
-    {1, 0x001220d5}, {1, 0x0001086a}, {1, 0x000d7572}, {1, 0x0017f08c},
-    {4, 0x000c02b3}, {1, 0x0002cc41}, {1, 0x000e114f}, {3, 0x0004c28f},
-    {2, 0x000a16e7}, {1, 0x00210025}, {1, 0x00021638}, {4, 0x000ac561},
-    {1, 0x000c17df}, {1, 0x0016fb9d}, {4, 0x0012e226}, {1, 0x0019c27e},
-    {2, 0x00233d00}, {2, 0x0009d44e}, {1, 0x00063d30}, {4, 0x00008f9b},
-    {2, 0x000648cc}, {7, 0x000587b0}, {1, 0x001198c4}, {2, 0x0003dbfe},
-    {7, 0x00074a98}, {5, 0x00009876}, {5, 0x00029fe5}, {3, 0x00043935},
-    {4, 0x00124825}, {4, 0x000a244f}, {3, 0x001e3837}, {3, 0x00025c32},
-    {7, 0x00185da1}, {3, 0x0005f426}, {3, 0x000e59f2}, {1, 0x0005ed50},
-    {2, 0x00016087}, {8, 0x0001a0b5}, {6, 0x001a48f5}, {2, 0x00026836},
-    {1, 0x0006626c}, {3, 0x000ccfd0}, {3, 0x00017a59}, {3, 0x00020545},
-    {4, 0x000308e8}, {2, 0x0004b060}, {3, 0x0005dbc6}, {1, 0x0006fd85}
+    {2, 0x0003a807}, {12, 0x000317c6}, {1, 0x0006c339}, {1, 0x0012615f}, 
+    {1, 0x001eaaa7}, {1, 0x0039a340}, {3, 0x00109dbe}, {4, 0x00050b0e}, 
+    {1, 0x00053337}, {1, 0x001fd8de}, {3, 0x000c7df1}, {1, 0x0000f5cb}, 
+    {1, 0x000ff609}, {1, 0x000a81e6}, {1, 0x000b2811}, {1, 0x000a0ada}, 
+    {1, 0x0007192c}, {3, 0x000c7698}, {1, 0x00117efc}, {1, 0x0009a6b7}, 
+    {1, 0x003e3d2b}, {5, 0x0009ac29}, {2, 0x000a2661}, {3, 0x0012f6e6}, 
+    {4, 0x000ccb74}, {4, 0x000743f8}, {4, 0x000e9543}, {2, 0x001dba12}, 
+    {2, 0x003d223a}, {1, 0x00228416}, {3, 0x000677a1}, {2, 0x00144589}, 
+    {2, 0x000de667}, {1, 0x000789a1}, {3, 0x001e2ec3}, {4, 0x002161ee}, 
+    {1, 0x001151cb}, {3, 0x000a639e}, {1, 0x0027c35c}, {2, 0x0028c0b5}, 
+    {1, 0x0002d4bd}, {2, 0x0001bf45}, {1, 0x00083ac0}, {4, 0x0001f7ca}, 
+    {3, 0x00039b53}, {5, 0x00019a07}, {1, 0x0014f693}, {3, 0x000432ad}, 
+    {1, 0x0028406a}, {3, 0x00332e99}, {3, 0x0000242d}, {1, 0x000507cf}, 
+    {1, 0x0006f1c6}, {1, 0x0012b50e}, {1, 0x0015ddec}, {1, 0x0018b451}, 
+    {4, 0x000db113}, {1, 0x00009382}, {1, 0x00123d86}, {3, 0x000a853e}, 
+    {2, 0x004c4a44}, {1, 0x0015fd9a}, {1, 0x00098093}, {4, 0x001d1fbb}, 
+    {1, 0x000046bb}, {1, 0x0012e36a}, {4, 0x000330e5}, {1, 0x001b76d9}, 
+    {2, 0x00184361}, {2, 0x0000cafa}, {1, 0x000daf34}, {4, 0x003d6499}, 
+    {2, 0x00092455}, {7, 0x0006865e}, {1, 0x00071e24}, {2, 0x00002369}, 
+    {7, 0x0007a38a}, {5, 0x00102937}, {5, 0x0001674e}, {3, 0x000239f4}, 
+    {4, 0x000893e9}, {4, 0x0036215b}, {3, 0x0001d6b5}, {3, 0x0004425d}, 
+    {7, 0x001688f0}, {3, 0x00019b65}, {3, 0x0020b8b5}, {1, 0x00087efb}, 
+    {2, 0x000e62a2}, {8, 0x0012bac0}, {6, 0x00026b24}, {2, 0x0001b958}, 
+    {1, 0x00037339}, {3, 0x000a64ee}, {3, 0x00024ceb}, {3, 0x000e4af4}, 
+    {4, 0x000ac24e}, {2, 0x000d76c0}, {3, 0x00055a58}, {1, 0x000d13a5}
     
 };
 
@@ -228,30 +228,32 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         pblock->hashMerkleRoot = BlockMerkleRoot(*pblock);
         pblock->nNonce = blockinfo[i].nonce;
         
-        // CValidationState state;
-        // pblock->fChecked = false;
-        // std::cout << "Checked? " << pblock->fChecked << std::endl;
-        BlockMap::iterator mi = mapBlockIndex.find(pblock->hashPrevBlock);
-        CBlockIndex* pindexPrev = (*mi).second;
-        CValidationState state;
-        if (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
-            pblock->nNonce = 0;
-            std::cout << "Mining Block " << i+1 << std::endl;
-             while (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
-                ++pblock->nNonce;
-                if (pblock->nNonce % 100000 == 0) {
-                    printf("Block %d: %d, %d\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
-                }
-            }
-            printf("Block %d mined: %d, 0x%08x\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
-            // CheckBlock();
-        }
+        // Uncomment this code and it will generate the blockinfo at the top of this file.
+        // It grabs the extranonce (the first value of each tuple) and uses it to generate the nonce (the second value)
+        // You can run this in parallel incrementing the extranonces each time you run it, to generate the block info faster
+        // This is why you see many different values for the extra nonces. If you want, you can set them all to 1.
+        // It doesn't matter. This code will find the nonces for each extranonce.
 
-        
-        // std::cout << "Block Valid? " << CheckBlock(*pblock, state) << std::endl;
-        // std::cout << "Adding block " << i << "... " << std::endl;
-        // std::cout << "Hash: " << pblock->GetHash().ToString() << "Prev Hash: " << pblock->hashPrevBlock.ToString() << std::endl;
-        // std::cout << pblock->ToString() << std::endl;
+        //DO NOT FORGET TO COMMENT THIS OUT DURING BUILDS. 
+        //If the code below isn't commented out, it will make "make check" run for hours looking for 100 blocks
+        //It will also make your github action builds run for hours
+        //If your tests are hanging and you don't know why, it's probably this code
+
+        // pblock->fChecked = false;
+        // BlockMap::iterator mi = mapBlockIndex.find(pblock->hashPrevBlock);
+        // CBlockIndex* pindexPrev = (*mi).second;
+        // CValidationState state;
+        // if (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
+        //     pblock->nNonce = 0;
+        //     std::cout << "Mining Block " << i+1 << std::endl;
+        //      while (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, true) || !CheckProofOfWork(pblock->GetPoWHash(), pblock->nBits, chainparams.GetConsensus(chainActive.Height()))) {
+        //         ++pblock->nNonce;
+        //         if (pblock->nNonce % 100000 == 0) {
+        //             printf("Block %d: %d, %d\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
+        //         }
+        //     }
+        //     printf("Block %d mined: %d, 0x%08x\n", i+1, blockinfo[i].extranonce, pblock->nNonce);
+        // }
 
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
         

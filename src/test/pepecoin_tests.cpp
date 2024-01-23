@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_difficulty_limit)
     pindexLast.nHeight = 239;
     pindexLast.nTime = 1386475638; // Block #239
     pindexLast.nBits = 0x1e0ffff0;
-    BOOST_CHECK_EQUAL(CalculatePepecoinNextWorkRequired(&pindexLast, nLastRetargetTime, params), 0x1e00ffff);
+    BOOST_CHECK_EQUAL(CalculatePepecoinNextWorkRequired(&pindexLast, nLastRetargetTime, params), 0x1e0fffff);
 }
 
 BOOST_AUTO_TEST_CASE(get_next_work_pre_digishield)
@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_pre_digishield)
     pindexLast.nHeight = 9599;
     pindexLast.nTime = 1386954113;
     pindexLast.nBits = 0x1c1a1206;
-    BOOST_CHECK_EQUAL(CalculatePepecoinNextWorkRequired(&pindexLast, nLastRetargetTime, params), 0x1c15ea59);
+    BOOST_CHECK_EQUAL(CalculatePepecoinNextWorkRequired(&pindexLast, nLastRetargetTime, params), 0x1c271b09);
 }
 
 BOOST_AUTO_TEST_CASE(get_next_work_digishield)
@@ -174,27 +174,27 @@ BOOST_AUTO_TEST_CASE(hardfork_parameters)
     SelectParams(CBaseChainParams::MAIN);
     const Consensus::Params& initialParams = Params().GetConsensus(0);
 
-    BOOST_CHECK_EQUAL(initialParams.nPowTargetTimespan, 14400);
+    BOOST_CHECK_EQUAL(initialParams.nPowTargetTimespan, 60);
     BOOST_CHECK_EQUAL(initialParams.fAllowLegacyBlocks, true);
-    BOOST_CHECK_EQUAL(initialParams.fDigishieldDifficultyCalculation, false);
+    BOOST_CHECK_EQUAL(initialParams.fDigishieldDifficultyCalculation, true);
 
     const Consensus::Params& initialParamsEnd = Params().GetConsensus(999);
-    BOOST_CHECK_EQUAL(initialParamsEnd.nPowTargetTimespan, 14400);
+    BOOST_CHECK_EQUAL(initialParamsEnd.nPowTargetTimespan, 60);
     BOOST_CHECK_EQUAL(initialParamsEnd.fAllowLegacyBlocks, true);
-    BOOST_CHECK_EQUAL(initialParamsEnd.fDigishieldDifficultyCalculation, false);
+    BOOST_CHECK_EQUAL(initialParamsEnd.fDigishieldDifficultyCalculation, true);
 
     const Consensus::Params& digishieldParams = Params().GetConsensus(1000);//PEPE TODO Magic number
     BOOST_CHECK_EQUAL(digishieldParams.nPowTargetTimespan, 60);
     BOOST_CHECK_EQUAL(digishieldParams.fAllowLegacyBlocks, true);
     BOOST_CHECK_EQUAL(digishieldParams.fDigishieldDifficultyCalculation, true);
 
-    const Consensus::Params& digishieldParamsEnd = Params().GetConsensus(1499);
+    const Consensus::Params& digishieldParamsEnd = Params().GetConsensus(99999);
     BOOST_CHECK_EQUAL(digishieldParamsEnd.nPowTargetTimespan, 60);
     BOOST_CHECK_EQUAL(digishieldParamsEnd.fAllowLegacyBlocks, true);
     BOOST_CHECK_EQUAL(digishieldParamsEnd.fDigishieldDifficultyCalculation, true);
 
-    const Consensus::Params& auxpowParams = Params().GetConsensus(1500);//PEPE TODO Magic number
-    BOOST_CHECK_EQUAL(auxpowParams.nHeightEffective, 1500);//PEPE TODO Magic number
+    const Consensus::Params& auxpowParams = Params().GetConsensus(100000);//PEPE TODO Magic number
+    BOOST_CHECK_EQUAL(auxpowParams.nHeightEffective, 100000);//PEPE TODO Magic number
     BOOST_CHECK_EQUAL(auxpowParams.nPowTargetTimespan, 60);
     BOOST_CHECK_EQUAL(auxpowParams.fAllowLegacyBlocks, false);
     BOOST_CHECK_EQUAL(auxpowParams.fDigishieldDifficultyCalculation, true);
