@@ -91,7 +91,7 @@ void RPCNestedTests::rpcNestedTests()
     QVERIFY(result == result2);
 
     RPCConsole::RPCExecuteCommandLine(result, "getblock(getbestblockhash())[tx][0]", &filtered);
-    QVERIFY(result == "d738744097ee4ee58036e9f500324b6335f3fdc41df704c5579bc5416be4a6eb");
+    QVERIFY(result == "d22a1ba59a39cbd5904624933efb822c8baa121f97060c4cc9ea2f00a4bc6512");
     QVERIFY(filtered == "getblock(getbestblockhash())[tx][0]");
 
     RPCConsole::RPCParseCommandLine(result, "importprivkey", false, &filtered);
