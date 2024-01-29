@@ -25,7 +25,7 @@ BOOST_AUTO_TEST_CASE(get_next_work)
     pindexLast.nHeight = 30479;
     pindexLast.nTime = 1388163922; // Block #30479
     pindexLast.nBits = 0x1c00974f;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, params), 0x1c0093a1);
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, params), 0x1c025d3c);
 }
 
 /* Test the constraint on the upper bound for next work */
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(get_next_work_lower_limit_actual)
     pindexLast.nHeight = 66767;
     pindexLast.nTime = 1279008237 + (239 * 60 / 4 - 1); // Bitcoin Block #66528 + less than a quarter of the target timespan
     pindexLast.nBits = 0x1c05a3f4;
-    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, params), 0x1c0168fd);
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, params), 0x1c168fd0);
 }
 
 /* Test the constraint on the upper bound for actual time taken */

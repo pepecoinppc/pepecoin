@@ -15,7 +15,7 @@ The Pepecoin Core software allows anyone to operate a node in the Pepecoin block
 For information about the default fees used on the Pepecoin network, please
 refer to the [fee recommendation](doc/fee-recommendation.md).
 
-**Website:** [getpepecoin.com](https://getpepecoin.com)
+**Website:** [pepecoin.org](https://pepecoin.org)
 
 ## Dogecoin Differences
 
@@ -25,7 +25,7 @@ Changes:
 
 * Addresses start with `P` instead of `D`
 * BIPS features will start block 1000
-* AuxPow starts at block 1500 (Chain ID: 63)
+* AuxPow starts at block 100,000 (Chain ID: 63)
 * GUI themed for Pepecoin
 
 ## Usage 💻
@@ -96,7 +96,7 @@ about Pepecoin, give or ask for help, to share your project.
 Here are some places to visit:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
-* [Discord](https://getpepecoin.com/discord)
+* [Discord](https://pepecoin.org/discord)
 * [Twitter](https://twitter.com/PepecoinNetwork)
 
 ## Frequently Asked Questions ❓

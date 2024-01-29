@@ -19,7 +19,7 @@ message Output {
         required bytes script = 2; // usually one of the standard Script forms
 }
 message PaymentDetails {
-        optional string genesis = 1 [default = "0xb8fac7f8275af1072b983884fb128165862d7849d8f7d7841f282fb6f6c0b7a6"]; // Hash of the network genesis block
+        optional string genesis = 1 [default = "0x37981c0c48b8d48965376c8a42ece9a0838daadb93ff975cb091f57f8c2a5faa"]; // Hash of the network genesis block
         repeated Output outputs = 2;        // Where payment should be sent
         required uint64 time = 3;           // Timestamp; when payment request created
         optional uint64 expires = 4;        // Timestamp; when this request should be considered invalid

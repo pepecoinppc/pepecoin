@@ -51,7 +51,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "WSJ 1/10/24 - SEC Approves Bitcoin ETFs for Everyday Investors";
+    const char* pszTimestamp = "WSJ 1/22/24 - Fed Review Clears Central Bank Officials of Violating Rules";
     const CScript genesisOutputScript = CScript() << ParseHex("0436d04f40a76a1094ea10b14a513b62bfd0b47472dda1c25aa9cf8266e53f3c4353680146177f8a3b328ed2c6e02f2b8e051d9d5ffc61a4e6ccabd03409109a5a") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -86,9 +86,9 @@ public:
         consensus.BIP65Height = 1000;
         consensus.BIP66Height = 1000;
         consensus.powLimit = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20;
-        consensus.nPowTargetTimespan = 4 * 60 * 60; // pre-digishield: 4 hours
+        consensus.nPowTargetTimespan = 60; // 1 minute
         consensus.nPowTargetSpacing = 60; // 1 minute
-        consensus.fDigishieldDifficultyCalculation = false;
+        consensus.fDigishieldDifficultyCalculation = true;
         consensus.nCoinbaseMaturity = 30;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowAllowDigishieldMinDifficultyBlocks = false;
@@ -114,7 +114,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000000010001"); // genesis block
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xb8fac7f8275af1072b983884fb128165862d7849d8f7d7841f282fb6f6c0b7a6"); // genesis block
+        consensus.defaultAssumeValid = uint256S("0x37981c0c48b8d48965376c8a42ece9a0838daadb93ff975cb091f57f8c2a5faa"); // genesis block
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x003f; // 63
@@ -123,7 +123,7 @@ public:
         consensus.nHeightEffective = 0;
         consensus.fSimplifiedRewards = true;
 
-        // Blocks 1000 - 1499 are Digishield without AuxPoW
+        // Blocks 1000 - 99,999 are Digishield without AuxPoW
         digishieldConsensus = consensus;
         digishieldConsensus.nHeightEffective = 1000;
         digishieldConsensus.fSimplifiedRewards = true;
@@ -131,10 +131,10 @@ public:
         digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
         digishieldConsensus.nCoinbaseMaturity = 240;
 
-        // Blocks 1500+ are AuxPoW
+        // Blocks 100,000+ are AuxPoW
         // Some tests from Dogecoin expect non-auxpow blocks. This allows those tests to pass.
         auxpowConsensus = digishieldConsensus;
-        auxpowConsensus.nHeightEffective = 1500;
+        auxpowConsensus.nHeightEffective = 100000;
         auxpowConsensus.fAllowLegacyBlocks = false;
 
         // Assemble the binary search tree of consensus parameters
@@ -154,15 +154,15 @@ public:
         nDefaultPort = 33874;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1705384800, 777983, 0x1e0ffff0, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1705975200, 427444, 0x1e0ffff0, 1, 88 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0xb8fac7f8275af1072b983884fb128165862d7849d8f7d7841f282fb6f6c0b7a6"));
-        assert(genesis.hashMerkleRoot == uint256S("0xd738744097ee4ee58036e9f500324b6335f3fdc41df704c5579bc5416be4a6eb"));
+        assert(consensus.hashGenesisBlock == uint256S("0x37981c0c48b8d48965376c8a42ece9a0838daadb93ff975cb091f57f8c2a5faa"));
+        assert(genesis.hashMerkleRoot == uint256S("0xd22a1ba59a39cbd5904624933efb822c8baa121f97060c4cc9ea2f00a4bc6512"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.push_back(CDNSSeedData("getpepecoin.com", "seeds.getpepecoin.com"));
+        vSeeds.push_back(CDNSSeedData("pepecoin.org", "seeds.pepecoin.org"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,56); // Addresses start with P
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,22);
@@ -179,7 +179,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            ( 0, uint256S("0xb8fac7f8275af1072b983884fb128165862d7849d8f7d7841f282fb6f6c0b7a6"))
+            ( 0, uint256S("0x37981c0c48b8d48965376c8a42ece9a0838daadb93ff975cb091f57f8c2a5faa"))
         };
 
         chainTxData = ChainTxData{ };
@@ -200,12 +200,6 @@ public:
         strNetworkID = "test";
 
         // Blocks 0 - 144999 are pre-Digishield
-        consensus.nHeightEffective = 0;
-        consensus.nPowTargetTimespan = 4 * 60 * 60; // pre-digishield: 4 hours
-        consensus.fDigishieldDifficultyCalculation = false;
-        consensus.nCoinbaseMaturity = 30;
-        consensus.fPowAllowMinDifficultyBlocks = true;
-        consensus.fPowAllowDigishieldMinDifficultyBlocks = false;
         consensus.nSubsidyHalvingInterval = 100000;
         consensus.nMajorityEnforceBlockUpgrade = 501;
         consensus.nMajorityRejectBlockOutdated = 750;
@@ -216,8 +210,12 @@ public:
         consensus.BIP65Height = 1000; // 
         consensus.BIP66Height = 1000; // - this is the last block that could be v2, 1900 blocks past the last v2 block
         consensus.powLimit = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20;
-        consensus.nPowTargetTimespan = 4 * 60 * 60; // pre-digishield: 4 hours
+        consensus.nPowTargetTimespan = 60; // 1 minute
         consensus.nPowTargetSpacing = 60; // 1 minute
+        consensus.fDigishieldDifficultyCalculation = true;
+        consensus.nCoinbaseMaturity = 30;
+        consensus.fPowAllowMinDifficultyBlocks = true;
+        consensus.fPowAllowDigishieldMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 2880; // 2 days (note this is significantly lower than Bitcoin standard)
         consensus.nMinerConfirmationWindow = 10080; // 60 * 24 * 7 = 10,080 blocks, or one week
@@ -240,7 +238,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000000010001"); // genesis block
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x1cd0b7925f5458a232a81eb10b5af2fccd202d6973d57fc0dd0ccf862cae09d2"); // genesis block
+        consensus.defaultAssumeValid = uint256S("0xf9f4ea4ae7f6ea4c55040ede2019ba0a53e262f46ec9bce3dcda2cb11f96fc52"); // genesis block
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x003f; // 63
@@ -258,15 +256,15 @@ public:
         digishieldConsensus.fPowAllowMinDifficultyBlocks = false;
         digishieldConsensus.nCoinbaseMaturity = 240;
 
-        // Blocks 1250 - 1499 are Digishield with minimum difficulty on all blocks
+        // Blocks 1250 - 99,999 are Digishield with minimum difficulty on all blocks
         minDifficultyConsensus = digishieldConsensus;
         minDifficultyConsensus.nHeightEffective = 1250;
         minDifficultyConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
         minDifficultyConsensus.fPowAllowMinDifficultyBlocks = true;
 
-        // Enable AuxPoW at 1500
+        // Enable AuxPoW at 100,000
         auxpowConsensus = minDifficultyConsensus;
-        auxpowConsensus.nHeightEffective = 1500;
+        auxpowConsensus.nHeightEffective = 100000;
         auxpowConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
         auxpowConsensus.fAllowLegacyBlocks = false;
 
@@ -283,18 +281,18 @@ public:
         nDefaultPort = 44874;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1705384860, 326706, 0x1e0ffff0, 1, 88 * COIN);
+        genesis = CreateGenesisBlock(1705975260, 3476, 0x1e0ffff0, 1, 88 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         minDifficultyConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
 
-        assert(consensus.hashGenesisBlock == uint256S("0x1cd0b7925f5458a232a81eb10b5af2fccd202d6973d57fc0dd0ccf862cae09d2"));
-        assert(genesis.hashMerkleRoot == uint256S("0xd738744097ee4ee58036e9f500324b6335f3fdc41df704c5579bc5416be4a6eb"));
+        assert(consensus.hashGenesisBlock == uint256S("0xf9f4ea4ae7f6ea4c55040ede2019ba0a53e262f46ec9bce3dcda2cb11f96fc52"));
+        assert(genesis.hashMerkleRoot == uint256S("0xd22a1ba59a39cbd5904624933efb822c8baa121f97060c4cc9ea2f00a4bc6512"));
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("getpepecoin.com", "seeds-testnet.getpepecoin.com"));
+        vSeeds.push_back(CDNSSeedData("pepecoin.org", "seeds-testnet.pepecoin.org"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,113); // 0x71
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196); // 0xc4
@@ -311,7 +309,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            ( 0, uint256S("0x1cd0b7925f5458a232a81eb10b5af2fccd202d6973d57fc0dd0ccf862cae09d2"))
+            ( 0, uint256S("0xf9f4ea4ae7f6ea4c55040ede2019ba0a53e262f46ec9bce3dcda2cb11f96fc52"))
         };
 
         chainTxData = ChainTxData{ };
@@ -396,8 +394,8 @@ public:
         consensus.hashGenesisBlock = genesis.GetHash();
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
-        assert(consensus.hashGenesisBlock == uint256S("0xfda0727b210f4d79f9abec20d95f8e3699e717aba00c37142ee97a8decab404c"));
-        assert(genesis.hashMerkleRoot == uint256S("0xd738744097ee4ee58036e9f500324b6335f3fdc41df704c5579bc5416be4a6eb"));
+        assert(consensus.hashGenesisBlock == uint256S("0x770975b0f98319520694563de107ff94fd501c0d1c16f3a405868faf36b51c28"));
+        assert(genesis.hashMerkleRoot == uint256S("0xd22a1ba59a39cbd5904624933efb822c8baa121f97060c4cc9ea2f00a4bc6512"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -409,7 +407,7 @@ public:
 
         checkpointData = (CCheckpointData){
             boost::assign::map_list_of
-            ( 0, uint256S("0xfda0727b210f4d79f9abec20d95f8e3699e717aba00c37142ee97a8decab404c"))
+            ( 0, uint256S("0x770975b0f98319520694563de107ff94fd501c0d1c16f3a405868faf36b51c28"))
         };
 
         chainTxData = ChainTxData{

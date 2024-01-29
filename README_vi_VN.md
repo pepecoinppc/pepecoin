@@ -14,7 +14,7 @@ Giống như Dogecoin, phần mềm Nhân Tố Pepecoin cho phép bất kỳ ai 
 
 Để biết thông tin về các mức phí mặc định được sử dụng trên mạng lưới Pepecoin, vui lòng tham khảo [đề xuất phí](doc/fee-recommendation.md).
 
-**Trang web:** [getpepecoin.com](https://getpepecoin.com)
+**Trang web:** [pepecoin.org](https://pepecoin.org)
 
 ## Sự Khác Biệt với Dogecoin
 
@@ -78,7 +78,7 @@ Bạn có thể tham gia vào các cộng đồng trên các phương tiện tru
 Dưới đây là một số nơi bạn có thể thăm:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
-* [Discord](https://getpepecoin.com/discord)
+* [Discord](https://pepecoin.org/discord)
 * [Twitter](https://twitter.com/Pepecoin_Layer1)
 
 ## Câu Hỏi Thường Gặp ❓

@@ -14,7 +14,7 @@ Pepecoin Core [PEPE, ₱]
 
 برای اطلاعات در مورد کارمزد‌های پیشفرض استفاده شده در شبکه پپکوین، لطفاً به [توصیه کارمزد](doc/fee-recommendation.md) مراجعه کنید.
 
-**وب‌سایت:** [getpepecoin.com](https://getpepecoin.com)
+**وب‌سایت:** [pepecoin.org](https://pepecoin.org)
 
 ## تفاوت‌های دوجکوین
 
@@ -77,7 +77,7 @@ Pepecoin Core [PEPE, ₱]
 اینجا چند مکان برای بازدید هستند:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
-* [Discord](https://getpepecoin.com/discord)
+* [Discord](https://pepecoin.org/discord)
 * [Twitter](https://twitter.com/Pepecoin_Layer1)
 
 ## سوالات متداول ❓

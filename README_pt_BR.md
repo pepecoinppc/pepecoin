@@ -14,7 +14,7 @@ Assim como o Dogecoin, o software Pepecoin Core permite que qualquer pessoa oper
 
 Para informações sobre as taxas padrão usadas na rede Pepecoin, por favor consulte a [recomendação de taxas](doc/fee-recommendation.md).
 
-**Website:** [getpepecoin.com](https://getpepecoin.com)
+**Website:** [pepecoin.org](https://pepecoin.org)
 
 ## Diferenças do Dogecoin
 
@@ -77,7 +77,7 @@ Para ver o que está acontecendo, conhecer pessoas e discutir, encontrar o últi
 Aqui estão alguns lugares para visitar:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
-* [Discord](https://getpepecoin.com/discord)
+* [Discord](https://pepecoin.org/discord)
 * [Twitter](https://twitter.com/Pepecoin_Layer1)
 
 ## Perguntas Frequentes ❓
