@@ -3110,6 +3110,10 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     if (block.GetBlockTime() > nAdjustedTime + 2 * 60 * 60)
         return state.Invalid(false, REJECT_INVALID, "time-too-new", "block timestamp too far in the future");
 
+    // Check timestamp delta to previous block against consensus parameter
+    if (consensusParams.minSecondsBetweenBlocks > 0 && block.GetBlockTime() - pindexPrev->GetBlockTime() < consensusParams.minSecondsBetweenBlocks)
+        return state.Invalid(false, REJECT_INVALID, "time-too-old", "block's timestamp is too early");
+
     // Reject outdated version blocks when 95% (75% on testnet) of the network has upgraded:
     // check for version 2, 3 and 4 upgrades
     // Pepecoin: Version 2 enforcement was never used
