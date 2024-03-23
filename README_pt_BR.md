@@ -78,7 +78,6 @@ Aqui estão alguns lugares para visitar:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
-* [Twitter](https://twitter.com/Pepecoin_Layer1)
 
 ## Perguntas Frequentes ❓
 
