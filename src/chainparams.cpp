@@ -116,6 +116,9 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x37981c0c48b8d48965376c8a42ece9a0838daadb93ff975cb091f57f8c2a5faa"); // genesis block
 
+        // allow blocks mined less than one second apart
+        consensus.minSecondsBetweenBlocks = 0;
+
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x003f; // 63
         consensus.fStrictChainId = true;
