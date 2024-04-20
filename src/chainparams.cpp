@@ -134,7 +134,7 @@ public:
         // Blocks 38,000+ are AuxPoW
         // Some tests from Dogecoin expect non-auxpow blocks. This allows those tests to pass.
         auxpowConsensus = digishieldConsensus;
-        auxpowConsensus.nHeightEffective = 1005;
+        auxpowConsensus.nHeightEffective = 1255;
         auxpowConsensus.fAllowLegacyBlocks = false;
 
         // Assemble the binary search tree of consensus parameters
@@ -264,7 +264,7 @@ public:
 
         // Enable AuxPoW at 38,000
         auxpowConsensus = minDifficultyConsensus;
-        auxpowConsensus.nHeightEffective = 1005;
+        auxpowConsensus.nHeightEffective = 1255;
         auxpowConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
         auxpowConsensus.fAllowLegacyBlocks = false;
 
