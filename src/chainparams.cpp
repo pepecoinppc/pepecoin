@@ -75,7 +75,6 @@ public:
     CMainParams() {
         strNetworkID = "main";
 
-        // Blocks 0 - 144999 are conventional difficulty calculation
         consensus.nSubsidyHalvingInterval = 100000;
         consensus.nMajorityEnforceBlockUpgrade = 1500;
         consensus.nMajorityRejectBlockOutdated = 1900;
@@ -123,7 +122,7 @@ public:
         consensus.nHeightEffective = 0;
         consensus.fSimplifiedRewards = true;
 
-        // Blocks 1000 - 37,999 are Digishield without AuxPoW
+        // Blocks 1000 - 41,999 are Digishield without AuxPoW
         digishieldConsensus = consensus;
         digishieldConsensus.nHeightEffective = 1000;
         digishieldConsensus.fSimplifiedRewards = true;
@@ -131,10 +130,10 @@ public:
         digishieldConsensus.nPowTargetTimespan = 60; // post-digishield: 1 minute
         digishieldConsensus.nCoinbaseMaturity = 240;
 
-        // Blocks 38,000+ are AuxPoW
+        // Blocks 42,000+ are AuxPoW
         // Some tests from Dogecoin expect non-auxpow blocks. This allows those tests to pass.
         auxpowConsensus = digishieldConsensus;
-        auxpowConsensus.nHeightEffective = 38000;
+        auxpowConsensus.nHeightEffective = 42000;
         auxpowConsensus.fAllowLegacyBlocks = false;
 
         // Assemble the binary search tree of consensus parameters
@@ -199,7 +198,6 @@ public:
     CTestNetParams() {
         strNetworkID = "test";
 
-        // Blocks 0 - 144999 are pre-Digishield
         consensus.nSubsidyHalvingInterval = 100000;
         consensus.nMajorityEnforceBlockUpgrade = 501;
         consensus.nMajorityRejectBlockOutdated = 750;
@@ -256,15 +254,15 @@ public:
         digishieldConsensus.fPowAllowMinDifficultyBlocks = false;
         digishieldConsensus.nCoinbaseMaturity = 240;
 
-        // Blocks 1250 - 37,999 are Digishield with minimum difficulty on all blocks
+        // Blocks 1250 - 41,999 are Digishield with minimum difficulty on all blocks
         minDifficultyConsensus = digishieldConsensus;
         minDifficultyConsensus.nHeightEffective = 1250;
         minDifficultyConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
         minDifficultyConsensus.fPowAllowMinDifficultyBlocks = true;
 
-        // Enable AuxPoW at 38,000
+        // Enable AuxPoW at 42,000
         auxpowConsensus = minDifficultyConsensus;
-        auxpowConsensus.nHeightEffective = 38000;
+        auxpowConsensus.nHeightEffective = 42000;
         auxpowConsensus.fPowAllowDigishieldMinDifficultyBlocks = true;
         auxpowConsensus.fAllowLegacyBlocks = false;
 
