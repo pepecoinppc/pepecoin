@@ -2495,7 +2495,7 @@ p, li { white-space: pre-wrap; }
         <translation>tutup pengaturan biaya</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 satoshis in fee, while &quot;total at least&quot; pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 ribbits and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 ribbits in fee, while &quot;total at least&quot; pays 1000 ribbits. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>Jika biaya khusus diatur menjadi 1000 koinu dan transaksi hanya 250 bytes, maka &quot;per kilobyte&quot; nya hanya bayar 250 koinu, dimana &quot;total sedikitnya&quot; membayar 1000 koinu. Untuk transaksi yang lebih besar dari satu kilobyte dihitung membayar per kilobyte.</translation>
     </message>
     <message>
