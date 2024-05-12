@@ -2744,8 +2744,8 @@ p, li { white-space: pre-wrap; }
         <translation>Avertissement : L&apos;estimation des frais n&apos;est actuellement pas possible.</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 satoshis in fee, while &quot;total at least&quot; pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Si le tarif personnalisé est fixé à 1000 satoshis et que la transaction n&apos;est que de 250 octets, alors le tarif &quot;par kilooctet&quot; ne paie que 250 satoshis, tandis que le tarif &quot;total au moins&quot; paie 1000 satoshis. Pour les transactions supérieures à un kilooctet, les deux payent par kilooctet.</translation>
+        <source>If the custom fee is set to 1000 ribbits and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 ribbits in fee, while &quot;total at least&quot; pays 1000 ribbits. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Si le tarif personnalisé est fixé à 1000 ribbits et que la transaction n&apos;est que de 250 octets, alors le tarif &quot;par kilooctet&quot; ne paie que 250 ribbits, tandis que le tarif &quot;total au moins&quot; paie 1000 ribbits. Pour les transactions supérieures à un kilooctet, les deux payent par kilooctet.</translation>
     </message>
     <message>
         <source>Priority:</source>

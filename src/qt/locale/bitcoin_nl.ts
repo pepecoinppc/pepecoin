@@ -2677,8 +2677,8 @@ p, li { white-space: pre-wrap; }
         <translation>Een schatting van de kosten is momenteel niet mogelijk.</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 satoshis in fee, while &quot;total at least&quot; pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Als de aangepaste vergoeding is ingesteld op 1000 satoshis en de transactie slechts 250 bytes is, betaalt u &quot;per kilobyte&quot; slechts 250 satoshis aan kosten, terwijl u met &quot;totaal minstens&quot; 1000 satoshis betaalt. Voor transacties groter dan een kilobyte betalen beide per kilobyte.</translation>
+        <source>If the custom fee is set to 1000 ribbits and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 ribbits in fee, while &quot;total at least&quot; pays 1000 ribbits. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Als de aangepaste vergoeding is ingesteld op 1000 ribbits en de transactie slechts 250 bytes is, betaalt u &quot;per kilobyte&quot; slechts 250 ribbits aan kosten, terwijl u met &quot;totaal minstens&quot; 1000 ribbits betaalt. Voor transacties groter dan een kilobyte betalen beide per kilobyte.</translation>
     </message>
     <message>
         <source>Priority:</source>

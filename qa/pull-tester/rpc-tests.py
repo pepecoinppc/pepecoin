@@ -176,6 +176,7 @@ testScripts = [
     'liststucktransactions.py',
     'getblock.py',
     'addnode.py',
+    'getcoincount.py',
 ]
 if ENABLE_ZMQ:
     testScripts.append('zmq_test.py')
