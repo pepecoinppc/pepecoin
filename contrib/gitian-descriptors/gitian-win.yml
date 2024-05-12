@@ -1,5 +1,5 @@
 ---
-name: "pepecoin-win-1.0"
+name: "pepecoin-win-1.0.1"
 enable_cache: true
 suites:
 - "focal"

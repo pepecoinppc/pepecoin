@@ -188,13 +188,13 @@ BOOST_AUTO_TEST_CASE(hardfork_parameters)
     BOOST_CHECK_EQUAL(digishieldParams.fAllowLegacyBlocks, true);
     BOOST_CHECK_EQUAL(digishieldParams.fDigishieldDifficultyCalculation, true);
 
-    const Consensus::Params& digishieldParamsEnd = Params().GetConsensus(99999);
+    const Consensus::Params& digishieldParamsEnd = Params().GetConsensus(41999);
     BOOST_CHECK_EQUAL(digishieldParamsEnd.nPowTargetTimespan, 60);
     BOOST_CHECK_EQUAL(digishieldParamsEnd.fAllowLegacyBlocks, true);
     BOOST_CHECK_EQUAL(digishieldParamsEnd.fDigishieldDifficultyCalculation, true);
 
-    const Consensus::Params& auxpowParams = Params().GetConsensus(100000);//PEPE TODO Magic number
-    BOOST_CHECK_EQUAL(auxpowParams.nHeightEffective, 100000);//PEPE TODO Magic number
+    const Consensus::Params& auxpowParams = Params().GetConsensus(42000);//PEPE TODO Magic number
+    BOOST_CHECK_EQUAL(auxpowParams.nHeightEffective, 42000);//PEPE TODO Magic number
     BOOST_CHECK_EQUAL(auxpowParams.nPowTargetTimespan, 60);
     BOOST_CHECK_EQUAL(auxpowParams.fAllowLegacyBlocks, false);
     BOOST_CHECK_EQUAL(auxpowParams.fDigishieldDifficultyCalculation, true);

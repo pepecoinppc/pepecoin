@@ -204,6 +204,54 @@ UniValue getblockcount(const JSONRPCRequest& request)
     return chainActive.Height();
 }
 
+static CAmount calculate_over(uint32_t *height, uint32_t max_blocks, CAmount subsidy) {
+    CAmount range_total = 0;
+    int32_t blocks_in_range = *height - max_blocks;
+
+    if (blocks_in_range > 0) {
+        *height -= blocks_in_range;
+        range_total += subsidy * blocks_in_range;
+    }
+
+    return range_total;
+}
+
+UniValue getcoincount(const JSONRPCRequest& request)
+{
+    size_t nParams = request.params.size();
+
+    if (request.fHelp || nParams > 1)
+        throw runtime_error(
+            "getcoincount\n"
+            "\nReturns the number of coins mined in the longest blockchain.\n"
+            "\nArguments:\n"
+            "1. height (int, optional, default=current block height) Block height for which to report coins mined.\n"
+            "\nResult:\n"
+            "n    (numeric) The current coin count\n"
+            "\nExamples:\n"
+            + HelpExampleCli("getcoincount", "")
+            + HelpExampleRpc("getcoincount", "12345")
+        );
+
+    LOCK(cs_main);
+
+    uint32_t height = nParams == 1
+                    ? request.params[0].get_int()
+                    : chainActive.Height();
+
+    CAmount total = 0;
+
+    total += calculate_over(&height, 600000,  10000);
+    total += calculate_over(&height, 500000,  15625);
+    total += calculate_over(&height, 400000,  31250);
+    total += calculate_over(&height, 300000,  62500);
+    total += calculate_over(&height, 200000, 125000);
+    total += calculate_over(&height, 100000, 250000);
+    total += calculate_over(&height, 000000, 500000);
+
+    return total;
+}
+
 UniValue getbestblockhash(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 0)
@@ -1518,6 +1566,7 @@ static const CRPCCommand commands[] =
     { "blockchain",         "gettxoutsetinfo",        &gettxoutsetinfo,        true,  {} },
     { "blockchain",         "pruneblockchain",        &pruneblockchain,        true,  {"height"} },
     { "blockchain",         "verifychain",            &verifychain,            true,  {"checklevel","nblocks"} },
+    { "blockchain",         "getcoincount",           &getcoincount,           true,  {"height"} },
 
     { "blockchain",         "preciousblock",          &preciousblock,          true,  {"blockhash"} },
 

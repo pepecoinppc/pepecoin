@@ -2609,7 +2609,7 @@ p, li { white-space: pre-wrap; }
         <translation>свиване на настройките свързани с такси</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 satoshis in fee, while &quot;total at least&quot; pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 ribbits and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 ribbits in fee, while &quot;total at least&quot; pays 1000 ribbits. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>Ако персонализираната такса е настроена за 1000 монети, а за транзакцията са необходими 250 байта, тогава  &quot;за килобайт&quot; се плащат само 250 монети такса, докато &quot;общо най-малко&quot; се плащат 1000 монети. За транзакции по-големи от килобайт, и двата метода плащат за килобайт.</translation>
     </message>
     <message>

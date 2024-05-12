@@ -2642,8 +2642,8 @@ p, li { white-space: pre-wrap; }
         <translation>Aviso: a estimativa de taxas não é possível no momento.</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 satoshis in fee, while &quot;total at least&quot; pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
-        <translation>Se a taxa personalizada for definida como 1000 satoshis e a transação for de apenas 250 bytes, então &quot;por kilobyte&quot; pagará apenas 250 satoshis em taxa, enquanto &quot;total pelo menos&quot; pagará 1000 satoshis. Para transações maiores que um kilobyte, ambos pagam por kilobyte.</translation>
+        <source>If the custom fee is set to 1000 ribbits and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 ribbits in fee, while &quot;total at least&quot; pays 1000 ribbits. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <translation>Se a taxa personalizada for definida como 1000 ribbits e a transação for de apenas 250 bytes, então &quot;por kilobyte&quot; pagará apenas 250 ribbits em taxa, enquanto &quot;total pelo menos&quot; pagará 1000 ribbits. Para transações maiores que um kilobyte, ambos pagam por kilobyte.</translation>
     </message>
     <message>
         <source>Priority:</source>

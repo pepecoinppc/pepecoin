@@ -2722,7 +2722,7 @@ p, li { white-space: pre-wrap; }
         <translation>경고: 수수료 예측 불가합니다.</translation>
     </message>
     <message>
-        <source>If the custom fee is set to 1000 satoshis and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 satoshis in fee, while &quot;total at least&quot; pays 1000 satoshis. For transactions bigger than a kilobyte both pay by kilobyte.</source>
+        <source>If the custom fee is set to 1000 ribbits and the transaction is only 250 bytes, then &quot;per kilobyte&quot; only pays 250 ribbits in fee, while &quot;total at least&quot; pays 1000 ribbits. For transactions bigger than a kilobyte both pay by kilobyte.</source>
         <translation>사용자 정의 수수료가 1000 사토시로 설정되고 트랜잭션이 250바이트에 불과한 경우 &quot;킬로바이트당&quot; &quot;최소한 합계&quot;는 수수료로 250사토시만 지불합니다. 1000사토시를 지불합니다. 1킬로바이트보다 큰 트랜잭션의 경우 둘 다 킬로바이트 단위로 지불합니다.</translation>
     </message>
     <message>
