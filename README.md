@@ -25,7 +25,7 @@ Changes:
 
 * Addresses start with `P` instead of `D`
 * BIPS features will start block 1000
-* AuxPow starts at block 100,000 (Chain ID: 63)
+* AuxPow starts at block 42,000 (Chain ID: 63)
 * GUI themed for Pepecoin
 
 ## Usage 💻
