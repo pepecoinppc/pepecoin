@@ -3,8 +3,8 @@ Pepecoin Core 1.0.1
 
 Intro
 -----
-ist ein kostenloses Open-Source-Peer-to-Peer-Electronic-Cash-System, das vollständig dezentralisiert ist, 
-ohne die Notwendigkeit eines zentralen Servers oder vertrauenswürdiger Parteien. 
+ist ein kostenloses und vollständig dezentralisiertes Open-Source-Peer-to-Peer-Electronic-Cash-System,
+ohne die Notwendigkeit eines zentralen Servers oder vertrauenswürdiger Parteien.
 Benutzer halten die Krypto-Schlüssel zu ihrem eigenen Geld und führen direkte Transaktionen miteinander durch, 
 mit Hilfe eines P2P-Netzwerks, um doppelte Ausgaben zu überprüfen.
 
