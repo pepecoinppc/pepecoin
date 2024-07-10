@@ -66,7 +66,7 @@ Hauptentwicklungsressourcen:
  um geplante und laufende Arbeiten für bevorstehende Veröffentlichungen zu verfolgen.
 
 * [GitHub Discussion](https://github.com/pepecoinppc/pepecoin/discussions) wird genutzt, 
-  um Features zu diskutieren, geplante und ungeplante, die mit der Entwicklung der Pepecoin Core-Software, den zugrunde liegenden Protokollen und dem PEPE-Vermögenswert zusammenhängen.
+  um Features zu diskutieren, (geplante und ungeplante) die mit der Entwicklung der Pepecoin Core-Software, den zugrunde liegenden Protokollen und dem PEPE-Vermögenswert zusammenhängen.
 
 * [PepecoinDev subreddit](https://www.reddit.com/r/pepecoindev/)
 
