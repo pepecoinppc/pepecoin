@@ -102,7 +102,7 @@ die neuesten Pepe-Memes zu finden, etwas über Pepecoin zu lernen oder um Ideen 
 Hier sind einige Links:
 
 * [r/Pepecoin Reddit](https://www.reddit.com/r/pepecoin/) Pepecoin Reddit
-* [Discord](https://discord.gg/pepecoin) Offizieller Pepecoin Discord Server
+* [Discord](https://pepecoin.org/discord) Offizieller Pepecoin Discord Server
 * [Twitter/X](https://twitter.com/PepecoinNetwork)
 
 
