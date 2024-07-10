@@ -109,7 +109,7 @@ Hier sind einige Links:
 ## Häufig gestellte Fragen ❓
 
 Haben Sie eine Frage zu Pepecoin? 
-Eine Antwort befindet sich vielleicht bereits im FAQ oder im Frage-und-Antwort-Bereich des Diskussionsforums!
+Eine Antwort befindet sich vielleicht bereits im [FAQ](doc/FAQ_DE.md) oder im Frage-und-Antwort-Bereich des Diskussionsforums!
 
 ## Lizenz ⚖️
 Pepecoin Core wird unter den Bedingungen der MIT-Lizenz veröffentlicht. Siehe 
