@@ -37,7 +37,7 @@ Pepecoin ist eine Abspaltung von Dogecoin. Um die Vertrautheit zu wahren, werden
 
 ## Verwendung 💻
 
-Um Ihre Reise mit Pepecoin Core zu beginnen, lesen Sie den [Quick Guide](doc/README_windows_DE.md), [Weitere Befehle](INSTALL.md) und das [Einrichtungstutorial](doc/getting-started.md).
+Um Ihre Reise mit Pepecoin Core zu beginnen, lesen Sie den [Quick Guide](doc/README_windows_DE.md), [Installationsanweisungen](INSTALL.md) und das [Einrichtungstutorial](doc/getting-started.md).
 
 Die JSON-RPC-API von Pepecoin Core ist selbstdokumentierend und kann mit pepecoin-cli help durchsucht werden, während detaillierte Informationen zu jedem Befehl mit pepecoin-cli help <Befehl> angezeigt werden können. 
 Alternativ lesen Sie die [Bitcoin Core Dokumentation](https://developer.bitcoin.org/reference/rpc/) - die ein ähnliches Protokoll implementiert - um eine durchsuchbare Version zu erhalten.
@@ -60,7 +60,7 @@ Pepecoin Core ist eine Open-Source- und Community-getriebene Software.
 Der Entwicklungsprozess ist offen und öffentlich einsehbar; jeder kann die Software sehen, diskutieren und daran arbeiten.
 
 
-Hauptentwicklungsressourcen: (?)
+Hauptentwicklungsressourcen:
 
 * [GitHub Projekte](https://github.com/pepecoinppc/pepecoin/projects) werden verwendet,
  um geplante und laufende Arbeiten für bevorstehende Veröffentlichungen zu verfolgen.
