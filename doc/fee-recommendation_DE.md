@@ -3,7 +3,7 @@ Pepecoin-Gebührenempfehlung
 
 _zuletzt aktualisiert für 1.0.0_
 
-Die Pepecoin-Kette hat ein relativ niedriges Blockintervall, 1 Megabyte Blockspace
+Die Pepecoin-Kette hat ein relativ niedrigen Blockintervall, 1 Megabyte Blockspace
 und zielt darauf ab, den Leuten eine kostengünstige Möglichkeit für Transaktionen zu bieten. Daher ist Spam die größte
 Bedrohung für die Pepecoin-Kette als Ganzes. Pepecoin verwendet eine Transaktionsgebühr
 und einen Dust-Abschreckungseffekt, um On-Chain-Spam zu bekämpfen.
