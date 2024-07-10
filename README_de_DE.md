@@ -9,7 +9,7 @@ Sprache ändern: DE | [EN](./README.md) | [CN](./README_zh_CN.md) | [PT](./READM
 
 
 
-Pepecoin, erstellt von einem der ursprünglichen Dogecoin-Shibes, ist eine Community-fokussierte Kryptowährung, mit dem Ziel, eine neue und spaßige Community zu schaffen, ähnlich der ursprünglichen Dogecoin-Community zu schaffen.
+Pepecoin, erstellt von einem der ursprünglichen Dogecoin-Shibes, ist eine Community-fokussierte Kryptowährung, mit dem Ziel, eine neue und spaßige Community, ähnlich der ursprünglichen Dogecoin-Community, zu schaffen.
 
 Im Gegensatz zu allen vorherigen Iterationen ist Pepecoin ein Layer-1 Coin. 
 Das bedeutet, es gibt keine Liquiditätspools, keine Sperrung von Wallets und keine verwirrenden Smart Contracts. 
