@@ -11,14 +11,14 @@ Sprache ändern: DE | [EN](./README.md) | [CN](./README_zh_CN.md) | [PT](./READM
 
 Pepecoin, erstellt von einem der ursprünglichen Dogecoin-Shibes, ist eine Community-fokussierte Kryptowährung, mit dem Ziel, eine neue und spaßige Community zu schaffen, ähnlich der ursprünglichen Dogecoin-Community zu schaffen.
 
-Im Gegensatz zu allen vorherigen Iterationen ist Pepecoin eine Layer-1-Münze. 
+Im Gegensatz zu allen vorherigen Iterationen ist Pepecoin ein Layer-1 Coin. 
 Das bedeutet, es gibt keine Liquiditätspools, keine Sperrung von Wallets und keine verwirrenden Smart Contracts. 
 Pepecoin ist eine einfache, eigenständige Blockchain.
 
 Die Pepecoin Core-Software ermöglicht es jedem, einen Node in den Pepecoin-Blockchain-Netzwerken zu betreiben und verwendet die Scrypt-Hashing-Methode für den "Proof of Work". 
 Sie wurde aus den Programmen Dogecoin Core, Bitcoin Core und anderen Kryptowährungen angepasst.
 
-Für Informationen zu den Standardgebühren im Pepecoin-Netzwerk lesen Sie die [Gebührenempfehlungen](doc/fee-recommendation.md).
+Für Informationen zu den Standardgebühren im Pepecoin-Netzwerk lesen Sie die [Gebührenempfehlungen](doc/fee-recommendation_DE.md).
 
 **Website:** [pepecoin.org](https://pepecoin.org)
 
