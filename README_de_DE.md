@@ -16,7 +16,7 @@ Das bedeutet, es gibt keine Liquiditätspools, keine Sperrung von Wallets und ke
 Pepecoin ist eine einfache, eigenständige Blockchain.
 
 Die Pepecoin Core-Software ermöglicht es jedem, einen Node in den Pepecoin-Blockchain-Netzwerken zu betreiben und verwendet die Scrypt-Hashing-Methode für den "Proof of Work". 
-Sie wurde aus Dogecoin Core, Bitcoin Core und anderen Kryptowährungen angepasst.
+Sie wurde aus den Programmen Dogecoin Core, Bitcoin Core und anderen Kryptowährungen angepasst.
 
 Für Informationen zu den Standardgebühren im Pepecoin-Netzwerk lesen Sie die [Gebührenempfehlungen](doc/fee-recommendation.md).
 
