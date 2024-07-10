@@ -96,8 +96,8 @@ Oft gibt es [Themen, bei denen Hilfe benötigt wird](https://github.com/pepecoin
 
 ## Communities 🐸
 
-Sie können sich der Community in verschiedenen sozialen Medien anschließen, um zu sehen, was los ist, 
-Leute zu treffen & zu diskutieren, die neuesten Memes finden, über Pepecoin zu lernen, Hilfe bieten oder Ihr Projekt zu teilen.
+Sie können sich der Community in verschiedenen sozialen Medien anschließen, um Leute zu treffen, zu diskutieren, 
+die neuesten Pepe-Memes zu finden, etwas über Pepecoin zu lernen oder um Ideen zu teilen.
 
 Hier sind einige Links:
 
