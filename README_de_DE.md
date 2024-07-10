@@ -57,7 +57,7 @@ Es wird dringend empfohlen, RPC-Ports nicht dem öffentlichen Internet preiszuge
 ## Fortlaufende Entwicklung 💻
 
 Pepecoin Core ist eine Open-Source- und Community-getriebene Software. 
-Der Entwicklungsprozess ist offen und öffentlich einsehbar; jeder kann die Software sehen, diskutieren und daran arbeiten.
+Der Entwicklungsprozess ist offen und öffentlich einsehbar; jeder kann die Software sehen, darüber diskutieren und daran arbeiten.
 
 
 Hauptentwicklungsressourcen:
