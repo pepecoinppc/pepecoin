@@ -103,6 +103,8 @@ Hier sind einige Links:
 
 * [r/Pepecoin Reddit](https://www.reddit.com/r/pepecoin/) Pepecoin Reddit
 * [Discord](https://discord.gg/pepecoin) Offizieller Pepecoin Discord Server
+* [Twitter/X](https://twitter.com/PepecoinNetwork)
+
 
 ## Häufig gestellte Fragen ❓
 
