@@ -29,8 +29,8 @@ Pepecoin ist eine Abspaltung von Dogecoin. Um die Vertrautheit zu wahren, werden
 Änderungen:
 
 * Adressen beginnen mit `P` statt `D`
-* BIPS-Funktionen starte(te)n ab Block 1000
-* AuxPow startet(e) ab Block 42.000 (Ursprünglich 100K) (Chain ID: 63)
+* BIPS-Funktionen übernommen
+* AuxPow Chain ID 63 (Merged Mining aktiviert)
 * UI im Pepe-Style
 
 
@@ -103,7 +103,6 @@ Hier sind einige Links:
 
 * [r/Pepecoin Reddit](https://www.reddit.com/r/pepecoin/) Pepecoin Reddit
 * [Discord](https://discord.gg/pepecoin) Offizieller Pepecoin Discord Server
-* [Twitter/X](https://twitter.com/PepecoinNetwork) 
 
 ## Häufig gestellte Fragen ❓
 
