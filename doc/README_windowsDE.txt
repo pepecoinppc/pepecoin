@@ -1,0 +1,21 @@
+Pepecoin Core 1.0.1
+=====================
+
+Intro
+-----
+ist ein kostenloses Open-Source-Peer-to-Peer-Electronic-Cash-System, das vollständig dezentralisiert ist, 
+ohne die Notwendigkeit eines zentralen Servers oder vertrauenswürdiger Parteien. 
+Benutzer halten die Krypto-Schlüssel zu ihrem eigenen Geld und führen direkte Transaktionen miteinander durch, 
+mit Hilfe eines P2P-Netzwerks, um doppelte Ausgaben zu überprüfen.
+
+
+Setup
+-----
+Entpacke die Dateien in ein Verzeichnis und führe pepecoin-qt.exe aus.
+Pepecoin Core ist der ursprüngliche Pepecoin-Client und bildet das Rückgrat des Netzwerks. 
+Es lädt jedoch die gesamte Geschichte der Pepecoin-Transaktionen herunter und speichert sie. 
+Abhängig von der Geschwindigkeit deines Computers und der Netzwerkverbindung kann der Synchronisierungsprozess von einigen Stunden bis zu einem Tag oder länger dauern.
+
+
+Für allgemeine Informationen über Pepecoin Core siehe das Dogecoin-Wiki unter: https://www.reddit.com/r/dogecoin/wiki/dogecoincoreguide für weitere Hilfe und Informationen. 
+Da Pepecoin eine Abspaltung/Fork von Dogecoin ist, werden die meisten Informationen dort auch auf Pepecoin zutreffen.
