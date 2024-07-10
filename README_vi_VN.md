@@ -79,6 +79,7 @@ Dưới đây là một số nơi bạn có thể thăm:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
+* [Twitter/X](https://twitter.com/PepecoinNetwork)
 
 ## Câu Hỏi Thường Gặp ❓
 
