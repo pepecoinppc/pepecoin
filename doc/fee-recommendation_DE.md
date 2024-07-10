@@ -44,7 +44,7 @@ aus Sicht des Spam-Managements einen 10-fachen Abwärtsspielraum, innerhalb dess
 Die Mempool-Logik implementiert 2 Staubgrenzen, eine harte Staubgrenze, unter der eine Transaktion als nicht standardmäßig angesehen und abgelehnt wird, und eine weiche Staubgrenze,
 die erfordert, dass die Grenze selbst zur Transaktionsgebühr hinzugefügt wird, wodurch das Ergebnis wirtschaftlich unrentabel wird.
 
-- Das hard Dust-Limit ist auf **0,001 PEPE** festgelegt – Ausgaben unter diesem Wert sind
+- Das Hard Dust-Limit ist auf **0,001 PEPE** festgelegt – Ausgaben unter diesem Wert sind
 ungültig und werden abgelehnt.
 - Das Soft Dust-Limit ist auf **0,01 PEPE** festgelegt – beim Senden einer Transaktion mit Ausgaben
 unter diesem Wert müssen für jede solche Ausgabe 0,01 PEPE hinzugefügt werden, andernfalls
