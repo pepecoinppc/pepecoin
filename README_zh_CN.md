@@ -4,7 +4,7 @@
 Pepecoin Core [PEPE, ₱]  
 </h1>
 
-选择语言: CN | [EN](./README.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [GER](./README_ger_DE.md)
+选择语言: CN | [EN](./README.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [DE](./README_ger_DE.md)
 
 Pepecoin是由2013年原始Dogecoin shibes之一创建的社区关注的加密货币。它被创建出于一个目的，就是创建一个像原始Dogecoin社区一样新奇有趣的社区。
 
