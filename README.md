@@ -1,7 +1,7 @@
 <h1 align="center">
 <img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
 <br/><br/>
-Pepecoin Core [PEPE, ₱]  
+Pepecoin Core [PEPE, ₱]
 </h1>
 
 Select language: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
@@ -19,7 +19,7 @@ refer to the [fee recommendation](doc/fee-recommendation.md).
 
 ## Dogecoin Differences
 
-Pepecoin is a fork of Dogecoin. For the sake of familiarity, we will attempt to keep Pepecoin similar to Dogecoin. 
+Pepecoin is a fork of Dogecoin. For the sake of familiarity, we will attempt to keep Pepecoin similar to Dogecoin.
 
 Changes:
 
@@ -59,7 +59,7 @@ Main development resources:
   follow planned and in-progress work for upcoming releases.
 * [GitHub Discussion](https://github.com/pepecoinppc/pepecoin/discussions) is used
   to discuss features, planned and unplanned, related to both the development of
-  the Pepecoin Core software, the underlying protocols and the PEPE asset.  
+  the Pepecoin Core software, the underlying protocols and the PEPE asset.
 * [PepecoinDev subreddit](https://www.reddit.com/r/pepecoindev/)
 
 ### Version strategy
