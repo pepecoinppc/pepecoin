@@ -79,7 +79,7 @@ Pepecoin Core是一个开源的、社区驱动的软件。开发过程是公开�
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
-* [Telegram](https://t.me/enterpepe)
+* [Telegram](https://t.me/PepecoinGroup)
 
 ## 常见问题解答 ❓
 

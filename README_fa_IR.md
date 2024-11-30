@@ -78,7 +78,7 @@ Pepecoin Core [PEPE, ₱]
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
-* [Telegram](https://t.me/enterpepe)
+* [Telegram](https://t.me/PepecoinGroup)
 
 ## سوالات متداول ❓
 
