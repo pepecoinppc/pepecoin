@@ -1,7 +1,7 @@
 <h1 align="center">
 <img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
 <br/><br/>
-Pepecoin Core [PEPE, ₱]  
+Pepecoin Core [PEPE, ₱]
 </h1>
 
 Selecionar idioma: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
@@ -48,7 +48,7 @@ O Pepecoin Core é um software de código aberto e orientado pela comunidade. O 
 Principais recursos de desenvolvimento:
 
 * [Projetos do GitHub](https://github.com/pepecoinppc/pepecoin/projects) são usados para seguir o trabalho planejado e em progresso para futuros lançamentos.
-* [Discussão do GitHub](https://github.com/pepecoinppc/pepecoin/discussions) é usada para discutir recursos, planejados e não planejados, relacionados tanto ao desenvolvimento do software Pepecoin Core, quanto aos protocolos subjacentes e o ativo PEPE.  
+* [Discussão do GitHub](https://github.com/pepecoinppc/pepecoin/discussions) é usada para discutir recursos, planejados e não planejados, relacionados tanto ao desenvolvimento do software Pepecoin Core, quanto aos protocolos subjacentes e o ativo PEPE.
 * [Subreddit PepecoinDev](https://www.reddit.com/r/pepecoindev/)
 
 ### Estratégia de versão
@@ -78,6 +78,7 @@ Aqui estão alguns lugares para visitar:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
+* [Telegram](https://t.me/PepecoinGroup)
 
 ## Perguntas Frequentes ❓
 

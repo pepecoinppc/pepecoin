@@ -1,7 +1,7 @@
 <h1 align="center">
 <img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
 <br/><br/>
-Pepecoin Core [PEPE, ₱]  
+Pepecoin Core [PEPE, ₱]
 </h1>
 
 选择语言: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
@@ -79,6 +79,7 @@ Pepecoin Core是一个开源的、社区驱动的软件。开发过程是公开�
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
+* [Telegram](https://t.me/PepecoinGroup)
 
 ## 常见问题解答 ❓
 

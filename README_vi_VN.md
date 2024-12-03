@@ -1,7 +1,7 @@
 <h1 align="center">
 <img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
 <br/><br/>
-Nhân Tố Pepecoin [PEPE, ₱]  
+Nhân Tố Pepecoin [PEPE, ₱]
 </h1>
 
 Chọn ngôn ngữ: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
@@ -79,6 +79,7 @@ Dưới đây là một số nơi bạn có thể thăm:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
+* [Telegram](https://t.me/PepecoinGroup)
 
 ## Câu Hỏi Thường Gặp ❓
 
