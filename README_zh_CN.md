@@ -1,10 +1,10 @@
 <h1 align="center">
 <img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
 <br/><br/>
-Pepecoin Core [PEPE, ₱]  
+Pepecoin Core [PEPE, ₱]
 </h1>
 
-选择语言: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [JA](./README_ja_JP.md)
+选择语言: CN | [EN](./README.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [JA](./README_ja_JP.md)
 
 Pepecoin是由2013年原始Dogecoin shibes之一创建的社区关注的加密货币。它被创建出于一个目的，就是创建一个像原始Dogecoin社区一样新奇有趣的社区。
 
@@ -79,6 +79,7 @@ Pepecoin Core是一个开源的、社区驱动的软件。开发过程是公开�
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
+* [Telegram](https://t.me/PepecoinGroup)
 
 ## 常见问题解答 ❓
 
