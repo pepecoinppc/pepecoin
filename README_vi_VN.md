@@ -1,10 +1,10 @@
 <h1 align="center">
 <img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
 <br/><br/>
-Nhân Tố Pepecoin [PEPE, ₱]  
+Nhân Tố Pepecoin [PEPE, ₱]
 </h1>
 
-Chọn ngôn ngữ: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [FR](./README_fr_FR.md)
+Chọn ngôn ngữ: VI | [EN](./README.md)| [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [FR](./README_fr_FR.md) | [JA](./README_ja_JP.md)
 
 Pepecoin là một loại tiền điện tử tập trung vào cộng đồng được tạo ra bởi một trong những người sáng tạo Dogecoin ban đầu từ năm 2013. Nó được tạo ra với một mục đích, để tạo ra một cộng đồng mới và vui vẻ giống như cộng đồng Dogecoin ban đầu.
 
@@ -79,6 +79,7 @@ Dưới đây là một số nơi bạn có thể thăm:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
+* [Telegram](https://t.me/PepecoinGroup)
 
 ## Câu Hỏi Thường Gặp ❓
 

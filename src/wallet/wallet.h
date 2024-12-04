@@ -127,6 +127,28 @@ static const bool DEFAULT_USE_HD_WALLET = true;
 
 extern const char * DEFAULT_WALLET_DAT;
 
+
+/**
+ * BIP-32 bit for hardened keys
+ *
+ * see https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
+ */
+const uint32_t BIP32_HARDENED_KEY_LIMIT = 0x80000000;
+
+/**
+ * The derivation value for the account part of the legacy wallet path.
+ *
+ * This is always 0', similar to Bitcoin
+ */
+const uint32_t DERIVE_ACCOUNT_KEY = 0 | BIP32_HARDENED_KEY_LIMIT;
+
+/** Chain (internal/external) values for legacy wallets */
+enum ChainDerivationValue: uint32_t {
+    DERIVE_EXTERNAL_LEGACY =    0 | BIP32_HARDENED_KEY_LIMIT, // Bitcoin value, used in 1.0.0+
+    DERIVE_INTERNAL        =    1 | BIP32_HARDENED_KEY_LIMIT, // default internal value
+    DERIVE_EXTERNAL        = 3434 | BIP32_HARDENED_KEY_LIMIT, // external value, used when BIP-44 is active
+};
+
 class CBlockIndex;
 class CCoinControl;
 class COutput;
