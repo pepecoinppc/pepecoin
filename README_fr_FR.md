@@ -4,7 +4,7 @@
 Pepecoin Core [PEPE, ₱]  
 </h1>
 
-Choisir la langue : EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [FR](./README_fr_FR.md)
+Choisir la langue : FR | [EN](./README.md) | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
 
 Contrairement à toutes les itérations précédentes, Pepecoin est une monnaie dite « layer 1 ». Cela signifie qu'il n'y a pas de pools de liquidités à drainer, pas de portefeuilles blacklistés, et pas de contrats intelligents obscurs. Le Pepecoin est une blockchain simple.
 
