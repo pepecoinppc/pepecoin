@@ -64,8 +64,9 @@ build process.
 
 ## Get the Source Code
 
-To build Dogecoin from source code, you'll need the source code. Either check it out via `git` or download
-a zip file. (Look at the green "<> Code" button on [the Dogecoin GitHub repository](https://github.com/dogecoin/dogecoin/)).
+To build from source code, you'll need the source code. Either check it out via
+`git` or download a zip file. (Look at the green "<> Code" button on [the
+Pepecoin GitHub repository](https://github.com/pepecoinppc/pepecoin/)).
 
 Make sure this code is available in your Ubuntu directory. If you've unzipped a single downloaded file, you may need to change
 the permissions of all extracted files with command like:
@@ -75,7 +76,7 @@ the permissions of all extracted files with command like:
 If you've downloaded via `git`, do not use `sudo`. Instead prefer something like:
 
     cd $HOME
-    git clone https://github.com/dogecoin/dogecoin.git
+    git clone https://github.com/pepecoinppc/pepecoin.git
     git checkout <branchname>
 
 ... where `<branchname>` is the name of the branch you want to build, such as
@@ -139,7 +140,7 @@ To build executables for Windows 32-bit, install the following dependencies:
 
     sudo apt-get install g++-mingw-w64-i686 mingw-w64-i686-dev
 
-Ensure that this toolchain can build for `posix` (else you may have compilation errors for Dogecoin's dependencies):
+Ensure that this toolchain can build for `posix` (else you may have compilation errors for Pepecoin's dependencies):
 
     sudo update-alternatives --config i686-w64-mingw32-g++
 
