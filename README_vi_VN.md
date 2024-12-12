@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
+<img src="https://i.imgur.com/DDkfI9i.png" alt="Pepecoin" width="300"/>
 <br/><br/>
 Nhân Tố Pepecoin [PEPE, Ᵽ]
 </h1>
