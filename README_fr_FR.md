@@ -1,10 +1,10 @@
 <h1 align="center">
-<img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
+<img src="https://i.imgur.com/DDkfI9i.png" alt="Pepecoin" width="300"/>
 <br/><br/>
-Pepecoin Core [PEPE, ₱]  
+Pepecoin Core [PEPE, Ᵽ]  
 </h1>
 
-Choisir la langue : FR | [EN](./README.md) | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
+Choisir la langue : [EN](./README.md) | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | FR | [JA](./README_ja_JP.md) | [DE](./README_de_DE.md)
 
 Contrairement à toutes les itérations précédentes, Pepecoin est une monnaie dite « layer 1 ». Cela signifie qu'il n'y a pas de pools de liquidités à drainer, pas de portefeuilles blacklistés, et pas de contrats intelligents obscurs. Le Pepecoin est une blockchain simple.
 
@@ -92,6 +92,8 @@ Voici quelques espaces à visiter :
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
+* [Telegram](https://t.me/PepecoinGroup)
+* [Twitter/X](https://twitter.com/PepecoinNetwork)
 
 ## Foire aux question ❓
 
