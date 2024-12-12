@@ -80,6 +80,8 @@ Pepecoin Coreの開発に参加する方法については、[貢献ガイド](C
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
+* [Telegram](https://t.me/PepecoinGroup)
+* [Twitter/X](https://twitter.com/PepecoinNetwork)
 
 ## よくある質問 ❓
 
