@@ -2,9 +2,9 @@
 <img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
 <br/><br/>
 Pepecoin Core [PEPE, ₱]
-</h1>  
+</h1>
 
-انتخاب زبان: [FA] | [EN](README.md) | [CN](./README_zh_CN.md) | [DE](./README_de_DE.md) | [PT](./README_pt_BR.md)  | [VI](./README_vi_VN.md)
+انتخاب زبان: FA | [EN](./README.md) | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [VI](./README_vi_VN.md) | [FR](./README_fr_FR.md) | [JA](./README_ja_JP.md) | [DE](./README_de_DE.md)
 
 پپکوین یک ارز دیجیتال تمرکز شده بر انجمن است که توسط یکی از اعضای اصلی شب‌های دوجکوین از سال 2013 ایجاد شد. هدف از ایجاد آن ایجاد یک انجمن جدید و سرگرم‌کننده مانند انجمن اصلی دوجکوین بود.
 
@@ -78,6 +78,7 @@ Pepecoin Core [PEPE, ₱]
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
+* [Telegram](https://t.me/PepecoinGroup)
 * [Twitter/X](https://twitter.com/PepecoinNetwork)
 
 ## سوالات متداول ❓

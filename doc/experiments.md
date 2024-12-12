@@ -8,7 +8,7 @@ specifically help the introduction of performance updates or other lower-level
 improvements where positive and/or negative effects may take a longer time to
 test. The PR benefits from being merged because this makes it easier for
 testers to pick and choose sets of features to experiment with in their custom
-built Dogecoin Core deployments.
+built Pepecoin Core deployments.
 
 ## Enabling experimental features
 
