@@ -5,7 +5,7 @@ Pepecoin Core [PEPE, Ᵽ]
 </h1>
 
 
-Sprache ändern: DE | [EN](./README.md) | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [FR](./README_fr_FR.md) | [JA](./README_ja_JP.md) | [VI](./README_vi_VN.md)
+Sprache ändern: [EN](./README.md) | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [FR](./README_fr_FR.md) | [JA](./README_ja_JP.md) | DE | 
 
 
 

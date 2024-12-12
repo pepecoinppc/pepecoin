@@ -4,7 +4,7 @@
 Pepecoin Core [PEPE, Ᵽ]
 </h1>
 
-Selecionar idioma: PT | [EN](./README.md) | [CN](./README_zh_CN.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [FR](./README_fr_FR.md) | [JA](./README_ja_JP.md) | [DE](./README_de_DE.md)
+Selecionar idioma: [EN](./README.md) | [CN](./README_zh_CN.md) | PT | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [FR](./README_fr_FR.md) | [JA](./README_ja_JP.md) | [DE](./README_de_DE.md)
 
 Pepecoin é uma criptomoeda focada na comunidade, criada por um dos shibes originais do Dogecoin de 2013. Foi criada com um propósito, criar uma comunidade nova e divertida, assim como a comunidade original do Dogecoin.
 
