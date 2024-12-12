@@ -1,6 +1,6 @@
 name: pepecoin
 # Running 'snapcraft register <name>' is advised
-version: '1.0.1'
+version: '1.1.0'
 summary: Reference client of Pepecoin, a peer-to-peer digital currency like Bitcoin.
 description: |
   Pepecoin is a community-driven cryptocurrency that was inspired by Dogecoin. The Pepecoin Core software allows anyone to operate a node in the Pepecoin blockchain networks and uses the Scrypt hashing method for Proof of Work. It is adapted from Bitcoin Core and other cryptocurrencies.
@@ -110,15 +110,15 @@ parts:
       cat release-notes.md
       echo "Installing Pepecoin Core..."
       echo "Version ${SNAPCRAFT_PROJECT_VERSION}"
-      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoind
+      install -m 0755 -D -t $CRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoind
       if ! ([ "$BUILD_ARCH_TRIPLET" = "aarch64-linux-gnu" ]); then # there is no official pepecoin-qt build on arm64
-        install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoin-qt
+        install -m 0755 -D -t $CRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoin-qt
       fi
-      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoin-cli
-      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoin-tx
-      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/test_pepecoin
+      install -m 0755 -D -t $CRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoin-cli
+      install -m 0755 -D -t $CRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoin-tx
+      install -m 0755 -D -t $CRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/test_pepecoin
       wget https://raw.githubusercontent.com/pepecoinppc/pepecoin/master/share/pixmaps/pepecoin128.png
-      install -m 0644 -D -t $SNAPCRAFT_PART_INSTALL/share/pixmaps pepecoin128.png
+      install -m 0644 -D -t $CRAFT_PART_INSTALL/share/pixmaps pepecoin128.png
     build-packages:
       - wget
     after:
