@@ -4,7 +4,7 @@
 Pepecoin Core [PEPE, ₱]
 </h1>
 
-Selecionar idioma: PT | [EN](./README.md) | [CN](./README_zh_CN.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [FR](./README_fr_FR.md) | [JA](./README_ja_JP.md)
+Selecionar idioma: PT | [EN](./README.md) | [CN](./README_zh_CN.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [FR](./README_fr_FR.md) | [JA](./README_ja_JP.md) | [DE](./README_de_DE.md)
 
 Pepecoin é uma criptomoeda focada na comunidade, criada por um dos shibes originais do Dogecoin de 2013. Foi criada com um propósito, criar uma comunidade nova e divertida, assim como a comunidade original do Dogecoin.
 
@@ -79,6 +79,7 @@ Aqui estão alguns lugares para visitar:
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
 * [Telegram](https://t.me/PepecoinGroup)
+* [Twitter/X](https://twitter.com/PepecoinNetwork)
 
 ## Perguntas Frequentes ❓
 
