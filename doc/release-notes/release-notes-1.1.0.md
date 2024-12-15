@@ -1,6 +1,6 @@
 ## Pepecoin Core 1.1.0 Release Notes
 
-This is a new minor release which includes a fix for the DogeReaper exploit.
+This is a new minor release which includes improvements from recent Dogecoin releases. All users are **strongly recommended** to upgrade.
 
 #### Technical Changes
 
