@@ -1,21 +1,21 @@
 name: pepecoin
 # Running 'snapcraft register <name>' is advised
-version: '1.0.0'
+version: '1.1.0'
 summary: Reference client of Pepecoin, a peer-to-peer digital currency like Bitcoin.
 description: |
   Pepecoin is a community-driven cryptocurrency that was inspired by Dogecoin. The Pepecoin Core software allows anyone to operate a node in the Pepecoin blockchain networks and uses the Scrypt hashing method for Proof of Work. It is adapted from Bitcoin Core and other cryptocurrencies.
 
 grade: stable
 confinement: strict
-base: core20
+base: core22
 compression: lzo
 architectures:
   - build-on: amd64
-    run-on: amd64
+    build-for: amd64
   - build-on: arm64
-    run-on: arm64
+    build-for: arm64
   - build-on: i386
-    run-on: i386
+    build-for: i386
 
 apps:
   d:
@@ -25,7 +25,8 @@ apps:
       # Override HOME so the datadir is located at ~/snap/pepecoin-core/common/.pepecoin/ instead of ~/snap/pepecoin-core/current/.pepecoin/, and each new version of the snap won't have a different data directory: https://docs.snapcraft.io/environment-variables/7983
       HOME: $SNAP_USER_COMMON
   qt:
-    command: bin/desktop-launch bin/pepecoin-qt
+    command-chain: [bin/desktop-launch]
+    command: bin/pepecoin-qt
     plugs: [home, removable-media, network, network-bind, desktop, x11, unity7]
     environment:
       HOME: $SNAP_USER_COMMON
@@ -48,7 +49,7 @@ apps:
 
 parts:
   desktop-qt5:
-    # So desktop-launch from qt5 is udsable
+    # So desktop-launch from qt5 is usable
     # Adapted from https://github.com/ubuntu/snapcraft-desktop-helpers/blob/master/snapcraft.yaml
     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
     source-depth: 1
@@ -62,7 +63,7 @@ parts:
       - dpkg-dev
     stage-packages:
       - libxkbcommon0
-      - ttf-ubuntu-font-family
+      - fonts-ubuntu
       - dmz-cursor-theme
       - light-themes
       - adwaita-icon-theme
@@ -71,7 +72,7 @@ parts:
       - libqt5gui5
       - libgdk-pixbuf2.0-0
       - libqt5svg5 # for loading icon themes which are svg
-      - try: [appmenu-qt5] # not available on core18
+      - libgtk2.0-0
       - locales-all
       - xdg-user-dirs
       - fcitx-frontend-qt5
@@ -81,10 +82,10 @@ parts:
     override-build: |
       echo "This script is viewable at https://github.com/pepecoinppc/pepecoin/blob/master/contrib/snap/snapcraft.yaml"
       echo "Downloading files..."
-      if [ "$SNAPCRAFT_ARCH_TRIPLET" = "i386-linux-gnu" ]; then # snap designates 32-bit as i386, but pepecoin designates it as i686
+      if [ "$CRAFT_ARCH_TRIPLET" = "i386-linux-gnu" ]; then # snap designates 32-bit as i386, but pepecoin designates it as i686
         BUILD_ARCH_TRIPLET=i686-pc-linux-gnu
       else
-        BUILD_ARCH_TRIPLET=$SNAPCRAFT_ARCH_TRIPLET
+        BUILD_ARCH_TRIPLET=$CRAFT_ARCH_TRIPLET
       fi
       wget https://github.com/pepecoinppc/pepecoin/releases/download/v${SNAPCRAFT_PROJECT_VERSION}/pepecoin-${SNAPCRAFT_PROJECT_VERSION}-${BUILD_ARCH_TRIPLET}.tar.gz
       wget https://github.com/pepecoinppc/gitian.sigs/archive/refs/heads/master.tar.gz
@@ -109,15 +110,15 @@ parts:
       cat release-notes.md
       echo "Installing Pepecoin Core..."
       echo "Version ${SNAPCRAFT_PROJECT_VERSION}"
-      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoind
+      install -m 0755 -D -t $CRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoind
       if ! ([ "$BUILD_ARCH_TRIPLET" = "aarch64-linux-gnu" ]); then # there is no official pepecoin-qt build on arm64
-        install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoin-qt
+        install -m 0755 -D -t $CRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoin-qt
       fi
-      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoin-cli
-      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoin-tx
-      install -m 0755 -D -t $SNAPCRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/test_pepecoin
+      install -m 0755 -D -t $CRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoin-cli
+      install -m 0755 -D -t $CRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/pepecoin-tx
+      install -m 0755 -D -t $CRAFT_PART_INSTALL/bin pepecoin-${SNAPCRAFT_PROJECT_VERSION}/bin/test_pepecoin
       wget https://raw.githubusercontent.com/pepecoinppc/pepecoin/master/share/pixmaps/pepecoin128.png
-      install -m 0644 -D -t $SNAPCRAFT_PART_INSTALL/share/pixmaps pepecoin128.png
+      install -m 0644 -D -t $CRAFT_PART_INSTALL/share/pixmaps pepecoin128.png
     build-packages:
       - wget
     after:

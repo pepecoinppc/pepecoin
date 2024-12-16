@@ -1,10 +1,10 @@
 <h1 align="center">
-<img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
+<img src="https://i.imgur.com/DDkfI9i.png" alt="Pepecoin" width="300"/>
 <br/><br/>
-Pepecoin Core [PEPE, ₱]  
+Pepecoin Core [PEPE, Ᵽ]
 </h1>
 
-Selecionar idioma: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
+Selecionar idioma: [EN](./README.md) | [CN](./README_zh_CN.md) | PT | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [FR](./README_fr_FR.md) | [JA](./README_ja_JP.md) | [DE](./README_de_DE.md)
 
 Pepecoin é uma criptomoeda focada na comunidade, criada por um dos shibes originais do Dogecoin de 2013. Foi criada com um propósito, criar uma comunidade nova e divertida, assim como a comunidade original do Dogecoin.
 
@@ -48,7 +48,7 @@ O Pepecoin Core é um software de código aberto e orientado pela comunidade. O 
 Principais recursos de desenvolvimento:
 
 * [Projetos do GitHub](https://github.com/pepecoinppc/pepecoin/projects) são usados para seguir o trabalho planejado e em progresso para futuros lançamentos.
-* [Discussão do GitHub](https://github.com/pepecoinppc/pepecoin/discussions) é usada para discutir recursos, planejados e não planejados, relacionados tanto ao desenvolvimento do software Pepecoin Core, quanto aos protocolos subjacentes e o ativo PEPE.  
+* [Discussão do GitHub](https://github.com/pepecoinppc/pepecoin/discussions) é usada para discutir recursos, planejados e não planejados, relacionados tanto ao desenvolvimento do software Pepecoin Core, quanto aos protocolos subjacentes e o ativo PEPE.
 * [Subreddit PepecoinDev](https://www.reddit.com/r/pepecoindev/)
 
 ### Estratégia de versão
@@ -78,6 +78,8 @@ Aqui estão alguns lugares para visitar:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
+* [Telegram](https://t.me/PepecoinGroup)
+* [Twitter/X](https://twitter.com/PepecoinNetwork)
 
 ## Perguntas Frequentes ❓
 

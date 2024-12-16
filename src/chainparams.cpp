@@ -110,10 +110,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 0; // Disabled
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000014c0089faf46fdf69"); // 40477
+        consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000fbc373728599248648"); // 327239
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x3281f3b817f8a21c338c656756dbcfa555a629702e081cdf98d502b848ea5308"); // 40477
+        consensus.defaultAssumeValid = uint256S("0x479d8f991b543cfd785f0a479ffbb2de18987a5d0ba7af33707ba69bc1a5f8b8"); // 327239
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x003f; // 63
@@ -162,6 +162,7 @@ public:
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.push_back(CDNSSeedData("pepecoin.org", "seeds.pepecoin.org"));
+        vSeeds.push_back(CDNSSeedData("pepeblocks.com", "seeds.pepeblocks.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,56); // Addresses start with P
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,22);
@@ -180,6 +181,7 @@ public:
             boost::assign::map_list_of
             ( 0, uint256S("0x37981c0c48b8d48965376c8a42ece9a0838daadb93ff975cb091f57f8c2a5faa"))
             ( 40477, uint256S("0x3281f3b817f8a21c338c656756dbcfa555a629702e081cdf98d502b848ea5308"))
+            ( 327239, uint256S("0x479d8f991b543cfd785f0a479ffbb2de18987a5d0ba7af33707ba69bc1a5f8b8"))
         };
 
         chainTxData = ChainTxData{ };
@@ -234,10 +236,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 0; // Disabled
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000000010001"); // genesis block
+        consensus.nMinimumChainWork = uint256S("00000000000000000000000000000000000000000000000000004813725c089e"); // 87222
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xf9f4ea4ae7f6ea4c55040ede2019ba0a53e262f46ec9bce3dcda2cb11f96fc52"); // genesis block
+        consensus.defaultAssumeValid = uint256S("0x1b111a1eb8cb3e35d0aa6b89a06245574a78ce65996e5f2932f0df17027a5cd1"); // 42001
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x003f; // 63
@@ -292,6 +294,7 @@ public:
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
         vSeeds.push_back(CDNSSeedData("pepecoin.org", "seeds-testnet.pepecoin.org"));
+        vSeeds.push_back(CDNSSeedData("pepeblocks.com", "seeds-testnet.pepeblocks.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,113); // 0x71
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196); // 0xc4
@@ -309,6 +312,7 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             ( 0, uint256S("0xf9f4ea4ae7f6ea4c55040ede2019ba0a53e262f46ec9bce3dcda2cb11f96fc52"))
+            ( 42001, uint256S("0x1b111a1eb8cb3e35d0aa6b89a06245574a78ce65996e5f2932f0df17027a5cd1"))
         };
 
         chainTxData = ChainTxData{ };

@@ -1,10 +1,10 @@
 <h1 align="center">
-<img src="https://i.imgur.com/yap2xAX.png" alt="Pepecoin" width="300"/>
+<img src="https://i.imgur.com/DDkfI9i.png" alt="Pepecoin" width="300"/>
 <br/><br/>
-Pepecoin Core [PEPE, ₱]  
+Pepecoin Core [PEPE, Ᵽ]
 </h1>
 
-Select language: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
+Select language: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [FR](./README_fr_FR.md) | [JA](./README_ja_JP.md) | [DE](./README_de_DE.md)
 
 Pepecoin is a community focused cryptocurrency created by one of the original Dogecoin shibes from 2013. It was created for one purpose, to create a new and fun community just like the original Dogecoin community.
 
@@ -19,13 +19,13 @@ refer to the [fee recommendation](doc/fee-recommendation.md).
 
 ## Dogecoin Differences
 
-Pepecoin is a fork of Dogecoin. For the sake of familiarity, we will attempt to keep Pepecoin similar to Dogecoin. 
+Pepecoin is a fork of Dogecoin. For the sake of familiarity, we will attempt to keep Pepecoin similar to Dogecoin.
 
 Changes:
 
 * Addresses start with `P` instead of `D`
 * BIPS features will start block 1000
-* AuxPow starts at block 100,000 (Chain ID: 63)
+* AuxPow starts at block 42,000 (Chain ID: 63)
 * GUI themed for Pepecoin
 
 ## Usage 💻
@@ -59,7 +59,7 @@ Main development resources:
   follow planned and in-progress work for upcoming releases.
 * [GitHub Discussion](https://github.com/pepecoinppc/pepecoin/discussions) is used
   to discuss features, planned and unplanned, related to both the development of
-  the Pepecoin Core software, the underlying protocols and the PEPE asset.  
+  the Pepecoin Core software, the underlying protocols and the PEPE asset.
 * [PepecoinDev subreddit](https://www.reddit.com/r/pepecoindev/)
 
 ### Version strategy
@@ -97,6 +97,8 @@ Here are some places to visit:
 
 * [r/Pepecoin](https://www.reddit.com/r/pepecoin/)
 * [Discord](https://pepecoin.org/discord)
+* [Telegram](https://t.me/PepecoinGroup)
+* [Twitter/X](https://twitter.com/PepecoinNetwork)
 
 ## Frequently Asked Questions ❓
 

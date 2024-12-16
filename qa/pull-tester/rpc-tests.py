@@ -132,6 +132,7 @@ testScripts = [
     'p2p-addr.py',
     'p2p-tx-download.py',
     # vv Tests less than 30s vv
+    'walletnotify.py',
     'p2p_invalid_locator.py',
     'mempool_resurrect_test.py',
     'txn_doublespend.py --mineblock',
@@ -175,8 +176,10 @@ testScripts = [
     'wallet_create_tx.py',
     'liststucktransactions.py',
     'getblock.py',
+    'getblockstats.py',
     'addnode.py',
     'getcoincount.py',
+    'getmocktime.py',
 ]
 if ENABLE_ZMQ:
     testScripts.append('zmq_test.py')
@@ -220,6 +223,10 @@ def runtests():
         for t in testScripts + testScriptsExt:
             if t in opts or re.sub(".py$", "", t) in opts:
                 test_list.append(t)
+
+    if len(test_list) == 0:
+        print(f"No tests selected; do you have a typo in {opts}?")
+        sys.exit(1)
 
     if print_help:
         # Only print help of the first script and exit
