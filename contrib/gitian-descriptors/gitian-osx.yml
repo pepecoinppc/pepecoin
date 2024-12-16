@@ -1,5 +1,5 @@
 ---
-name: "pepecoin-osx-1.0.1"
+name: "pepecoin-osx-1.1.0"
 enable_cache: true
 suites:
 - "focal"
