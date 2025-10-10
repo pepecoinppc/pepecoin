@@ -99,6 +99,7 @@ Here are some places to visit:
 * [Discord](https://pepecoin.org/discord)
 * [Telegram](https://t.me/PepecoinGroup)
 * [Twitter/X](https://twitter.com/PepecoinNetwork)
+* [YouTube](https://www.youtube.com/@pepecoin)
 
 ## Frequently Asked Questions ❓
 
