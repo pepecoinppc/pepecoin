@@ -1359,6 +1359,11 @@ CPubKey CWallet::GenerateNewHDMasterKey()
     CKey key;
     key.MakeNewKey(true);
 
+    return DeriveNewHDMasterKey(key);
+}
+
+CPubKey CWallet::DeriveNewHDMasterKey(const CKey& key)
+{
     int64_t nCreationTime = GetTime();
     CKeyMetadata metadata(nCreationTime);
 
