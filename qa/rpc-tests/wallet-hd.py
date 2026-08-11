@@ -9,6 +9,7 @@ from test_framework.util import (
     start_nodes,
     start_node,
     assert_equal,
+    assert_raises_jsonrpc,
     connect_nodes_bi,
 )
 import os
@@ -83,6 +84,37 @@ class WalletHDTest(BitcoinTestFramework):
         self.nodes[1] = start_node(1, tmpdir, self.node_args[1] + ['-rescan'])
         #connect_nodes_bi(self.nodes, 0, 1)
         assert_equal(self.nodes[1].getbalance(), num_hd_adds + 1)
+
+        print("Test sethdseed ...")
+
+        # A supplied seed is used as the master key, rather than a random one
+        seed_wif = self.nodes[0].dumpprivkey(self.nodes[0].getnewaddress())
+        self.nodes[1].sethdseed(True, seed_wif)
+        seeded_id = self.nodes[1].getwalletinfo()['hdmasterkeyid']
+        assert_equal(len(seeded_id), 40)
+        assert seeded_id != masterkeyid
+
+        # New addresses derive from the new master key
+        hd_info_3 = self.nodes[1].validateaddress(self.nodes[1].getnewaddress())
+        assert_equal(hd_info_3['hdmasterkeyid'], seeded_id)
+
+        # The same key is not accepted twice
+        assert_raises_jsonrpc(-5, "Already have this key",
+                              self.nodes[1].sethdseed, True, seed_wif)
+
+        # A malformed key is rejected
+        assert_raises_jsonrpc(-5, "Invalid private key encoding",
+                              self.nodes[1].sethdseed, True, "not-a-wif")
+
+        # A non-HD wallet has no master key to set
+        assert_raises_jsonrpc(-4, "non-HD wallet", self.nodes[0].sethdseed)
+
+        # The same seed in a fresh wallet yields the same master key
+        self.stop_node(1)
+        os.remove(tmpdir + "/node1/regtest/wallet.dat")
+        self.nodes[1] = start_node(1, tmpdir, self.node_args[1])
+        self.nodes[1].sethdseed(True, seed_wif)
+        assert_equal(self.nodes[1].getwalletinfo()['hdmasterkeyid'], seeded_id)
 
 
 if __name__ == '__main__':

@@ -3209,6 +3209,72 @@ UniValue bumpfee(const JSONRPCRequest& request)
     return result;
 }
 
+UniValue sethdseed(const JSONRPCRequest& request)
+{
+    if (!EnsureWalletIsAvailable(request.fHelp))
+        return NullUniValue;
+
+    if (request.fHelp || request.params.size() > 2)
+        throw runtime_error(
+            "sethdseed ( newkeypool \"seed\" )\n"
+            "\nSet or generate a new HD master key. The key is used to derive all future keys.\n"
+            "Existing keys and funds are not affected, but addresses derived from the previous\n"
+            "master key are no longer generated, so make a new backup after calling this.\n"
+            + HelpRequiringPassphrase() + "\n"
+            "\nArguments:\n"
+            "1. newkeypool     (boolean, optional, default=true) Whether to flush the keypool.\n"
+            "                  If true, addresses are derived from the new master key immediately.\n"
+            "                  If false, the keys already in the keypool are handed out first.\n"
+            "2. \"seed\"         (string, optional) The private key in WIF format to use as the new\n"
+            "                  master key. If omitted a random key is generated.\n"
+            "\nExamples:\n"
+            + HelpExampleCli("sethdseed", "")
+            + HelpExampleCli("sethdseed", "false")
+            + HelpExampleCli("sethdseed", "true \"wifkey\"")
+            + HelpExampleRpc("sethdseed", "true, \"wifkey\"")
+        );
+
+    if (IsInitialBlockDownload())
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Cannot set a new HD master key while still in Initial Block Download");
+
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+
+    if (!pwalletMain->IsHDEnabled())
+        throw JSONRPCError(RPC_WALLET_ERROR, "Cannot set an HD master key on a non-HD wallet. Start with -usehd=1 and a new wallet to enable HD.");
+
+    EnsureWalletIsUnlocked();
+
+    bool flush_key_pool = true;
+    if (request.params.size() > 0 && !request.params[0].isNull())
+        flush_key_pool = request.params[0].get_bool();
+
+    CPubKey master_pub_key;
+    if (request.params.size() < 2 || request.params[1].isNull()) {
+        master_pub_key = pwalletMain->GenerateNewHDMasterKey();
+    } else {
+        CBitcoinSecret vchSecret;
+        if (!vchSecret.SetString(request.params[1].get_str()))
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid private key encoding");
+
+        CKey key = vchSecret.GetKey();
+        if (!key.IsValid())
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Private key outside allowed range");
+
+        if (pwalletMain->HaveKey(key.GetPubKey().GetID()))
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Already have this key (either as an HD master key or as a loose private key)");
+
+        master_pub_key = pwalletMain->DeriveNewHDMasterKey(key);
+    }
+
+    if (!pwalletMain->SetHDMasterKey(master_pub_key))
+        throw JSONRPCError(RPC_WALLET_ERROR, "Storing master key failed");
+
+    if (flush_key_pool)
+        pwalletMain->NewKeyPool();
+
+    return NullUniValue;
+}
+
 extern UniValue dumpprivkey(const JSONRPCRequest& request); // in rpcdump.cpp
 extern UniValue importprivkey(const JSONRPCRequest& request);
 extern UniValue importaddress(const JSONRPCRequest& request);
@@ -3266,6 +3332,7 @@ static const CRPCCommand commands[] =
     { "wallet",             "sendmany",                 &sendmany,                 false,  {"fromaccount","amounts","minconf","comment","subtractfeefrom"} },
     { "wallet",             "sendtoaddress",            &sendtoaddress,            false,  {"address","amount","comment","comment_to","subtractfeefromamount"} },
     { "wallet",             "setaccount",               &setaccount,               true,   {"address","account"} },
+    { "wallet",             "sethdseed",                &sethdseed,                true,   {"newkeypool","seed"} },
     { "wallet",             "settxfee",                 &settxfee,                 true,   {"amount"} },
     { "wallet",             "signmessage",              &signmessage,              true,   {"address","message"} },
     { "wallet",             "walletlock",               &walletlock,               true,   {} },
