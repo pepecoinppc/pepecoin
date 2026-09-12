@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2021 The Dogecoin Core developers
+// Copyright (c) 2021-2023 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -25,11 +25,12 @@
 #include "clientmodel.h"
 #include "guiconstants.h"
 #include "intro.h"
-#include "paymentrequestplus.h"
 #include "guiutil.h"
 
+#include "base58.h"
 #include "clientversion.h"
 #include "init.h"
+#include "key.h"
 #include "util.h"
 #include "net.h"
 #include "utilstrencodings.h"
@@ -49,17 +50,10 @@
 #include <qrencode.h>
 #endif
 
-#if QT_VERSION < 0x050000
-#include <QPrinter>
-#include <QPrintDialog>
-#include <QPrintPreviewDialog>
-#else
-// Use QT5's new modular classes
 #include <QtPrintSupport/QPrinter>
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrintPreviewDialog>
 #include <QtPrintSupport/QPrinterInfo>
-#endif
 #include <QPainter>
 #include "walletmodel.h"
 
@@ -113,13 +107,9 @@ HelpMessageDialog::HelpMessageDialog(QWidget *parent, bool about) :
         std::string strUsage = HelpMessage(HMM_BITCOIN_QT);
         const bool showDebug = GetBoolArg("-help-debug", false);
         strUsage += HelpMessageGroup(tr("UI Options:").toStdString());
-        if (showDebug) {
-            strUsage += HelpMessageOpt("-allowselfsignedrootcertificates", strprintf("Allow self signed root certificates (default: %u)", DEFAULT_SELFSIGNED_ROOTCERTS));
-        }
         strUsage += HelpMessageOpt("-choosedatadir", strprintf(tr("Choose data directory on startup (default: %u)").toStdString(), DEFAULT_CHOOSE_DATADIR));
         strUsage += HelpMessageOpt("-lang=<lang>", tr("Set language, for example \"de_DE\" (default: system locale)").toStdString());
         strUsage += HelpMessageOpt("-min", tr("Start minimized").toStdString());
-        strUsage += HelpMessageOpt("-rootcertificates=<file>", tr("Set SSL root certificates for payment request (default: -system-)").toStdString());
         strUsage += HelpMessageOpt("-splash", strprintf(tr("Show splash screen on startup (default: %u)").toStdString(), DEFAULT_SPLASHSCREEN));
         strUsage += HelpMessageOpt("-resetguisettings", tr("Reset all settings changed in the GUI").toStdString());
         if (showDebug) {
@@ -348,10 +338,8 @@ void PaperWalletDialog::on_printButton_clicked()
     QPrinter printer(QPrinter::HighResolution);
     QPrintDialog* qpd = new QPrintDialog(&printer, this);
 
-    #if QT_VERSION > 0x050000
     QPrinterInfo printerinfo(printer);
     QPageSize papersize = printerinfo.defaultPageSize();
-    #endif
 
     qpd->setPrintRange(QAbstractPrintDialog::AllPages);
     QList<QString> recipientPubKeyHashes;
@@ -360,13 +348,8 @@ void PaperWalletDialog::on_printButton_clicked()
         return;
     }
 
-
     printer.setOrientation(QPrinter::Portrait);
-    #if QT_VERSION > 0x050000
     printer.QPagedPaintDevice::setPageSize(papersize);
-    #else
-    printer.setPaperSize(QPrinter::A4);
-    #endif
     printer.setFullPage(true);
 
     QPainter painter;

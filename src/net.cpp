@@ -1025,12 +1025,34 @@ bool CConnman::AttemptToEvictConnection()
     return false;
 }
 
+InboundPeerCounts CountInboundPeers(const std::vector<CNode*>& nodes, const CAddress& addr, const CCriticalSection& vNodesLock) EXCLUSIVE_LOCKS_REQUIRED(vNodesLock)
+{
+    // Single-pass counting used by inbound admission. Within counts:
+    // nInbound counts all inbound peers.
+    // nSubnet counts only inbound peers that are:
+    //  - non-whitelisted,
+    //  - routable,
+    //  - non-Tor, and
+    //  - in addr's public subnet (/16 for IPv4, /32 for IPv6).
+    // Exclusions from nSubnet are outbound peers, whitelisted peers,
+    // non-routable peers, Tor peers, and peers outside the matched subnet.
+    int mask = addr.IsIPv4() ? 16 : 32;
+    CSubNet subnet(addr, mask);
+    InboundPeerCounts counts = {0, 0};
+    for (const CNode* pnode : nodes) {
+        if (!pnode->fInbound) continue;
+        counts.nInbound++;
+        if (!pnode->fWhitelisted && pnode->addr.IsRoutable() && !pnode->addr.IsTor() && subnet.Match(pnode->addr))
+            counts.nSubnet++;
+    }
+    return counts;
+}
+
 void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
     struct sockaddr_storage sockaddr;
     socklen_t len = sizeof(sockaddr);
     SOCKET hSocket = accept(hListenSocket.socket, (struct sockaddr*)&sockaddr, &len);
     CAddress addr;
-    int nInbound = 0;
     int nMaxInbound = nMaxConnections - (nMaxOutbound + nMaxFeeler);
 
     if (hSocket != INVALID_SOCKET)
@@ -1038,12 +1060,13 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
             LogPrintf("Warning: Unknown socket family\n");
 
     bool whitelisted = hListenSocket.whitelisted || IsWhitelistedRange(addr);
+
+    InboundPeerCounts counts;
     {
         LOCK(cs_vNodes);
-        BOOST_FOREACH(CNode* pnode, vNodes)
-            if (pnode->fInbound)
-                nInbound++;
+        counts = CountInboundPeers(vNodes, addr, cs_vNodes);
     }
+    bool check_subnet = (!whitelisted && addr.IsRoutable());
 
     if (hSocket == INVALID_SOCKET)
     {
@@ -1082,7 +1105,16 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
         return;
     }
 
-    if (nInbound >= nMaxInbound)
+    // Enforce per-public-subnet inbound limits (IPv4 /16, IPv6 /32).
+    // Do not apply to whitelisted or non-routable addresses.
+    if (check_subnet && counts.nSubnet >= DEFAULT_MAX_INBOUND_PER_SUBNET) {
+        LogPrintf("connection from %s dropped: too many inbound from same /%d\n",
+                  addr.ToString(), addr.IsIPv4() ? 16 : 32);
+        CloseSocket(hSocket);
+        return;
+    }
+
+    if (counts.nInbound >= nMaxInbound)
     {
         if (!AttemptToEvictConnection()) {
             // No connection to evict, disconnect the new connection
@@ -1488,7 +1520,16 @@ void ThreadMapPort()
     struct IGDdatas data;
     int r;
 
+    // since API version 18 / release 2.2.8
+    // both signature and return values of UPNP_GetValidIGD have been changed
+    // see miniupnp commit c0a50ce33e3b99ce8a96fd43049bb5b53ffac62f
+#if MINIUPNPC_API_VERSION < 18
     r = UPNP_GetValidIGD(devlist, &urls, &data, lanaddr, sizeof(lanaddr));
+    // r: 1 = success, 2 = not connected, 3 = unrecognized IGD
+#else
+    r = UPNP_GetValidIGD(devlist, &urls, &data, lanaddr, sizeof(lanaddr), nullptr, 0);
+    // r: 1 = success, 2 = success but not routable (i.e. CGNAT), 3 = not connected, 4 = unrecognized IGD
+#endif // MINIUPNPC_API_VERSION < 18
     if (r == 1)
     {
         if (fDiscover) {
@@ -1543,7 +1584,7 @@ void ThreadMapPort()
             throw;
         }
     } else {
-        LogPrintf("No valid UPnP IGDs found\n");
+        LogPrintf("No valid UPnP IGDs found: %d\n", r);
         freeUPNPDevlist(devlist); devlist = 0;
         if (r != 0)
             FreeUPNPUrls(&urls);
@@ -1795,9 +1836,9 @@ void CConnman::ThreadOpenConnections()
         //  * Increase the number of connectable addresses in the tried table.
         //
         // Method:
-        //  * Choose a random address from new and attempt to connect to it if we can connect 
+        //  * Choose a random address from new and attempt to connect to it if we can connect
         //    successfully it is added to tried.
-        //  * Start attempting feeler connections only after node finishes making outbound 
+        //  * Start attempting feeler connections only after node finishes making outbound
         //    connections.
         //  * Only make a feeler connection once every few minutes.
         //

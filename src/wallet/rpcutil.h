@@ -7,9 +7,10 @@
  */
 #ifndef PEPECOIN_WALLET_UTIL_H
 #define PEPECOIN_WALLET_UTIL_H
-#include <boost/filesystem/path.hpp>
+
+#include "fs.h"
 #include "util.h"
 
-boost::filesystem::path GetBackupDirFromInput(std::string strUserFilename);
+fs::path GetBackupDirFromInput(std::string strUserFilename);
 
 #endif // PEPECOIN_WALLET_UTIL_H

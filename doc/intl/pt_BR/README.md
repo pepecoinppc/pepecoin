@@ -26,11 +26,6 @@ Mudanças:
 * Recursos BIPS começam no bloco gênese
 * GUI temático para o Pepecoin
 
-## Uso 💻
-
-Para iniciar sua jornada com o Pepecoin Core, veja o [guia de instalação](INSTALL.md) e o tutorial [começando](doc/getting-started.md).
-
-A API JSON-RPC fornecida pelo Pepecoin Core é autoexplicativa e pode ser navegada com `pepecoin-cli help`, enquanto informações detalhadas para cada comando podem ser visualizadas com `pepecoin-cli help <comando>`. Alternativamente, veja a [documentação do Bitcoin Core](https://developer.bitcoin.org/reference/rpc/) - que implementa um protocolo semelhante - para obter uma versão navegável.
 
 ### Portas
 

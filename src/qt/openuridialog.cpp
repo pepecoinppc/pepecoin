@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2014 The Bitcoin Core developers
-// Copyright (c) 2018 The Dogecoin Core developers
+// Copyright (c) 2018-2022 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,9 +16,7 @@ OpenURIDialog::OpenURIDialog(QWidget *parent) :
     ui(new Ui::OpenURIDialog)
 {
     ui->setupUi(this);
-#if QT_VERSION >= 0x040700
     ui->uriEdit->setPlaceholderText("pepecoin:");
-#endif
 }
 
 OpenURIDialog::~OpenURIDialog()

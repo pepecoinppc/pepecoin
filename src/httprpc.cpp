@@ -16,10 +16,10 @@
 #include "ui_interface.h"
 #include "crypto/hmac_sha256.h"
 #include <stdio.h>
-#include "utilstrencodings.h"
 
 #include <boost/algorithm/string.hpp> // boost::trim
 #include <boost/foreach.hpp> //BOOST_FOREACH
+#include <functional> // std::function
 
 /** WWW-Authenticate to present with 401 Unauthorized response */
 static const char* WWW_AUTH_HEADER_DATA = "Basic realm=\"jsonrpc\"";
@@ -30,7 +30,7 @@ static const char* WWW_AUTH_HEADER_DATA = "Basic realm=\"jsonrpc\"";
 class HTTPRPCTimer : public RPCTimerBase
 {
 public:
-    HTTPRPCTimer(struct event_base* eventBase, boost::function<void(void)>& func, int64_t millis) :
+    HTTPRPCTimer(struct event_base* eventBase, std::function<void(void)>& func, int64_t millis) :
         ev(eventBase, false, func)
     {
         struct timeval tv;
@@ -52,7 +52,7 @@ public:
     {
         return "HTTP";
     }
-    RPCTimerBase* NewTimer(boost::function<void(void)>& func, int64_t millis)
+    RPCTimerBase* NewTimer(std::function<void(void)>& func, int64_t millis)
     {
         return new HTTPRPCTimer(base, func, millis);
     }
@@ -86,7 +86,7 @@ static void JSONErrorReply(HTTPRequest* req, const UniValue& objError, const Uni
 //This function checks username and password against -rpcauth
 //entries from config file.
 static bool multiUserAuthorized(std::string strUserPass)
-{    
+{
     if (strUserPass.find(":") == std::string::npos) {
         return false;
     }

@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2021 The Dogecoin Core developers
+// Copyright (c) 2021-2022 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -393,7 +393,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     while (chainActive.Tip()->nHeight < 209999) {
         CBlockIndex* prev = chainActive.Tip();
         CBlockIndex* next = new CBlockIndex();
-        next->phashBlock = new uint256(GetRandHash());
+        next->phashBlock = new uint256(InsecureRand256());
         pcoinsTip->SetBestBlock(next->GetBlockHash());
         next->pprev = prev;
         next->nHeight = prev->nHeight + 1;
@@ -405,7 +405,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     while (chainActive.Tip()->nHeight < 210000) {
         CBlockIndex* prev = chainActive.Tip();
         CBlockIndex* next = new CBlockIndex();
-        next->phashBlock = new uint256(GetRandHash());
+        next->phashBlock = new uint256(InsecureRand256());
         pcoinsTip->SetBestBlock(next->GetBlockHash());
         next->pprev = prev;
         next->nHeight = prev->nHeight + 1;

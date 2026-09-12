@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2022 The Dogecoin Core developers
+// Copyright (c) 2022-2023 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -25,6 +25,7 @@
 #include "random.h"
 #include "tinyformat.h"
 #include "txmempool.h"
+#include "txrequest.h"
 #include "ui_interface.h"
 #include "util.h"
 #include "utilmoneystr.h"
@@ -43,7 +44,7 @@ std::atomic<int64_t> nTimeBestReceived(0); // Used only to inform the wallet of 
 struct IteratorComparator
 {
     template<typename I>
-    bool operator()(const I& a, const I& b)
+    bool operator()(const I& a, const I& b) const
     {
         return &(*a) < &(*b);
     }
@@ -51,18 +52,21 @@ struct IteratorComparator
 
 /** Maximum number of in-flight transactions from a peer */
 static constexpr int32_t MAX_PEER_TX_IN_FLIGHT = 100;
-/** Maximum number of announced transactions from a peer */
-static constexpr int32_t MAX_PEER_TX_ANNOUNCEMENTS = 2 * MAX_INV_SZ;
+/**
+ * Maximum number of transactions to consider for requesting, per peer.
+ *
+ * It provides a reasonable DoS limit to per-peer memory usage spent on
+ * announcements, while covering peers continuously sending INVs at the maximum
+ * rate for several minutes (see INVENTORY_BROADCAST_MAX), while not receiving
+ * the actual transaction (from any peer) in response to requests for them.
+ */
+static constexpr int32_t MAX_PEER_TX_ANNOUNCEMENTS = 5000;
 /** How many microseconds to delay requesting transactions from inbound peers */
-static constexpr int64_t INBOUND_PEER_TX_DELAY = 2 * 1000000; // 2 seconds
+static constexpr int64_t NONPREF_PEER_TX_DELAY = 2 * 1000000; // 2 seconds
+/** How many microseconds to delay requesting transactions from overloaded peers */
+static constexpr int64_t OVERLOADED_PEER_TX_DELAY = 2 * 1000000;
 /** How long to wait (in microseconds) before downloading a transaction from an additional peer */
 static constexpr int64_t GETDATA_TX_INTERVAL = 30 * 1000000; // 30 seconds
-/** Maximum delay (in microseconds) for transaction requests to avoid biasing some peers over others. */
-static constexpr int64_t MAX_GETDATA_RANDOM_DELAY = 2 * 1000000; // 2 seconds
-/** How long to wait (in microseconds) before expiring an in-flight getdata request to a peer */
-static constexpr int64_t TX_EXPIRY_INTERVAL = 10 * GETDATA_TX_INTERVAL;
-static_assert(INBOUND_PEER_TX_DELAY >= MAX_GETDATA_RANDOM_DELAY,
-"To preserve security, MAX_GETDATA_RANDOM_DELAY should not exceed INBOUND_PEER_DELAY");
 /** Limit to avoid sending big packets. Not used in processing incoming GETDATA for compatibility */
 static const unsigned int MAX_GETDATA_SZ = 1000;
 
@@ -78,6 +82,8 @@ void EraseOrphansFor(NodeId peer) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
 
 static size_t vExtraTxnForCompactIt = 0;
 static std::vector<std::pair<uint256, CTransactionRef>> vExtraTxnForCompact GUARDED_BY(cs_main);
+
+static TxRequestTracker g_txrequest GUARDED_BY(cs_main);
 
 static const uint64_t RANDOMIZER_ID_ADDRESS_RELAY = 0x3cac0035b5866b90ULL; // SHA256("main address relay")[0:8]
 
@@ -218,70 +224,6 @@ struct CNodeState {
      */
     bool fSupportsDesiredCmpctVersion;
 
-    /*
-     * State associated with transaction download.
-     *
-     * Tx download algorithm:
-     *
-     *   When inv comes in, queue up (process_time, txid) inside the peer's
-     *   CNodeState (m_tx_process_time) as long as m_tx_announced for the peer
-     *   isn't too big (MAX_PEER_TX_ANNOUNCEMENTS).
-     *
-     *   The process_time for a transaction is set to current_time for outbound
-     *   peers, current_time + 2 seconds for inbound peers. This is the time at
-     *   which we'll consider trying to request the transaction from the peer in
-     *   SendMessages(). The delay for inbound peers is to allow outbound peers
-     *   a chance to announce before we request from inbound peers, to prevent
-     *   an adversary from using inbound connections to blind us to a
-     *   transaction (InvBlock).
-     *
-     *   When we call SendMessages() for a given peer,
-     *   we will loop over the transactions in m_tx_process_time, looking
-     *   at the transactions whose process_time <= current_time. We'll request
-     *   each such transaction that we don't have already and that hasn't been
-     *   requested from another peer recently, up until we hit the
-     *   MAX_PEER_TX_IN_FLIGHT limit for the peer. Then we'll update
-     *   g_already_asked_for for each requested txid, storing the time of the
-     *   GETDATA request. We use g_already_asked_for to coordinate transaction
-     *   requests amongst our peers.
-     *
-     *   For transactions that we still need but we have already recently
-     *   requested from some other peer, we'll reinsert (process_time, txid)
-     *   back into the peer's m_tx_process_time at the point in the future at
-     *   which the most recent GETDATA request would time out (ie
-     *   GETDATA_TX_INTERVAL + the request time stored in g_already_asked_for).
-     *   We add an additional delay for inbound peers, again to prefer
-     *   attempting download from outbound peers first.
-     *   We also add an extra small random delay up to 2 seconds
-     *   to avoid biasing some peers over others. (e.g., due to fixed ordering
-     *   of peer processing in ThreadMessageHandler).
-     *
-     *   When we receive a transaction from a peer, we remove the txid from the
-     *   peer's m_tx_in_flight set and from their recently announced set
-     *   (m_tx_announced).  We also clear g_already_asked_for for that entry, so
-     *   that if somehow the transaction is not accepted but also not added to
-     *   the reject filter, then we will eventually redownload from other
-     *   peers.
-     */
-
-    struct TxDownloadState {
-        /* Track when to attempt download of announced transactions (process
-         * time in micros -> txid)
-         */
-        std::multimap<int64_t, uint256> m_tx_process_time;
-
-        //! Store all the transactions a peer has recently announced
-        std::set<uint256> m_tx_announced;
-
-        //! Store transactions which were requested by us, with timestamp
-        std::map<uint256, int64_t> m_tx_in_flight;
-
-        //! Periodically check for stuck getdata requests
-        int64_t m_check_expiry_timer{0};
-    };
-
-    TxDownloadState m_tx_download;
-
     CNodeState(CAddress addrIn, std::string addrNameIn) : address(addrIn), name(addrNameIn) {
         fCurrentlyConnected = false;
         nMisbehavior = 0;
@@ -305,10 +247,8 @@ struct CNodeState {
         fWantsCmpctWitness = false;
         fSupportsDesiredCmpctVersion = false;
     }
-};
 
-// Keeps track of the time (in microseconds) when transactions were requested last time
-limitedmap<uint256, int64_t> g_already_asked_for GUARDED_BY(cs_main)(MAX_INV_SZ);
+};
 
 /** Map maintaining per-node state. Requires cs_main. */
 std::map<NodeId, CNodeState> mapNodeState;
@@ -358,8 +298,9 @@ void InitializeNode(CNode *pnode, CConnman& connman) {
     {
         LOCK(cs_main);
         mapNodeState.emplace_hint(mapNodeState.end(), std::piecewise_construct, std::forward_as_tuple(nodeid), std::forward_as_tuple(addr, std::move(addrName)));
+        assert(g_txrequest.Count(nodeid) == 0);
     }
-    if(!pnode->fInbound)
+    if (!pnode->fInbound)
         PushNodeVersion(pnode, connman, GetTime());
 }
 
@@ -379,6 +320,8 @@ void FinalizeNode(NodeId nodeid, bool& fUpdateConnectionTime) {
         mapBlocksInFlight.erase(entry.hash);
     }
     EraseOrphansFor(nodeid);
+    g_txrequest.DisconnectedPeer(nodeid);
+
     nPreferredDownload -= state->fPreferredDownload;
     nPeersWithValidatedDownloads -= (state->nBlocksInFlightValidHeaders != 0);
     assert(nPeersWithValidatedDownloads >= 0);
@@ -390,6 +333,7 @@ void FinalizeNode(NodeId nodeid, bool& fUpdateConnectionTime) {
         assert(mapBlocksInFlight.empty());
         assert(nPreferredDownload == 0);
         assert(nPeersWithValidatedDownloads == 0);
+        assert(g_txrequest.Size() == 0);
     }
 }
 
@@ -643,70 +587,34 @@ void FindNextBlocksToDownload(NodeId nodeid, unsigned int count, std::vector<con
     }
 }
 
-void EraseTxRequest(const uint256& txid) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
+} // anon namespace
+
+void AddTxAnnouncement(CNode* node, const uint256& txhash, int64_t current_time)
 {
-    g_already_asked_for.erase(txid);
-}
+    AssertLockHeld(cs_main); // For g_txrequest
+    NodeId nodeid = node->GetId();
 
-int64_t GetTxRequestTime(const uint256& txid) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
-{
-    auto it = g_already_asked_for.find(txid);
-    if (it != g_already_asked_for.end()) {
-        return it->second;
-    }
-    return 0;
-}
-
-void UpdateTxRequestTime(const uint256& txid, int64_t request_time) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
-{
-    auto it = g_already_asked_for.find(txid);
-
-    if (it == g_already_asked_for.end()) {
-        g_already_asked_for.insert(std::make_pair(txid, request_time));
-    } else {
-        g_already_asked_for.update(it, request_time);
-    }
-}
-
-int64_t CalculateTxGetDataTime(const uint256& txid, int64_t current_time, bool use_inbound_delay) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
-{
-    int64_t process_time;
-    int64_t last_request_time = GetTxRequestTime(txid);
-    // First time requesting this tx
-    if (last_request_time == 0) {
-        process_time = current_time;
-    } else {
-        // Randomize the delay to avoid biasing some peers over others (such as due to
-        // fixed ordering of peer processing in ThreadMessageHandler)
-        process_time = last_request_time + GETDATA_TX_INTERVAL + GetRand(MAX_GETDATA_RANDOM_DELAY);
-    }
-
-    // We delay processing announcements from inbound peers
-    if (use_inbound_delay) process_time += INBOUND_PEER_TX_DELAY;
-
-    return process_time;
-}
-
-void RequestTx(CNodeState* state, const uint256& txid, int64_t current_time) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
-{
-    CNodeState::TxDownloadState& peer_download_state = state->m_tx_download;
-    if (peer_download_state.m_tx_announced.size() >= MAX_PEER_TX_ANNOUNCEMENTS ||
-            peer_download_state.m_tx_process_time.size() >= MAX_PEER_TX_ANNOUNCEMENTS ||
-            peer_download_state.m_tx_announced.count(txid)) {
-        // Too many queued announcements from this peer, or we already have
-        // this announcement
+    if (!node->fWhitelisted && g_txrequest.Count(nodeid) >= MAX_PEER_TX_ANNOUNCEMENTS) {
+        // Too many queued announcements from this peer
         return;
     }
-    peer_download_state.m_tx_announced.insert(txid);
 
-    // Calculate the time to try requesting this transaction. Use
-    // fPreferredDownload as a proxy for outbound peers.
-    int64_t process_time = CalculateTxGetDataTime(txid, current_time, !state->fPreferredDownload);
+    // Decide the TxRequestTracker parameters for this announcement:
+    // - "preferred": if fPreferredDownload is set (= outbound, or whitelisted)
+    // - "reqtime": current time plus delays for:
+    //     - NONPREF_PEER_TX_DELAY for announcements from non-preferred connections
+    //     - OVERLOADED_PEER_TX_DELAY for announcements from peers which have at least
+    //       MAX_PEER_TX_IN_FLIGHT requests in flight and aren't whitelisted.
+    const CNodeState* state = State(nodeid);
+    const bool preferred = state->fPreferredDownload;
+    const bool overloaded = (!node->fWhitelisted && g_txrequest.CountInFlight(nodeid) >= MAX_PEER_TX_IN_FLIGHT);
 
-    peer_download_state.m_tx_process_time.emplace(process_time, txid);
+    int64_t delay = 0;
+    if (!preferred) delay += NONPREF_PEER_TX_DELAY;
+    if (overloaded) delay += OVERLOADED_PEER_TX_DELAY;
+
+    g_txrequest.ReceivedInv(nodeid, txhash, preferred, current_time + delay);
 }
-
-} // anon namespace
 
 bool GetNodeStateStats(NodeId nodeid, CNodeStateStats &stats) {
     LOCK(cs_main);
@@ -883,6 +791,7 @@ void Misbehaving(NodeId pnode, int howmuch)
 //             already requesting headers from, unless forced.
 void RequestHeadersFrom(CNode* pto, CConnman& connman, const CBlockIndex* pindex, uint256 untilHash, bool fforceQuery)
 {
+  AssertLockHeld(cs_main);
   if (pto->nPendingHeaderRequests > 0) {
     if (fforceQuery) {
       LogPrint("net", "forcing getheaders request (%d) to peer=%d (%d open)\n",
@@ -940,6 +849,9 @@ void PeerLogicValidation::SyncTransaction(const CTransaction& tx, const CBlockIn
         }
         LogPrint("mempool", "Erased %d orphan tx included or conflicted by block\n", nErased);
     }
+
+    // Forget tracked announcements for transactions included in a block.
+    g_txrequest.ForgetTxHash(tx.GetHash());
 }
 
 static CCriticalSection cs_most_recent_block;
@@ -1341,6 +1253,77 @@ inline void static SendBlockTransactions(const CBlock& block, const BlockTransac
     connman.PushMessage(pfrom, msgMaker.Make(nSendFlags, NetMsgType::BLOCKTXN, resp));
 }
 
+void static ProcessOrphanTx(CConnman* connman, std::set<uint256>& orphan_work_set, std::list<CTransactionRef>& removed_txn) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
+{
+    AssertLockHeld(cs_main);
+    std::set<NodeId> setMisbehaving;
+    bool done = false;
+    while (!done && !orphan_work_set.empty()) {
+        const uint256 orphanHash = *orphan_work_set.begin();
+
+        orphan_work_set.erase(orphan_work_set.begin());
+
+        auto orphan_it = mapOrphanTransactions.find(orphanHash);
+        if (orphan_it == mapOrphanTransactions.end()) continue;
+
+        const CTransactionRef porphanTx = orphan_it->second.tx;
+        const CTransaction& orphanTx = *porphanTx;
+        NodeId fromPeer = orphan_it->second.fromPeer;
+        bool fMissingInputs2 = false;
+
+        // Use a dummy CValidationState so someone can't setup nodes to
+        // counter-DoS based on orphan resolution (that is, feeding
+        // people an invalid transaction based on LegitTxX in order to
+        // get anyone relaying LegitTxX banned)
+        CValidationState stateDummy;
+
+        if (setMisbehaving.count(fromPeer)) continue;
+
+        if (AcceptToMemoryPool(mempool, stateDummy, porphanTx, true, &fMissingInputs2, &removed_txn)) {
+            LogPrint("mempool", "   accepted orphan tx %s\n", orphanHash.ToString());
+            RelayTransaction(orphanTx, *connman);
+
+            for (unsigned int i = 0; i < orphanTx.vout.size(); i++) {
+                auto it_by_prev = mapOrphanTransactionsByPrev.find(COutPoint(orphanHash, i));
+                if (it_by_prev != mapOrphanTransactionsByPrev.end()) {
+                    for (const auto& elem : it_by_prev->second) {
+                        orphan_work_set.insert(elem->first);
+                    }
+                }
+            }
+
+            EraseOrphanTx(orphanHash);
+            done = true;
+
+        } else if (!fMissingInputs2) {
+
+            int nDos = 0;
+            if (stateDummy.IsInvalid(nDos) && nDos > 0) {
+                // Punish peer that gave us an invalid orphan tx
+                Misbehaving(fromPeer, nDos);
+                setMisbehaving.insert(fromPeer);
+                LogPrint("mempool", "   invalid orphan tx %s\n", orphanHash.ToString());
+            }
+
+            LogPrint("mempool", "    removed orphan tx %s\n", orphanHash.ToString());
+
+            if (!orphanTx.HasWitness() && !stateDummy.CorruptionPossible()) {
+                // Do not use rejection cache for witness transactions or
+                // witness-stripped transactions, as they can have been malleated.
+                // See https://github.com/bitcoin/bitcoin/issues/8279 for details.
+                assert(recentRejects);
+                recentRejects->insert(orphanHash);
+            }
+
+            EraseOrphanTx(orphanHash);
+            done = true;
+
+        }
+
+        mempool.check(pcoinsTip);
+    }
+}
+
 bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStream& vRecv, int64_t nTimeReceived, const CChainParams& chainparams, CConnman& connman, const std::atomic<bool>& interruptMsgProc)
 {
     LogPrint("net", "received: %s (%u bytes) peer=%d\n", SanitizeString(strCommand), vRecv.size(), pfrom->id);
@@ -1489,7 +1472,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
         pfrom->SetSendVersion(nSendVersion);
         pfrom->nVersion = nVersion;
 
-        if((nServices & NODE_WITNESS))
+        if ((nServices & NODE_WITNESS))
         {
             LOCK(cs_main);
             State(pfrom->GetId())->fHaveWitness = true;
@@ -1641,7 +1624,8 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
 
         // Randomize entries before processing, to prevent an attacker to
         // determine which entries will make it through the rate limit
-        random_shuffle(vAddr.begin(), vAddr.end(), GetRandInt);
+        FastRandomContext insecure_rand;
+        shuffle(vAddr.begin(), vAddr.end(), insecure_rand);
 
         BOOST_FOREACH(CAddress& addr, vAddr)
         {
@@ -1740,6 +1724,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
 
         uint32_t nFetchFlags = GetFetchFlags(pfrom, chainActive.Tip(), chainparams.GetConsensus(chainActive.Height()));
         int64_t current_time = GetMockableTimeMicros();
+        uint256* best_block{nullptr};
 
         std::vector<CInv> vToFetch;
 
@@ -1760,14 +1745,12 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             if (inv.type == MSG_BLOCK) {
                 UpdateBlockAvailability(pfrom->GetId(), inv.hash);
                 if (!fAlreadyHave && !fImporting && !fReindex && !mapBlocksInFlight.count(inv.hash)) {
-                    // We used to request the full block here, but since headers-announcements are now the
-                    // primary method of announcement on the network, and since, in the case that a node
-                    // fell back to inv we probably have a reorg which we should get the headers for first,
-                    // we now only provide a getheaders response here. When we receive the headers, we will
-                    // then ask for the blocks we need.
-                    // Pepecoin: We force this check, in case we're only connected to nodes that send invs
-                    RequestHeadersFrom(pfrom, connman, pindexBestHeader, inv.hash, true);
-                    LogPrint("net", "getheaders (%d) %s to peer=%d\n", pindexBestHeader->nHeight, inv.hash.ToString(), pfrom->id);
+                    // Headers-first is the primary method of announcement on
+                    // the network. If a node fell back to sending blocks by inv,
+                    // it's probably for a re-org. The final block hash
+                    // provided should be the highest, so send a getheaders and
+                    // then fetch the blocks we need to catch up.
+                    best_block = &inv.hash;
                 }
             }
             else
@@ -1776,9 +1759,16 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                 if (fBlocksOnly)
                     LogPrint("net", "transaction (%s) inv sent in violation of protocol peer=%d\n", inv.hash.ToString(), pfrom->id);
                 else if (!fAlreadyHave && !fImporting && !fReindex && !IsInitialBlockDownload())
-                    RequestTx(State(pfrom->GetId()), inv.hash, current_time);
+                    AddTxAnnouncement(pfrom, inv.hash, current_time);
             }
 
+        }
+
+        if (best_block != nullptr) {
+            // Pepecoin: allow header requests from inv to be non-serial by
+            // forcing the request, to be able to get split chaintips quickly.
+            RequestHeadersFrom(pfrom, connman, pindexBestHeader, *best_block, true /* force */);
+            LogPrint("net", "getheaders (%d) %s to peer=%d\n", pindexBestHeader->nHeight, best_block->ToString(), pfrom->id);
         }
 
         if (!vToFetch.empty())
@@ -1998,8 +1988,6 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             return true;
         }
 
-        std::deque<COutPoint> vWorkQueue;
-        std::vector<uint256> vEraseQueue;
         CTransactionRef ptx;
         vRecv >> ptx;
         const CTransaction& tx = *ptx;
@@ -2012,18 +2000,26 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
         bool fMissingInputs = false;
         CValidationState state;
 
-        CNodeState* nodestate = State(pfrom->GetId());
-        nodestate->m_tx_download.m_tx_announced.erase(inv.hash);
-        nodestate->m_tx_download.m_tx_in_flight.erase(inv.hash);
-        EraseTxRequest(inv.hash);
+        // Mark the tx as received
+        g_txrequest.ReceivedResponse(pfrom->GetId(), inv.hash);
 
         std::list<CTransactionRef> lRemovedTxn;
 
         if (!AlreadyHave(inv) && AcceptToMemoryPool(mempool, state, ptx, true, &fMissingInputs, &lRemovedTxn)) {
             mempool.check(pcoinsTip);
+
+            // As this version of the transaction was acceptable, we can forget
+            // about any requests for it.
+            g_txrequest.ForgetTxHash(tx.GetHash());
+
             RelayTransaction(tx, connman);
             for (unsigned int i = 0; i < tx.vout.size(); i++) {
-                vWorkQueue.emplace_back(inv.hash, i);
+                auto it_by_prev = mapOrphanTransactionsByPrev.find(COutPoint(inv.hash, i));
+                if (it_by_prev != mapOrphanTransactionsByPrev.end()) {
+                    for (const auto& elem : it_by_prev->second) {
+                        pfrom->orphan_work_set.insert(elem->first);
+                    }
+                }
             }
 
             pfrom->nLastTXTime = GetTime();
@@ -2034,65 +2030,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                 mempool.size(), mempool.DynamicMemoryUsage() / 1000);
 
             // Recursively process any orphan transactions that depended on this one
-            std::set<NodeId> setMisbehaving;
-            while (!vWorkQueue.empty()) {
-                auto itByPrev = mapOrphanTransactionsByPrev.find(vWorkQueue.front());
-                vWorkQueue.pop_front();
-                if (itByPrev == mapOrphanTransactionsByPrev.end())
-                    continue;
-                for (auto mi = itByPrev->second.begin();
-                     mi != itByPrev->second.end();
-                     ++mi)
-                {
-                    const CTransactionRef& porphanTx = (*mi)->second.tx;
-                    const CTransaction& orphanTx = *porphanTx;
-                    const uint256& orphanHash = orphanTx.GetHash();
-                    NodeId fromPeer = (*mi)->second.fromPeer;
-                    bool fMissingInputs2 = false;
-                    // Use a dummy CValidationState so someone can't setup nodes to counter-DoS based on orphan
-                    // resolution (that is, feeding people an invalid transaction based on LegitTxX in order to get
-                    // anyone relaying LegitTxX banned)
-                    CValidationState stateDummy;
-
-
-                    if (setMisbehaving.count(fromPeer))
-                        continue;
-                    if (AcceptToMemoryPool(mempool, stateDummy, porphanTx, true, &fMissingInputs2, &lRemovedTxn)) {
-                        LogPrint("mempool", "   accepted orphan tx %s\n", orphanHash.ToString());
-                        RelayTransaction(orphanTx, connman);
-                        for (unsigned int i = 0; i < orphanTx.vout.size(); i++) {
-                            vWorkQueue.emplace_back(orphanHash, i);
-                        }
-                        vEraseQueue.push_back(orphanHash);
-                    }
-                    else if (!fMissingInputs2)
-                    {
-                        int nDos = 0;
-                        if (stateDummy.IsInvalid(nDos) && nDos > 0)
-                        {
-                            // Punish peer that gave us an invalid orphan tx
-                            Misbehaving(fromPeer, nDos);
-                            setMisbehaving.insert(fromPeer);
-                            LogPrint("mempool", "   invalid orphan tx %s\n", orphanHash.ToString());
-                        }
-                        // Has inputs but not accepted to mempool
-                        // Probably non-standard or insufficient fee/priority
-                        LogPrint("mempool", "   removed orphan tx %s\n", orphanHash.ToString());
-                        vEraseQueue.push_back(orphanHash);
-                        if (!orphanTx.HasWitness() && !stateDummy.CorruptionPossible()) {
-                            // Do not use rejection cache for witness transactions or
-                            // witness-stripped transactions, as they can have been malleated.
-                            // See https://github.com/bitcoin/bitcoin/issues/8279 for details.
-                            assert(recentRejects);
-                            recentRejects->insert(orphanHash);
-                        }
-                    }
-                    mempool.check(pcoinsTip);
-                }
-            }
-
-            BOOST_FOREACH(uint256 hash, vEraseQueue)
-                EraseOrphanTx(hash);
+            ProcessOrphanTx(&connman, pfrom->orphan_work_set, lRemovedTxn);
         }
         else if (fMissingInputs)
         {
@@ -2110,9 +2048,15 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                 BOOST_FOREACH(const CTxIn& txin, tx.vin) {
                     CInv _inv(MSG_TX | nFetchFlags, txin.prevout.hash);
                     pfrom->AddInventoryKnown(_inv);
-                    if (!AlreadyHave(_inv)) RequestTx(State(pfrom->GetId()), _inv.hash, current_time);
+                    if (!AlreadyHave(_inv)) {
+                        AddTxAnnouncement(pfrom, _inv.hash, current_time);
+                    }
                 }
                 AddOrphanTx(ptx, pfrom->GetId());
+
+                // Once added to the orphan pool, a tx is considered
+                // AlreadyHave, and we shouldn't request it anymore.
+                g_txrequest.ForgetTxHash(tx.GetHash());
 
                 // DoS prevention: do not allow mapOrphanTransactions to grow unbounded
                 unsigned int nMaxOrphanTx = (unsigned int)std::max((int64_t)0, GetArg("-maxorphantx", DEFAULT_MAX_ORPHAN_TRANSACTIONS));
@@ -2124,6 +2068,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                 // We will continue to reject this tx since it has rejected
                 // parents so avoid re-requesting it from other peers.
                 recentRejects->insert(tx.GetHash());
+                g_txrequest.ForgetTxHash(tx.GetHash());
             }
         } else {
             if (!tx.HasWitness() && !state.CorruptionPossible()) {
@@ -2132,6 +2077,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                 // See https://github.com/bitcoin/bitcoin/issues/8279 for details.
                 assert(recentRejects);
                 recentRejects->insert(tx.GetHash());
+                g_txrequest.ForgetTxHash(tx.GetHash());
                 if (RecursiveDynamicUsage(*ptx) < 100000) {
                     AddToCompactExtraTransactions(ptx);
                 }
@@ -2827,23 +2773,14 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
     else if (strCommand == NetMsgType::NOTFOUND) {
         // Remove the NOTFOUND transactions from the peer
         LOCK(cs_main);
-        CNodeState *state = State(pfrom->GetId());
         std::vector<CInv> vInv;
         vRecv >> vInv;
         if (vInv.size() <= MAX_PEER_TX_IN_FLIGHT + MAX_BLOCKS_IN_TRANSIT_PER_PEER) {
             for (CInv &inv : vInv) {
                 if (inv.type == MSG_TX || inv.type == MSG_WITNESS_TX) {
-                    // If we receive a NOTFOUND message for a txid we requested, erase
-                    // it from our data structures for this peer.
-                    auto in_flight_it = state->m_tx_download.m_tx_in_flight.find(inv.hash);
-                    if (in_flight_it == state->m_tx_download.m_tx_in_flight.end()) {
-                        // Skip any further work if this is a spurious NOTFOUND
-                        // message.
-                        continue;
-                    }
-                    state->m_tx_download.m_tx_in_flight.erase(in_flight_it);
-                    state->m_tx_download.m_tx_announced.erase(inv.hash);
-                    LogPrint("net", "received: notfound tx %s from peer=%d\n", inv.hash.ToString(), pfrom->id);
+                    // If we receive a NOTFOUND message for a txid we requested, we
+                    // mark the announcement as completed in TxRequestTracker.
+                    g_txrequest.ReceivedResponse(pfrom->GetId(), inv.hash);
                 }
             }
         }
@@ -2905,11 +2842,21 @@ bool ProcessMessages(CNode* pfrom, CConnman& connman, const std::atomic<bool>& i
     if (!pfrom->vRecvGetData.empty())
         ProcessGetData(pfrom, chainparams.GetConsensus(chainActive.Height()), connman, interruptMsgProc);
 
+    if (!pfrom->orphan_work_set.empty()) {
+        std::list<CTransactionRef> removed_txn;
+        LOCK(cs_main);
+        ProcessOrphanTx(&connman, pfrom->orphan_work_set, removed_txn);
+        for (const CTransactionRef& removedTx : removed_txn) {
+            AddToCompactExtraTransactions(removedTx);
+        }
+    }
+
     if (pfrom->fDisconnect)
         return false;
 
     // this maintains the order of responses
     if (!pfrom->vRecvGetData.empty()) return true;
+    if (!pfrom->orphan_work_set.empty()) return true;
 
         // Don't bother if send buffer is too full to respond anyway
         if (pfrom->fPauseSend)
@@ -3509,59 +3456,25 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
         //
         // Message: getdata (non-blocks)
         //
-
-        // For robustness, expire old requests after a long timeout, so that
-        // we can resume downloading transactions from a peer even if they
-        // were unresponsive in the past.
-        // Eventually we should consider disconnecting peers, but this is
-        // conservative.
-        if (state.m_tx_download.m_check_expiry_timer <= current_time) {
-            for (auto it=state.m_tx_download.m_tx_in_flight.begin(); it != state.m_tx_download.m_tx_in_flight.end();) {
-                if (it->second <= current_time - TX_EXPIRY_INTERVAL) {
-                    LogPrint("net", "timeout of inflight tx %s from peer=%d\n", it->first.ToString(), pto->GetId());
-                    state.m_tx_download.m_tx_announced.erase(it->first);
-                    state.m_tx_download.m_tx_in_flight.erase(it++);
-                } else {
-                    ++it;
-                }
-            }
-            // On average, we do this check every TX_EXPIRY_INTERVAL/3.75. Randomize
-            // so that we're not doing this for all peers at the same time.
-            state.m_tx_download.m_check_expiry_timer = current_time + TX_EXPIRY_INTERVAL/5 + GetRand(TX_EXPIRY_INTERVAL/5);
+        std::vector<std::pair<NodeId, uint256>> expired;
+        auto requestable = g_txrequest.GetRequestable(pto->GetId(), current_time, &expired);
+        for (const auto& entry : expired) {
+            LogPrint("net", "timeout of inflight tx %s from peer=%d\n", entry.second.ToString(), entry.first);
         }
 
-        auto& tx_process_time = state.m_tx_download.m_tx_process_time;
-        while (!tx_process_time.empty() && tx_process_time.begin()->first <= current_time && state.m_tx_download.m_tx_in_flight.size() < MAX_PEER_TX_IN_FLIGHT) {
-            const uint256 txid = tx_process_time.begin()->second;
-            // Erase this entry from tx_process_time (it may be added back for
-            // processing at a later time, see below)
-            tx_process_time.erase(tx_process_time.begin());
-            CInv inv(MSG_TX | GetFetchFlags(pto, chainActive.Tip(), consensusParams), txid);
+        for (const uint256& txhash : requestable) {
+            CInv inv(MSG_TX | GetFetchFlags(pto, chainActive.Tip(), consensusParams), txhash);
             if (!AlreadyHave(inv)) {
-                // If this transaction was last requested more than 1 minute ago,
-                // then request.
-                int64_t last_request_time = GetTxRequestTime(inv.hash);
-                if (last_request_time <= current_time - GETDATA_TX_INTERVAL) {
-                    LogPrint("net", "Requesting %s peer=%d\n", inv.ToString(), pto->GetId());
-                    vGetData.push_back(inv);
-                    if (vGetData.size() >= MAX_GETDATA_SZ) {
-                        connman.PushMessage(pto, msgMaker.Make(NetMsgType::GETDATA, vGetData));
-                        vGetData.clear();
-                    }
-                    UpdateTxRequestTime(inv.hash, current_time);
-                    state.m_tx_download.m_tx_in_flight.emplace(inv.hash, current_time);
-                } else {
-                    // This transaction is in flight from someone else; queue
-                    // up processing to happen after the download times out
-                    // (with a slight delay for inbound peers, to prefer
-                    // requests to outbound peers).
-                    int64_t next_process_time = CalculateTxGetDataTime(txid, current_time, !state.fPreferredDownload);
-                    tx_process_time.emplace(next_process_time, txid);
+                LogPrint("net", "Requesting %s peer=%d\n", inv.ToString(), pto->GetId());
+                vGetData.emplace_back(inv);
+                if (vGetData.size() >= MAX_GETDATA_SZ) {
+                    connman.PushMessage(pto, msgMaker.Make(NetMsgType::GETDATA, vGetData));
+                    vGetData.clear();
                 }
+                g_txrequest.RequestedTx(pto->GetId(), txhash, current_time + GETDATA_TX_INTERVAL);
             } else {
                 // We have already seen this transaction, no need to download.
-                state.m_tx_download.m_tx_announced.erase(inv.hash);
-                state.m_tx_download.m_tx_in_flight.erase(inv.hash);
+                g_txrequest.ForgetTxHash(txhash);
             }
         }
 

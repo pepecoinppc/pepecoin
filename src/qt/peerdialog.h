@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2021 The Dogecoin Core developers
+// Copyright (c) 2021-2022 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -26,7 +26,7 @@ class PeerTools : public QObject
 
 public:
     static QString ManagePeer(QString type, QString peer);
-    static bool CheckPeerAddress(QString address); 
+    static bool CheckPeerAddress(QString address);
     static bool CheckIPAddress(QString ip);
     static bool CheckDNS(QString dns);
     static QString GetPort();

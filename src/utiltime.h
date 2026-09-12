@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
-// Copyright (c) 2022 The Dogecoin Core developers
+// Copyright (c) 2022-2023 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,7 +12,7 @@
 
 /**
  * GetTimeMicros() and GetTimeMillis() both return the system time, but in
- * different units. GetTime() returns the sytem time in seconds, but also
+ * different units. GetTime() returns the system time in seconds, but also
  * supports mocktime, where the time can be specified by the user, eg for
  * testing (eg with the setmocktime rpc, or -mocktime argument).
  *

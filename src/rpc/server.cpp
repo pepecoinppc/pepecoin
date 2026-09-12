@@ -1,12 +1,13 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2021 The Dogecoin Core developers
+// Copyright (c) 2021-2023 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "rpc/server.h"
 
 #include "base58.h"
+#include "fs.h"
 #include "init.h"
 #include "random.h"
 #include "sync.h"
@@ -17,12 +18,12 @@
 #include <univalue.h>
 
 #include <boost/bind/bind.hpp>
-#include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>
 #include <boost/signals2/signal.hpp>
 #include <boost/thread.hpp>
 #include <boost/algorithm/string/case_conv.hpp> // for to_upper()
 
+#include <functional>  // for std::function
 #include <memory> // for unique_ptr
 #include <unordered_map>
 
@@ -46,22 +47,22 @@ static struct CRPCSignals
     boost::signals2::signal<void (const CRPCCommand&)> PostCommand;
 } g_rpcSignals;
 
-void RPCServer::OnStarted(boost::function<void ()> slot)
+void RPCServer::OnStarted(std::function<void ()> slot)
 {
     g_rpcSignals.Started.connect(slot);
 }
 
-void RPCServer::OnStopped(boost::function<void ()> slot)
+void RPCServer::OnStopped(std::function<void ()> slot)
 {
     g_rpcSignals.Stopped.connect(slot);
 }
 
-void RPCServer::OnPreCommand(boost::function<void (const CRPCCommand&)> slot)
+void RPCServer::OnPreCommand(std::function<void (const CRPCCommand&)> slot)
 {
     g_rpcSignals.PreCommand.connect(boost::bind(slot, boost::placeholders::_1));
 }
 
-void RPCServer::OnPostCommand(boost::function<void (const CRPCCommand&)> slot)
+void RPCServer::OnPostCommand(std::function<void (const CRPCCommand&)> slot)
 {
     g_rpcSignals.PostCommand.connect(boost::bind(slot, boost::placeholders::_1));
 }
@@ -277,6 +278,22 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     return "Pepecoin server stopping";
 }
 
+UniValue uptime(const JSONRPCRequest& jsonRequest)
+{
+    if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
+        throw std::runtime_error(
+                "uptime\n"
+                        "\nReturns the total uptime of the server.\n"
+                        "\nResult:\n"
+                        "ttt        (numeric) The number of seconds that the server has been running\n"
+                        "\nExamples:\n"
+                + HelpExampleCli("uptime", "")
+                + HelpExampleRpc("uptime", "")
+        );
+
+    return GetTime() - GetStartupTime();
+}
+
 /**
  * Call Table
  */
@@ -286,6 +303,7 @@ static const CRPCCommand vRPCCommands[] =
     /* Overall control/query calls */
     { "control",            "help",                   &help,                   true,  {"command"}  },
     { "control",            "stop",                   &stop,                   true,  {}  },
+    { "control",            "uptime",                 &uptime,                 true,  {}  },
 };
 
 CRPCTable::CRPCTable()
@@ -549,7 +567,7 @@ void RPCUnsetTimerInterface(RPCTimerInterface *iface)
         timerInterface = NULL;
 }
 
-void RPCRunLater(const std::string& name, boost::function<void(void)> func, int64_t nSeconds)
+void RPCRunLater(const std::string& name, std::function<void(void)> func, int64_t nSeconds)
 {
     if (!timerInterface)
         throw JSONRPCError(RPC_INTERNAL_ERROR, "No timer handler registered for RPC");

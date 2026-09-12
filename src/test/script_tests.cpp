@@ -508,7 +508,7 @@ BOOST_AUTO_TEST_CASE(script_build)
     tests.push_back(TestBuilder(CScript() << ToByteVector(keys.pubkey0C) << OP_CHECKSIG,
                                 "P2SH(P2PK), bad redeemscript", SCRIPT_VERIFY_P2SH, true
                                ).PushSig(keys.key0).PushRedeem().DamagePush(10).ScriptError(SCRIPT_ERR_EVAL_FALSE));
-    
+
     tests.push_back(TestBuilder(CScript() << OP_DUP << OP_HASH160 << ToByteVector(keys.pubkey0.GetID()) << OP_EQUALVERIFY << OP_CHECKSIG,
                                 "P2SH(P2PKH)", SCRIPT_VERIFY_P2SH, true
                                ).PushSig(keys.key0).Push(keys.pubkey0).PushRedeem());
@@ -944,7 +944,7 @@ BOOST_AUTO_TEST_CASE(script_build)
     }
 
 #ifdef UPDATE_JSON_TESTS
-    FILE* file = fopen("script_tests.json.gen", "w");
+    FILE* file = fsbridge::fopen(fs::path("script_tests.json.gen"), "w");
     fputs(strGen.c_str(), file);
     fclose(file);
 #endif

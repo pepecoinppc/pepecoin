@@ -1,5 +1,5 @@
 // Copyright (c) 2016 The Bitcoin Core developers
-// Copyright (c) 2020 The Dogecoin Core developers
+// Copyright (c) 2020-2022 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,6 +7,7 @@
 
 #include "chainparams.h"
 #include "consensus/validation.h"
+#include "fs.h"
 #include "validation.h"
 #include "rpc/register.h"
 #include "rpc/server.h"
@@ -17,8 +18,6 @@
 
 #include <QDir>
 #include <QtGlobal>
-
-#include <boost/filesystem.hpp>
 
 static UniValue rpcNestedTest_rpc(const JSONRPCRequest& request)
 {
@@ -153,5 +152,5 @@ void RPCNestedTests::rpcNestedTests()
     delete pcoinsdbview;
     delete pblocktree;
 
-    boost::filesystem::remove_all(boost::filesystem::path(path));
+    fs::remove_all(fs::path(path));
 }

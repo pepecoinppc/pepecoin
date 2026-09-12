@@ -86,7 +86,7 @@ class CVectorWriter
 */
     CVectorWriter(int nTypeIn, int nVersionIn, std::vector<unsigned char>& vchDataIn, size_t nPosIn) : nType(nTypeIn), nVersion(nVersionIn), vchData(vchDataIn), nPos(nPosIn)
     {
-        if(nPos > vchData.size())
+        if (nPos > vchData.size())
             vchData.resize(nPos);
     }
 /*
@@ -128,7 +128,7 @@ class CVectorWriter
     void seek(size_t nSize)
     {
         nPos += nSize;
-        if(nPos > vchData.size())
+        if (nPos > vchData.size())
             vchData.resize(nPos);
     }
 private:
@@ -462,7 +462,7 @@ private:
     const int nType;
     const int nVersion;
 
-    FILE* file;	
+    FILE* file;
 
 public:
     CAutoFile(FILE* filenew, int nTypeIn, int nVersionIn) : nType(nTypeIn), nVersion(nVersionIn)

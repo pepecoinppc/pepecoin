@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2021 The Dogecoin Core developers
+// Copyright (c) 2021-2023 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -90,7 +90,7 @@ UniValue getinfo(const JSONRPCRequest& request)
 #endif
     obj.pushKV("blocks",        (int)chainActive.Height());
     obj.pushKV("timeoffset",    GetTimeOffset());
-    if(g_connman)
+    if (g_connman)
         obj.pushKV("connections",   (int)g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL));
     obj.pushKV("proxy",         (proxy.IsValid() ? proxy.proxy.ToStringIPPort() : string()));
     obj.pushKV("difficulty",    (double)GetDifficulty());

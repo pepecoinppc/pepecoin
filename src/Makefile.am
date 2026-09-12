@@ -104,6 +104,7 @@ BITCOIN_CORE_H = \
   pepecoin.h \
   pepecoin-fees.cpp \
   pepecoin-fees.h \
+  fs.h \
   httprpc.h \
   httpserver.h \
   indirectmap.h \
@@ -111,7 +112,6 @@ BITCOIN_CORE_H = \
   key.h \
   keystore.h \
   dbwrapper.h \
-  limitedmap.h \
   memusage.h \
   merkleblock.h \
   miner.h \
@@ -130,8 +130,10 @@ BITCOIN_CORE_H = \
   protocol.h \
   random.h \
   reverselock.h \
+  rpc/auxcache.h \
   rpc/blockchain.h \
   rpc/client.h \
+  rpc/mining.h \
   rpc/protocol.h \
   rpc/server.h \
   rpc/register.h \
@@ -154,9 +156,11 @@ BITCOIN_CORE_H = \
   torcontrol.h \
   txdb.h \
   txmempool.h \
+  txrequest.h \
   ui_interface.h \
   undo.h \
   util.h \
+  utilmemory.h \
   utilmoneystr.h \
   utiltime.h \
   utilstring.h \
@@ -206,6 +210,8 @@ libpepecoin_server_a_SOURCES = \
   policy/policy.cpp \
   pow.cpp \
   rest.cpp \
+  rpc/auxcache.cpp \
+  rpc/auxpow.cpp \
   rpc/blockchain.cpp \
   rpc/mining.cpp \
   rpc/misc.cpp \
@@ -218,6 +224,7 @@ libpepecoin_server_a_SOURCES = \
   torcontrol.cpp \
   txdb.cpp \
   txmempool.cpp \
+  txrequest.cpp \
   ui_interface.cpp \
   validation.cpp \
   validationinterface.cpp \
@@ -255,6 +262,8 @@ crypto_libpepecoin_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 crypto_libpepecoin_crypto_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
+  crypto/chacha20.h \
+  crypto/chacha20.cpp \
   crypto/common.h \
   crypto/hmac_sha256.cpp \
   crypto/hmac_sha256.h \
@@ -352,6 +361,7 @@ libpepecoin_util_a_SOURCES = \
   compat/glibc_sanity.cpp \
   compat/glibcxx_sanity.cpp \
   compat/strnlen.cpp \
+  fs.cpp \
   random.cpp \
   rpc/protocol.cpp \
   support/cleanse.cpp \

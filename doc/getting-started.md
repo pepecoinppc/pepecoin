@@ -26,7 +26,7 @@ If needed, you can specify their location by typing `PATH=$PATH:/path/to/executa
 
 ## Starting a Pepecoin node
 
-To start your node, you can run an headless server using `pepecoind`:
+To start your node, you can run a headless server using `pepecoind`:
 ```console
 satoshi:~$ pepecoind -daemon
 ```
@@ -41,7 +41,7 @@ Detailed logging is recorded in `debug.log`, located in the [data directory](#da
 
 Your node is now running and starts with a *synchronization process* that downloads the entire blockchain from other nodes. This operation will take many hours to complete, but you are now part of the Pepecoin network!
 
-> **Note:** The rest of this guide assumes the use of an headless node. The RPC server is not exposed with `pepecoin-qt` until you activate the `-server` option as a startup argument, but inside the GUI application, you can use all the commands explored below (without `pepecoin-cli`) by going to `Help -> Debug window` and inside the popup window selecting the tab `Console`.
+> **Note:** The rest of this guide assumes the use of a headless node. The RPC server is not exposed with `pepecoin-qt` until you activate the `-server` option as a startup argument, but inside the GUI application, you can use all the commands explored below (without `pepecoin-cli`) by going to `Help -> Debug window` and inside the popup window selecting the tab `Console`.
 
 ## Introduction to the JSON-RPC API
 

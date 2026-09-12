@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2022 The Dogecoin Core developers
+// Copyright (c) 2022-2023 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -49,7 +49,7 @@ protected:
 struct CMainSignals {
     /** Notifies listeners of updated block chain tip */
     boost::signals2::signal<void (const CBlockIndex *, const CBlockIndex *, bool fInitialDownload)> UpdatedBlockTip;
-    /** A posInBlock value for SyncTransaction calls for tranactions not
+    /** A posInBlock value for SyncTransaction calls for transactions not
      * included in connected blocks such as transactions removed from mempool,
      * accepted to mempool or appearing in disconnected blocks.*/
     static const int SYNC_TRANSACTION_NOT_IN_BLOCK = -1;

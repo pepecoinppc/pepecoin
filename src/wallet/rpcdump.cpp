@@ -1,10 +1,11 @@
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2022 The Dogecoin Core developers
+// Copyright (c) 2022-2023 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "base58.h"
 #include "chain.h"
+#include "fs.h"
 #include "rpc/server.h"
 #include "init.h"
 #include "validation.h"
@@ -23,8 +24,6 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
-#include <boost/filesystem.hpp>
-#include <boost/filesystem/path.hpp>
 
 #include <univalue.h>
 
@@ -72,7 +71,7 @@ std::string DecodeDumpString(const std::string &str) {
     for (unsigned int pos = 0; pos < str.length(); pos++) {
         unsigned char c = str[pos];
         if (c == '%' && pos+2 < str.length()) {
-            c = (((str[pos+1]>>6)*9+((str[pos+1]-'0')&15)) << 4) | 
+            c = (((str[pos+1]>>6)*9+((str[pos+1]-'0')&15)) << 4) |
                 ((str[pos+2]>>6)*9+((str[pos+2]-'0')&15));
             pos += 2;
         }
@@ -375,11 +374,11 @@ UniValue removeprunedfunds(const JSONRPCRequest& request)
     vHash.push_back(hash);
     vector<uint256> vHashOut;
 
-    if(pwalletMain->ZapSelectTx(vHash, vHashOut) != DB_LOAD_OK) {
+    if (pwalletMain->ZapSelectTx(vHash, vHashOut) != DB_LOAD_OK) {
         throw JSONRPCError(RPC_WALLET_ERROR, "Could not properly delete the transaction.");
     }
 
-    if(vHashOut.empty()) {
+    if (vHashOut.empty()) {
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Transaction does not exist in wallet.");
     }
 
@@ -450,7 +449,7 @@ UniValue importwallet(const JSONRPCRequest& request)
 {
     if (!EnsureWalletIsAvailable(request.fHelp))
         return NullUniValue;
-    
+
     if (request.fHelp || request.params.size() != 1)
         throw runtime_error(
             "importwallet \"filename\"\n"
@@ -553,7 +552,7 @@ UniValue dumpprivkey(const JSONRPCRequest& request)
 {
     if (!EnsureWalletIsAvailable(request.fHelp))
         return NullUniValue;
-    
+
     if (request.fHelp || request.params.size() != 1)
         throw runtime_error(
             "dumpprivkey \"address\"\n"
@@ -610,9 +609,9 @@ UniValue dumpwallet(const JSONRPCRequest& request)
     ofstream file;
 
     string userFilename = request.params[0].get_str();
-    boost::filesystem::path path = GetBackupDirFromInput(userFilename);
+    fs::path path = GetBackupDirFromInput(userFilename);
 
-    if (boost::filesystem::exists(path))
+    if (fs::exists(path))
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Wallet dump file already exists; not overwriting");
 
     file.open(path.string());
@@ -643,7 +642,7 @@ UniValue dumpwallet(const JSONRPCRequest& request)
     file << strprintf("#   mined on %s\n", EncodeDumpTime(chainActive.Tip()->GetBlockTime()));
     file << "\n";
 
-    // add the base58check encoded extended master if the wallet uses HD 
+    // add the base58check encoded extended master if the wallet uses HD
     CKeyID masterKeyID = pwalletMain->GetHDChain().masterKeyID;
     if (!masterKeyID.IsNull())
     {

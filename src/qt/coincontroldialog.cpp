@@ -14,6 +14,7 @@
 #include "txmempool.h"
 #include "walletmodel.h"
 
+#include "base58.h"
 #include "wallet/coincontrol.h"
 #include "init.h"
 #include "policy/policy.h"
@@ -112,11 +113,7 @@ CoinControlDialog::CoinControlDialog(const PlatformStyle *_platformStyle, QWidge
     connect(ui->treeWidget, SIGNAL(itemChanged(QTreeWidgetItem*, int)), this, SLOT(viewItemChanged(QTreeWidgetItem*, int)));
 
     // click on header
-#if QT_VERSION < 0x050000
-    ui->treeWidget->header()->setClickable(true);
-#else
     ui->treeWidget->header()->setSectionsClickable(true);
-#endif
     connect(ui->treeWidget->header(), SIGNAL(sectionClicked(int)), this, SLOT(headerSectionClicked(int)));
 
     // ok button
@@ -392,10 +389,9 @@ void CoinControlDialog::viewItemChanged(QTreeWidgetItem* item, int column)
         if (ui->treeWidget->isEnabled()) // do not update on every click for (un)select all
             CoinControlDialog::updateLabels(model, this);
     }
-
     // TODO: Remove this temporary qt5 fix after Qt5.3 and Qt5.4 are no longer used.
     //       Fixed in Qt5.5 and above: https://bugreports.qt.io/browse/QTBUG-43473
-#if QT_VERSION >= 0x050000
+#if QT_VERSION < 0x050500
     else if (column == COLUMN_CHECKBOX && item->childCount() > 0)
     {
         if (item->checkState(COLUMN_CHECKBOX) == Qt::PartiallyChecked && item->child(0)->checkState(COLUMN_CHECKBOX) == Qt::PartiallyChecked)

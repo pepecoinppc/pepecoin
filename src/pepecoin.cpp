@@ -1,4 +1,4 @@
-// Copyright (c) 2015-2021 The Dogecoin Core developers
+// Copyright (c) 2015-2022 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -74,9 +74,7 @@ unsigned int CalculatePepecoinNextWorkRequired(const CBlockIndex* pindexLast, in
     // Retarget
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
     arith_uint256 bnNew;
-    arith_uint256 bnOld;
     bnNew.SetCompact(pindexLast->nBits);
-    bnOld = bnNew;
     bnNew *= nModulatedTimespan;
     bnNew /= retargetTimespan;
 

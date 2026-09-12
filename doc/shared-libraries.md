@@ -1,6 +1,8 @@
 Shared Libraries
 ================
 
+> **Note:** This library is not actively maintained and the documentation below may not accurately reflect the current implementation. Symbol names in the code may differ from those described here. Use this library with caution.
+
 ## pepecoinconsensus
 
 The purpose of this library is to make the verification functionality that is critical to Pepecoin's consensus available to other applications, e.g. to language bindings.
@@ -28,22 +30,19 @@ The interface is defined in the C header `pepecoinconsensus.h` located in  `src/
 
 ##### Script Flags
 - `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_NONE`
-- `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_P2SH` - Evaluate P2SH ([BIP16](https://github.com/bitcoin/bips/blob/master/bip-0016.mediawiki)) subscripts
-- `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_DERSIG` - Enforce strict DER ([BIP66](https://github.com/bitcoin/bips/blob/master/bip-0066.mediawiki)) compliance
-- `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_NULLDUMMY` - Enforce NULLDUMMY ([BIP147](https://github.com/bitcoin/bips/blob/master/bip-0147.mediawiki))
-- `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY` - Enable CHECKLOCKTIMEVERIFY ([BIP65](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki))
-- `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_CHECKSEQUENCEVERIFY` - Enable CHECKSEQUENCEVERIFY ([BIP112](https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki))
-- `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_WITNESS` - Enable WITNESS ([BIP141](https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki))
+- `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_P2SH` - Evaluate P2SH ([BIP16](https://github.com/bitcoin/bips/blob/master/bip-0016.mediawiki)) subscripts.
+- `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_DERSIG` - Enforce strict DER ([BIP66](https://github.com/bitcoin/bips/blob/master/bip-0066.mediawiki)) compliance.
+- `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_NULLDUMMY` - Enforce NULLDUMMY ([BIP147](https://github.com/bitcoin/bips/blob/master/bip-0147.mediawiki)).
+- `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY` - Enable CHECKLOCKTIMEVERIFY ([BIP65](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki)).
+- `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_CHECKSEQUENCEVERIFY` - Enable CHECKSEQUENCEVERIFY ([BIP112](https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki)).
+- `pepecoinconsensus_SCRIPT_FLAGS_VERIFY_WITNESS` - Enable WITNESS ([BIP141](https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki)).
 
 ##### Errors
-- `pepecoinconsensus_ERR_OK` - No errors with input parameters *(see the return value of `pepecoinconsensus_verify_script` for the verification status)*
-- `pepecoinconsensus_ERR_TX_INDEX` - An invalid index for `txTo`
-- `pepecoinconsensus_ERR_TX_SIZE_MISMATCH` - `txToLen` did not match with the size of `txTo`
-- `pepecoinconsensus_ERR_DESERIALIZE` - An error deserializing `txTo`
-- `pepecoinconsensus_ERR_AMOUNT_REQUIRED` - Input amount is required if WITNESS is used
+- `pepecoinconsensus_ERR_OK` - No errors with input parameters *(see the return value of `pepecoinconsensus_verify_script` for the verification status)*.
+- `pepecoinconsensus_ERR_TX_INDEX` - An invalid index for `txTo`.
+- `pepecoinconsensus_ERR_TX_SIZE_MISMATCH` - `txToLen` did not match with the size of `txTo`.
+- `pepecoinconsensus_ERR_DESERIALIZE` - An error deserializing `txTo`.
+- `pepecoinconsensus_ERR_AMOUNT_REQUIRED` - Returned by `pepecoinconsensus_verify_script` when `VERIFY_WITNESS` is set; use `pepecoinconsensus_verify_script_with_amount` for witness validation.
 
-### Example Implementations
-- [NBitcoin](https://github.com/NicolasDorier/NBitcoin/blob/master/NBitcoin/Script.cs#L814) (.NET Bindings)
-- [node-libbitcoinconsensus](https://github.com/bitpay/node-libbitcoinconsensus) (Node.js Bindings)
-- [java-libbitcoinconsensus](https://github.com/dexX7/java-libbitcoinconsensus) (Java Bindings)
-- [bitcoinconsensus-php](https://github.com/Bit-Wasp/bitcoinconsensus-php) (PHP Bindings)
+### Example Implementation
+- No known Pepecoin-specific third-party binding examples are currently listed here.

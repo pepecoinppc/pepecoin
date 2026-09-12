@@ -19,7 +19,7 @@ class KeyPoolTest(BitcoinTestFramework):
         
         # Encrypt wallet and wait to terminate
         nodes[0].encryptwallet('test')
-        bitcoind_processes[0].wait()
+        dogecoind_processes[0].wait()
         # Restart node 0
         nodes[0] = start_node(0, self.options.tmpdir)
         # Keep creating keys
@@ -69,7 +69,7 @@ class KeyPoolTest(BitcoinTestFramework):
         nodes[0].generate(1)
         try:
             nodes[0].generate(1)
-            raise AssertionError('Keypool should be exhausted after three addesses')
+            raise AssertionError('Keypool should be exhausted after three addresses')
         except JSONRPCException as e:
             assert(e.error['code']==-12)
 
